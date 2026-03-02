@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HexaIconsVM()),
       ],
       child: MaterialApp(
-        title: 'Portfolio',
+        title: 'Ketch4n',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(

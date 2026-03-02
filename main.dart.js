@@ -62290,7 +62290,7 @@ $1(a){return B.d.Z(a,2)},
 $S:40}
 A.CO.prototype={
 P(a){var s=null,r=A.d([new A.qE(new A.p9(new A.WD(),s,s,A.aub(),A.at5(),t.uV),s,s,s,s,t.K_)],t.Ds)
-return A.anF(new A.tB(B.zL,"Portfolio",A.aaM(s,A.acV(B.T,s,s,B.Eh),s),!1,s),r)}}
+return A.anF(new A.tB(B.zL,"Ketch4n",A.aaM(s,A.acV(B.T,s,s,B.Eh),s),!1,s),r)}}
 A.WD.prototype={
 $1(a){return new A.i1(A.aC(["State Management",B.BP,"Frameworks",B.Bi,"Backend",B.Cs,"CI / CD",B.BC,"Tools",B.BG,"UI / UX",B.BI],t.N,t.wp),$.aA())},
 $S:390}
@@ -66356,7 +66356,7 @@ B.pG=new A.ez(8,"symbolModifier")
 B.kA=s([B.c9,B.ca,B.cb,B.cc,B.hQ,B.hR,B.hS,B.hT,B.pG],A.ae("w<ez>"))
 B.hy=s([!0,!1],t.HZ)
 B.Ib=new A.c6("Firebase","assets/logo/firebase.png")
-B.Ic=new A.c6("MySQL","assets/logo/mySQL.png")
+B.Ic=new A.c6("MySQL","assets/logo/MySQL.png")
 B.Ig=new A.c6("Csharp","assets/logo/csharp.png")
 B.Cs=s([B.Ib,B.Ic,B.Ig],t.LS)
 B.Ct=s(["pointerdown","pointermove","pointerleave","pointerup","pointercancel","touchstart","touchend","touchmove","touchcancel","mousedown","mousemove","mouseleave","mouseup","wheel"],t.s)

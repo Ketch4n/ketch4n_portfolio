@@ -14,8 +14,8 @@ class ProfileIconWidget extends StatelessWidget {
       child: ClipOval(
         child: Image.asset(
           AppConstants.profileImg,
-          width: 200,
-          height: 200,
+          width: 180,
+          height: 150,
           fit: BoxFit.cover,
         ),
       ),

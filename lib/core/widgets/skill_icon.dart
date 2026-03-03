@@ -21,8 +21,8 @@ class SkillIconWidget extends StatelessWidget {
           size: const Size(100, 110),
           painter: HexagonPainter(themeColor: Colors.white),
           child: SizedBox(
-            width: 60,
-            height: 70,
+            width: 50,
+            height: 60,
             child: Center(
               child: Image.asset(
                 assetPath,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
+import 'package:ketch4n/core/widgets/header_title_bar.dart';
 import 'package:ketch4n/core/widgets/hexagon/hexagon_icons_group.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
 // import 'package:ketch4n/core/widgets/typing_controller.dart';
@@ -22,30 +23,16 @@ class _DetailsPaneWidgetState extends State<DetailsPaneWidget> {
     // Access the VM here so the build method can see it
     final viewModel = context.watch<HexaIconsVM>();
 
-    return Container(
+    return GlassmorphismWidget(
       height: double.infinity,
-      decoration: BoxDecoration(color: ColorConstants.previewColor),
-      alignment: Alignment.topLeft,
+      width: double.infinity,
+      firstColor: ColorConstants.previewColor,
       child: Column(
         children: [
-          _buildHeader(),
+          HeaderTitleBarWidget(child: PortfolioConfig.detailsPaneTitle),
           _buildTechGrid(viewModel),
           // _buildTerminalSection(),
         ],
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return const GlassmorphismWidget(
-      width: double.infinity,
-      height: 50,
-      borderRadius: 10,
-      child: Center(
-        child: Text(
-          PortfolioConfig.detailsPaneTitle,
-          style: TextStyle(fontSize: 20, color: Colors.white),
-        ),
       ),
     );
   }

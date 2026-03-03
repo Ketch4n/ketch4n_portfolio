@@ -3,17 +3,18 @@ class PortfolioConfig {
   static const String name = "Christian";
   static const String greeting = "Hola! I'm $name";
   static const String a = "A ";
+  static const String dev = "Developer";
   static const String heroButton = "Hire Me";
   static const String detailsPaneTitle = "Tech-Stack and Tools";
   static const String description =
-      "I'm a passionate Software Developer with expertise in Flutter, Laravel, and Angular.";
+      '''A Passionate Software Develeoper, specializes in Flutter Framework since 2022 with hands-on experience in deploying scalable applications.''';
   static const String introduction = '''These are some of the technologies
   and tools I work with regularly. I have experience in both frontend and backend development.''';
 
   static const List<String> roles = [
-    "Flutter Developer",
-    "Full Stack Developer",
-    "Mobile / Web Developer",
+    "Flutter $dev",
+    "Full Stack $dev",
+    "Software $dev",
   ];
 
   static const String linkedInUrl =

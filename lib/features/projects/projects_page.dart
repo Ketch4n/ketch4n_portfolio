@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ketch4n/core/constants/color_constants.dart';
+import 'package:ketch4n/core/widgets/glassmorphism.dart';
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({super.key});
@@ -8,16 +10,46 @@ class ProjectsPage extends StatefulWidget {
 }
 
 class _ProjectsPageState extends State<ProjectsPage> {
+  final ScrollController ctrl = ScrollController();
+  @override
+  void dispose() {
+    ctrl.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 400,
-      // decoration: BoxDecoration(
-      //   color: Colors.white.withValues(alpha: 0.1),
-      //   borderRadius: BorderRadius.circular(20),
-      // ),
-      alignment: Alignment.topLeft,
-      margin: const EdgeInsets.all(20),
+    return SizedBox(
+      width: double.infinity,
+      // decoration: BoxDecoration(color: Colors.white),
+      child: LayoutBuilder(
+        builder: (context, constraint) {
+          // final width = constraint.maxWidth / 4;
+          final width = 275.0;
+          final height = 375.0;
+          return Scrollbar(
+            controller: ctrl,
+            interactive: true,
+            thumbVisibility: true,
+
+            child: SingleChildScrollView(
+              controller: ctrl,
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Wrap(
+                children: List.generate(
+                  6,
+                  (index) => GlassmorphismWidget(
+                    firstColor: ColorConstants.previewColor,
+                    width: width,
+                    height: height,
+                    child: SizedBox(),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

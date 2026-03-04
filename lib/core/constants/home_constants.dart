@@ -5,7 +5,7 @@ class PortfolioConfig {
   static const String a = "A ";
   static const String dev = "Developer";
   static const String heroButton = "Hire Me";
-  static const String detailsPaneTitle = "Tech-Stack and Tools";
+  static const String detailsPaneTitle = "Tech-Stack Toolkit";
   static const String description =
       '''A Passionate Software Develeoper, specializes in Flutter Framework since 2022 with hands-on experience in deploying scalable applications.''';
   static const String introduction = '''These are some of the technologies

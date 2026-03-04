@@ -15,11 +15,11 @@ class NavigationRailWidget extends StatelessWidget {
         SizedBox(height: 0.0),
         Image.asset(AppConstants.flutterLogo, height: 40, width: 40),
 
-        FaIcon(FontAwesomeIcons.addressCard, color: Colors.white),
+        FaIcon(FontAwesomeIcons.layerGroup, color: Colors.white),
 
-        FaIcon(FontAwesomeIcons.folderClosed, color: Colors.white),
+        FaIcon(FontAwesomeIcons.code, color: Colors.white),
 
-        FaIcon(FontAwesomeIcons.laptopCode, color: Colors.white),
+        FaIcon(FontAwesomeIcons.briefcase, color: Colors.white),
 
         Expanded(child: HeroIconButtonWidget()),
         SizedBox(height: 10),

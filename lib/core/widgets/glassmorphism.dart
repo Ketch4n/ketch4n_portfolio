@@ -13,6 +13,8 @@ class GlassmorphismWidget extends StatelessWidget {
   final double bottomMargin;
   final Color firstColor;
   final Color secondColor;
+  final AlignmentGeometry begin;
+  final AlignmentGeometry end;
 
   const GlassmorphismWidget({
     super.key,
@@ -27,6 +29,8 @@ class GlassmorphismWidget extends StatelessWidget {
     this.bottomMargin = 20,
     this.firstColor = Colors.white,
     this.secondColor = Colors.white,
+    this.begin = Alignment.topLeft,
+    this.end = Alignment.bottomRight,
   });
 
   @override
@@ -45,8 +49,8 @@ class GlassmorphismWidget extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       border: 1,
       linearGradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
+        begin: begin,
+        end: end,
         colors: [
           firstColor.withValues(alpha: 0.1),
           secondColor.withValues(alpha: 0.05),
@@ -54,11 +58,11 @@ class GlassmorphismWidget extends StatelessWidget {
         // stops: [0.1, 1],
       ),
       borderGradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
+        begin: begin,
+        end: end,
         colors: [
-          firstColor.withValues(alpha: 0.1),
-          secondColor.withValues(alpha: 0.5),
+          Colors.white.withValues(alpha: 0.1),
+          Colors.white.withValues(alpha: 0.5),
         ],
       ),
       child: child,

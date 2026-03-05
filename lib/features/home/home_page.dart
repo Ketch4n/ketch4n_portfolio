@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/constants/app_constants.dart';
-import 'package:ketch4n/core/widgets/details_pane.dart';
-import 'package:ketch4n/core/widgets/glassmorphism.dart';
 import 'package:ketch4n/core/widgets/hero/hero_header.dart';
 import 'package:ketch4n/core/widgets/navigation_rail.dart';
-import 'package:ketch4n/features/projects/projects_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,6 +11,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final ScrollController ctrl = ScrollController();
+  @override
+  void dispose() {
+    ctrl.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,39 +27,32 @@ class _HomePageState extends State<HomePage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: _homePageScaffold(),
-    );
-  }
-}
-
-Scaffold _homePageScaffold() => Scaffold(
-  backgroundColor: Colors.transparent,
-  body: Row(
-    children: [
-      GlassmorphismWidget(
-        width: 70,
-        height: double.infinity,
-        borderRadius: 10,
-        child: NavigationRailWidget(),
-      ),
-      Expanded(
-        child: Flex(
-          direction: Axis.horizontal,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Row(
           children: [
+            NavigationRailWidget(),
             Expanded(
-              flex: 2,
-              child: Column(
-                children: [
-                  HeroHeaderWidget(),
-                  Expanded(child: ProjectsPage()),
-                  // WorkExperiencePage(),
-                ],
+              child: Scrollbar(
+                controller: ctrl,
+                interactive: true,
+                thumbVisibility: true,
+                child: SingleChildScrollView(
+                  controller: ctrl,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    children: [
+                      HeroHeaderWidget(),
+                      // ProjectsPage(),
+                      // WorkExperiencePage(),
+                    ],
+                  ),
+                ),
               ),
             ),
-            Expanded(flex: 1, child: DetailsPaneWidget()),
           ],
         ),
       ),
-    ],
-  ),
-);
+    );
+  }
+}

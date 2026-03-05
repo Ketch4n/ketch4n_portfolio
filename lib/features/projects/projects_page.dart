@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ketch4n/core/constants/app_constants.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
+import 'package:ketch4n/core/constants/home_constants.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
-import 'package:ketch4n/core/widgets/project_mockup_3d.dart';
+import 'package:ketch4n/core/widgets/header_title_bar.dart';
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({super.key});
@@ -11,13 +13,6 @@ class ProjectsPage extends StatefulWidget {
 }
 
 class _ProjectsPageState extends State<ProjectsPage> {
-  final ScrollController ctrl = ScrollController();
-  @override
-  void dispose() {
-    ctrl.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     // final screenHeight = MediaQuery.sizeOf(context).height;
@@ -25,18 +20,18 @@ class _ProjectsPageState extends State<ProjectsPage> {
       width: double.infinity,
       child: LayoutBuilder(
         builder: (context, constraint) {
-          final mHeight = constraint.maxHeight / 2;
+          // final mHeight = constraint.maxHeight / 3;
           final width = 275.0;
-          final height = 375.0;
-          return Scrollbar(
-            controller: ctrl,
-            interactive: true,
-            thumbVisibility: true,
-
-            child: SingleChildScrollView(
-              controller: ctrl,
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: Wrap(
+          final height = 350.0;
+          final div2 = height / 2;
+          final div4 = height / 4;
+          final mHeight = div2 + div4;
+          return Column(
+            children: [
+              HeaderTitleBarWidget(
+                child: PortfolioConfig.project.toUpperCase(),
+              ),
+              Wrap(
                 children: List.generate(
                   6,
                   (index) => GlassmorphismWidget(
@@ -45,28 +40,47 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     height: height,
                     child: Column(
                       children: [
-                        Container(
-                          height: mHeight,
-                          margin: EdgeInsets.all(1),
-                          decoration: BoxDecoration(
-                            color: ColorConstants.previewColor,
-                            borderRadius: .only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
+                        Stack(
+                          children: [
+                            Container(
+                              height: mHeight,
+                              margin: EdgeInsets.all(1),
+                              decoration: BoxDecoration(
+                                color: ColorConstants.previewColor,
+                                borderRadius: .only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                ),
+                                border: BoxBorder.all(
+                                  // width: 1,
+                                  color: Colors.white.withValues(alpha: 0.1),
+                                ),
+                              ),
+                              child: Image.asset(
+                                AppConstants.phoneMockup,
+                                fit: BoxFit.fitHeight,
+                              ),
                             ),
-                            border: BoxBorder.all(
-                              width: 1,
-                              color: Colors.white.withValues(alpha: 0.1),
+                            Positioned(
+                              child: ListTile(
+                                leading: Icon(
+                                  Icons.circle,
+                                  color: Colors.green,
+                                ),
+                                title: Text(
+                                  "Flutter App",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
                             ),
-                          ),
-                          child: ProjectMockup3D(height: mHeight),
+                          ],
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
-            ),
+            ],
           );
         },
       ),

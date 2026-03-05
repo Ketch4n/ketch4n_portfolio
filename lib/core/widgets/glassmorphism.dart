@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 
 class GlassmorphismWidget extends StatelessWidget {
-  final Widget child;
   final double width;
   final double height;
+
   final double borderRadius;
   final double blur;
   final double leftMargin;
@@ -15,12 +15,14 @@ class GlassmorphismWidget extends StatelessWidget {
   final Color secondColor;
   final AlignmentGeometry begin;
   final AlignmentGeometry end;
+  final Widget child;
 
   const GlassmorphismWidget({
     super.key,
-    required this.child,
+
     required this.width,
     required this.height,
+
     this.borderRadius = 20,
     this.blur = 20,
     this.leftMargin = 20,
@@ -31,6 +33,7 @@ class GlassmorphismWidget extends StatelessWidget {
     this.secondColor = Colors.white,
     this.begin = Alignment.topLeft,
     this.end = Alignment.bottomRight,
+    required this.child,
   });
 
   @override

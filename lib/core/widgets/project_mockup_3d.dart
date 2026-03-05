@@ -49,7 +49,7 @@ class _ProjectMockup3DState extends State<ProjectMockup3D> {
               ..rotateX(rotationX)
               ..rotateY(rotationY),
             child: Image.asset(
-              'assets/projects/mockup.png',
+              'assets/projects/iphone16.png',
               height: widget.height,
               fit: BoxFit.fitHeight,
             ),

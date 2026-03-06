@@ -43,7 +43,7 @@ class _HeroHeaderWidgetState extends State<HeroHeaderWidget> {
           ),
         ),
 
-        Expanded(flex: 1, child: AsideSectionWidget()),
+        Expanded(flex: 1, child: Column(children: [AsideSectionWidget()])),
       ],
     );
   }

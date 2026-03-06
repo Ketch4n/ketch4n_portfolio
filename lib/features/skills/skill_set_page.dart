@@ -1,27 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
+import 'package:ketch4n/core/constants/home_constants.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
+import 'package:ketch4n/core/widgets/header_title_bar.dart';
+import 'package:ketch4n/core/widgets/hexagon/hexagon_icons_group.dart';
+import 'package:ketch4n/core/widgets/hexagon/hexagon_icons_group_vm.dart';
+import 'package:provider/provider.dart';
 
-class SkillSetPage extends StatelessWidget {
+class SkillSetPage extends StatefulWidget {
   const SkillSetPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return GlassmorphismWidget(
-      firstColor: ColorConstants.previewColor,
-      width: double.maxFinite,
-      height: 130,
-      child: Center(
-        child: Row(
-          mainAxisAlignment: .center,
+  State<SkillSetPage> createState() => _SkillSetPageState();
+}
 
-          children: [
-            FaIcon(FontAwesomeIcons.bullseye),
-            FaIcon(FontAwesomeIcons.circleNodes),
-            FaIcon(FontAwesomeIcons.atom),
-          ],
-        ),
+class _SkillSetPageState extends State<SkillSetPage> {
+  @override
+  Widget build(BuildContext context) {
+    final viewModel = context.watch<HexaIconsVM>();
+
+    return GlassmorphismWidget(
+      height: 490,
+      width: double.infinity,
+      firstColor: ColorConstants.previewColor,
+      child: Column(
+        children: [
+          HeaderTitleBarWidget(child: PortfolioConfig.detailsPaneTitle),
+          _buildTechGrid(viewModel),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTechGrid(HexaIconsVM vm) {
+    final categories = vm.categories.entries.toList();
+
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final itemWidth = constraints.maxWidth / 2;
+
+          return Wrap(
+            children: categories.map((category) {
+              return SizedBox(
+                width: itemWidth,
+                child: HexagonIconsGroupWidget(
+                  title: category.key,
+                  items: category.value,
+                ),
+              );
+            }).toList(),
+          );
+        },
       ),
     );
   }

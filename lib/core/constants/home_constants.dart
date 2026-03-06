@@ -28,4 +28,6 @@ class PortfolioConfig {
   static const String yrsExp = " + Years Experience";
   static const String role = "Freelance";
   static const String project = "Projects";
+  static const String workExperience = "Work Experience";
+  static const String contacts = "Contacts";
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ketch4n/core/animations/beam.dart';
 import 'package:ketch4n/core/constants/app_constants.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
-import 'package:ketch4n/core/widgets/header_title_bar.dart';
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({super.key});
@@ -21,15 +21,21 @@ class _ProjectsPageState extends State<ProjectsPage> {
       child: LayoutBuilder(
         builder: (context, constraint) {
           // final mHeight = constraint.maxHeight / 3;
-          final width = 275.0;
+          final width = 272.0;
           final height = 350.0;
           final div2 = height / 2;
           final div4 = height / 4;
           final mHeight = div2 + div4;
           return Column(
             children: [
-              HeaderTitleBarWidget(
-                child: PortfolioConfig.project.toUpperCase(),
+              // HeaderTitleBarWidget(
+              //   child: PortfolioConfig.project.toUpperCase(),
+              // ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                child: BeamAnimation(
+                  title: PortfolioConfig.project.toUpperCase(),
+                ),
               ),
               Wrap(
                 children: List.generate(

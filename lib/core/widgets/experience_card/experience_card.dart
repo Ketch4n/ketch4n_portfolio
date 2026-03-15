@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
-import 'package:ketch4n/core/widgets/text_tag.dart';
+import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
 
 class ExperienceCardWidget extends StatefulWidget {
   final String leading;

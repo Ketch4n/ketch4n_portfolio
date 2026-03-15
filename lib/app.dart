@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ketch4n/core/widgets/flip_card/flip_card_vm.dart';
 import 'package:ketch4n/core/widgets/hexagon/hexagon_icons_group_vm.dart';
 import 'package:ketch4n/features/home/home_page.dart';
+import 'package:ketch4n/features/home/home_page_vm.dart';
 // import 'package:ketch4n/data/viewModels/home_page_vm.dart';
 import 'package:provider/provider.dart';
 
@@ -11,8 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        // ChangeNotifierProvider(create: (context) => HomeViewModel()),
+        ChangeNotifierProvider(create: (context) => HomeViewModel()),
         ChangeNotifierProvider(create: (_) => HexaIconsVM()),
+        ChangeNotifierProvider(create: (_) => FlipCardVM()),
       ],
       child: MaterialApp(
         title: 'Ketch4n',

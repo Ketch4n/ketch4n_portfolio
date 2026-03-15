@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:ketch4n/core/constants/app_constants.dart';
 
-class ProfileIconWidget extends StatelessWidget {
-  const ProfileIconWidget({super.key});
+class ProfileIconWidget extends StatefulWidget {
+  final String image;
+  const ProfileIconWidget({super.key, required this.image});
 
+  @override
+  State<ProfileIconWidget> createState() => _ProfileIconWidgetState();
+}
+
+class _ProfileIconWidgetState extends State<ProfileIconWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,10 +18,10 @@ class ProfileIconWidget extends StatelessWidget {
       ),
       child: ClipOval(
         child: Image.asset(
-          AppConstants.profileImg,
-          width: 200,
-          height: 180,
-          fit: BoxFit.cover,
+          widget.image,
+          width: 170,
+          height: 200,
+          fit: BoxFit.fill,
         ),
       ),
     );

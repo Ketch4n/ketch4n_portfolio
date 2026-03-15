@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/animations/ripple_pulse_effect.dart';
-import 'package:ketch4n/core/widgets/profile_icon.dart';
+import 'package:ketch4n/core/widgets/flip_card/flip_card.dart';
 
 class HeroHeaderLeading extends StatelessWidget {
   const HeroHeaderLeading({super.key});
@@ -9,9 +9,13 @@ class HeroHeaderLeading extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Stack(
       children: [
-        ProfileIconWidget(),
+        // ProfileIconWidget(),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          child: FlipCardWidget(),
+        ),
         Positioned(
-          right: 30,
+          right: 35,
           top: 20,
           child: Stack(
             alignment: Alignment.center,

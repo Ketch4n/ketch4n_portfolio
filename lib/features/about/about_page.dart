@@ -4,7 +4,7 @@ import 'package:ketch4n/core/constants/home_constants.dart';
 import 'package:ketch4n/core/theme/app_text_style.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
 import 'package:ketch4n/core/widgets/header_title_bar.dart';
-import 'package:ketch4n/core/widgets/text_tag.dart';
+import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
 
 class AboutPageWidget extends StatefulWidget {
   const AboutPageWidget({super.key});

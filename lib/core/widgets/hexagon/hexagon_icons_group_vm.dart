@@ -11,6 +11,7 @@ class HexaIconsVM extends ChangeNotifier {
     HexagonIconsGroupContants.backendConst: HexagonIconsGroupContants.backend,
     HexagonIconsGroupContants.cicdConst: HexagonIconsGroupContants.cicd,
     HexagonIconsGroupContants.toolsConst: HexagonIconsGroupContants.tools,
+    HexagonIconsGroupContants.mlConst: HexagonIconsGroupContants.ml,
     HexagonIconsGroupContants.uiuxConst: HexagonIconsGroupContants.uiux,
   };
 

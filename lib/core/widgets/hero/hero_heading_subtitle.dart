@@ -17,8 +17,7 @@ class _HeroHeadingSubtitleState extends State<HeroHeadingSubtitle> {
     return Row(
       mainAxisAlignment: .start,
       children: [
-        SizedBox(width: 210),
-
+        // SizedBox(width: 210),
         FilledButton(
           style: FilledButton.styleFrom(
             shape: RoundedRectangleBorder(

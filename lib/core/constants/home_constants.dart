@@ -9,7 +9,9 @@ class PortfolioConfig {
   static const String description =
       '''A Passionate Software Develeoper, specializes in Flutter Framework since 2022 with hands-on experience in deploying scalable applications.''';
   static const String introduction =
-      '''These are some of the technologies and tools I work with regularly. I have experience in both frontend and backend development.''';
+      '''Mobile Developer with 5+ years of software engineering experience and 4+ years specializing in Flutter for cross
+platform mobile applications with modern architecture such as MVVM and Clean Architecture. Experienced in 
+REST API integration, Firebase services, real-time data systems, CI/CD pipelines, and cloud platforms.''';
 
   static const List<String> roles = [
     "Flutter $dev",

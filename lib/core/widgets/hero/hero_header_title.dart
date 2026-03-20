@@ -18,35 +18,33 @@ class _HeroHeaderTitleState extends State<HeroHeaderTitle> {
   );
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
 
-        children: [
-          Text(PortfolioConfig.greeting, style: AppTextStyles.heroTitle),
+      children: [
+        Text(PortfolioConfig.greeting, style: AppTextStyles.heroTitle),
 
-          Row(
-            children: [
-              Text(PortfolioConfig.a, style: AppTextStyles.heroTitle),
-              TypingTextWidget(
-                viewModel: titleVM,
-                style: AppTextStyles.heroTitle.copyWith(color: Colors.cyan),
-              ),
-            ],
-          ),
+        Row(
+          children: [
+            Text(PortfolioConfig.a, style: AppTextStyles.heroTitle),
+            TypingTextWidget(
+              viewModel: titleVM,
+              style: AppTextStyles.heroTitle.copyWith(color: Colors.cyan),
+            ),
+          ],
+        ),
 
-          Text(
-            PortfolioConfig.description,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: AppTextStyles.heroSubTitle,
-          ),
+        Text(
+          PortfolioConfig.description,
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+          style: AppTextStyles.heroSubTitle,
+        ),
 
-          // const SizedBox(height: 5),
-          // HeroIconButtonWidget(),
-        ],
-      ),
+        // const SizedBox(height: 5),
+        // HeroIconButtonWidget(),
+      ],
     );
   }
 }

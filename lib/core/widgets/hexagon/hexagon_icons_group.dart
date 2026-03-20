@@ -23,16 +23,16 @@ class HexagonIconsGroupWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 18, color: Colors.white70),
-        ),
+        // Text(
+        //   title,
+        //   style: const TextStyle(fontSize: 18, color: Colors.white70),
+        // ),
         // const SizedBox(height: 10),
         SizedBox(
-          height: 90,
+          height: 240,
           child: Center(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
+            child: Column(
+              // mainAxisSize: MainAxisSize.min,
               children: items
                   .map(
                     (item) =>

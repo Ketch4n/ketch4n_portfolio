@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ketch4n/features/contacts/contacts_page.dart';
 import 'package:ketch4n/features/home/home_page_vm.dart';
+import 'package:ketch4n/features/projects/projects_page.dart';
+import 'package:ketch4n/features/skills/skill_set_page.dart';
+import 'package:ketch4n/features/work_experience/work_experience_page.dart';
 import 'package:provider/provider.dart'; // Standard for MVVM
 import 'package:ketch4n/core/constants/app_constants.dart';
 import 'package:ketch4n/core/widgets/hero/hero_header.dart';
@@ -51,8 +55,8 @@ class _HomeContentState extends State<_HomeContent> {
         ),
       ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Row(
+        backgroundColor: Colors.black,
+        body: Column(
           children: [
             const NavigationRailWidget(),
             Expanded(
@@ -63,11 +67,13 @@ class _HomeContentState extends State<_HomeContent> {
                 child: SingleChildScrollView(
                   controller: ctrl,
                   physics: const AlwaysScrollableScrollPhysics(),
-                  child: const Column(
+                  child: Column(
                     children: [
-                      HeroHeaderWidget(),
-                      // ProjectsPage(),
-                      // WorkExperiencePage(),
+                      const HeroHeaderWidget(),
+                      SkillSetPage(),
+                      ProjectsPage(),
+                      WorkExperiencePage(),
+                      ContactsPage(),
                     ],
                   ),
                 ),

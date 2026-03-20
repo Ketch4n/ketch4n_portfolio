@@ -26,6 +26,8 @@ class _ExperienceCardWidgetState extends State<ExperienceCardWidget> {
   @override
   Widget build(BuildContext context) {
     return GlassmorphismWidget(
+      leftMargin: 0,
+      rightMargin: 0,
       height: 140,
       width: double.infinity,
       firstColor: ColorConstants.previewColor,

@@ -9,6 +9,7 @@ class HexagonIconsGroupContants {
   static const String toolsConst = "Tools";
   static const String stateManagementConst = "State Management";
   static const String uiuxConst = "UI / UX";
+  static const String mlConst = "ML";
 
   static const mainStack = <SkillIconEntity>[
     SkillIconEntity(title: 'Flutter', icon: 'assets/logo/flutter.png'),
@@ -51,7 +52,7 @@ class HexagonIconsGroupContants {
   static const ml = <SkillIconEntity>[
     SkillIconEntity(title: 'TensorFlow', icon: 'assets/logo/tensorflow.png'),
     SkillIconEntity(title: 'Ollama', icon: 'assets/logo/ollama2.png'),
-    SkillIconEntity(title: 'HuggingFace', icon: 'assets/logo/hf-logo.png'),
+    // SkillIconEntity(title: 'HuggingFace', icon: 'assets/logo/hf-logo.png'),
   ];
 
   static const ide = <SkillIconEntity>[

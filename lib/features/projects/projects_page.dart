@@ -16,11 +16,13 @@ class _ProjectsPageState extends State<ProjectsPage> {
   @override
   Widget build(BuildContext context) {
     // final screenHeight = MediaQuery.sizeOf(context).height;
-    return SizedBox(
+    return Container(
+      constraints: BoxConstraints(maxWidth: 900),
       width: double.infinity,
       child: LayoutBuilder(
         builder: (context, constraint) {
           // final mHeight = constraint.maxHeight / 3;
+          // final mWidth = constraint.maxWidth / 3;
           final width = 272.0;
           final height = 350.0;
           final div2 = height / 2;
@@ -31,16 +33,15 @@ class _ProjectsPageState extends State<ProjectsPage> {
               // HeaderTitleBarWidget(
               //   child: PortfolioConfig.project.toUpperCase(),
               // ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                child: BeamAnimation(
-                  title: PortfolioConfig.project.toUpperCase(),
-                ),
-              ),
-              Wrap(
+              BeamAnimation(title: PortfolioConfig.project.toUpperCase()),
+              Row(
+                mainAxisAlignment: .spaceBetween,
+                // spacing: 20,
                 children: List.generate(
-                  6,
+                  3,
                   (index) => GlassmorphismWidget(
+                    leftMargin: 0,
+                    rightMargin: 0,
                     firstColor: ColorConstants.previewColor,
                     width: width,
                     height: height,

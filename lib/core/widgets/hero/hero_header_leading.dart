@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:ketch4n/core/animations/ripple_pulse_effect.dart';
-import 'package:ketch4n/core/widgets/flip_card/flip_card.dart';
+import 'package:ketch4n/core/widgets/glassmorphism.dart';
 
 class HeroHeaderLeading extends StatelessWidget {
   const HeroHeaderLeading({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Stack(
-      children: [
-        // ProfileIconWidget(),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
-          child: FlipCardWidget(),
-        ),
-        Positioned(
-          right: 35,
-          top: 20,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              PulseAnimation(),
-              Icon(Icons.circle, color: Colors.green, size: 16),
-            ],
+    return Container(
+      constraints: BoxConstraints(maxWidth: 400),
+      child: GlassmorphismWidget(
+        width: double.infinity,
+        height: 380,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20), // match your glass radius
+          child: Image.asset(
+            "assets/dev/gemini.png",
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
           ),
         ),
-      ],
+      ),
     );
   }
 }

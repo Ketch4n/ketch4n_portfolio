@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/animations/beam.dart';
-import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/constants/hexagon_icons_group_constants.dart';
 import 'package:ketch4n/core/constants/size_constants.dart';
-import 'package:ketch4n/core/widgets/glassmorphism.dart';
-import 'package:ketch4n/core/widgets/hexagon/hexagon_icons_group.dart';
 import 'package:ketch4n/core/widgets/hexagon/hexagon_icons_group_vm.dart';
+import 'package:ketch4n/core/widgets/skill_icon.dart';
 import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +18,10 @@ class _SkillSetPageState extends State<SkillSetPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<HexaIconsVM>();
+    // final bool isMobile = Responsive.isMobile(context);
+    // final bool isTablet = Responsive.isTablet(context);
 
+    // Define techList here so it is available within the build scope
     final techList = [
       HexagonIconsGroupContants.stateManagementConst,
       HexagonIconsGroupContants.frameworksConst,
@@ -32,46 +33,30 @@ class _SkillSetPageState extends State<SkillSetPage> {
     ];
 
     return Container(
-      // color: Colors.green,
       constraints: SizeConstants.pageMaxWidth,
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       child: Column(
+        spacing: 30,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 22),
-            child: BeamAnimation(title: "Tech-Stack Toolkit"),
-          ),
-          // Text.rich(
-          //   TextSpan(
-          //     text:
-          //         ''' " Frameworks and Technologies I have used during my career as a freelance developer,
-          //                         company's tech-stack and personal projects " ''',
-          //   ),
-          // ),
-          // SizedBox(height: 20),
-          GlassmorphismWidget(
-            leftMargin: 0,
-            rightMargin: 0,
-            topMargin: 0,
-            height: 400,
-            width: double.infinity,
-            firstColor: ColorConstants.previewColor,
+          BeamAnimation(title: "Tech-Stack Toolkit"),
+          Center(
             child: Column(
-              mainAxisAlignment: .center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              spacing: 30,
               children: [
-                // HeaderTitleBarWidget(child: PortfolioConfig.detailsPaneTitle),
-                Row(
-                  mainAxisAlignment: .center,
+                Wrap(
+                  alignment: WrapAlignment.center,
                   spacing: 10,
+                  runSpacing: 10,
                   children: techList
-                      .map(
-                        (tech) => Container(
-                          constraints: BoxConstraints(maxWidth: 200),
-                          child: TextTagWidget(text: tech),
-                        ),
-                      )
+                      .map((tech) => TextTagWidget(text: tech))
                       .toList(),
                 ),
-                Center(child: _buildTechGrid(viewModel)),
+
+                // The Individual Icons Wrap
+                _buildIndividualIconsWrap(viewModel),
+                SizedBox(height: 30),
               ],
             ),
           ),
@@ -80,28 +65,17 @@ class _SkillSetPageState extends State<SkillSetPage> {
     );
   }
 
-  Widget _buildTechGrid(HexaIconsVM vm) {
-    final categories = vm.categories.entries.toList();
+  Widget _buildIndividualIconsWrap(HexaIconsVM vm) {
+    // This flattens the Map<String, List<SkillIconEntity>> into one List<SkillIconEntity>
+    final allIcons = vm.categories.values.expand((list) => list).toList();
 
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final itemWidth = constraints.maxWidth / 7;
-
-          return Wrap(
-            children: categories.map((category) {
-              return SizedBox(
-                width: itemWidth,
-                child: HexagonIconsGroupWidget(
-                  title: category.key,
-                  items: category.value,
-                ),
-              );
-            }).toList(),
-          );
-        },
-      ),
+    return Wrap(
+      alignment: WrapAlignment.center,
+      // spacing: 15, // Horizontal space between hexagons
+      // runSpacing: 0, // Vertical space between rows
+      children: allIcons.map((item) {
+        return SkillIconWidget(assetPath: item.icon, text: item.title);
+      }).toList(),
     );
   }
 }

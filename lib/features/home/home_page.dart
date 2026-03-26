@@ -60,8 +60,8 @@ class _HomeContentState extends State<_HomeContent> {
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: Column(
           children: [
+            // AppBar represent
             Row(
-              // crossAxisAlignment: .center,
               mainAxisAlignment: .spaceEvenly,
 
               children: [
@@ -102,6 +102,7 @@ class _HomeContentState extends State<_HomeContent> {
                 ),
               ],
             ),
+            // Body
             Expanded(
               child: Scrollbar(
                 controller: ctrl,
@@ -111,7 +112,7 @@ class _HomeContentState extends State<_HomeContent> {
                   controller: ctrl,
                   physics: const AlwaysScrollableScrollPhysics(),
                   child: Column(
-                    spacing: 50,
+                    // spacing: 10,
                     children: [
                       HeroHeaderWidget(),
                       SkillSetPage(),

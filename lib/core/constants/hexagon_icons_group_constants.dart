@@ -19,7 +19,11 @@ class HexagonIconsGroupContants {
 
   static const backend = <SkillIconEntity>[
     SkillIconEntity(title: 'Laravel', icon: 'assets/logo/laravel.png'),
+    SkillIconEntity(title: 'Csharp', icon: 'assets/logo/c-sharp.png'),
+    // SkillIconEntity(title: 'Kotlin', icon: 'assets/logo/kotlin.png'),
     SkillIconEntity(title: 'MySQL', icon: 'assets/logo/MySQL.png'),
+    SkillIconEntity(title: 'Sqlite', icon: 'assets/logo/sqlite.png'),
+
     SkillIconEntity(title: 'Firebase', icon: 'assets/logo/firebase.png'),
 
     // SkillIconEntity(title: 'Csharp', icon: 'assets/logo/csharp.png'),
@@ -29,10 +33,18 @@ class HexagonIconsGroupContants {
     SkillIconEntity(title: 'CodeMagic', icon: 'assets/logo/codemagic.png'),
     SkillIconEntity(title: 'Azure', icon: 'assets/logo/azure.png'),
     SkillIconEntity(title: 'Docker', icon: 'assets/logo/docker.png'),
+    SkillIconEntity(
+      title: 'Google Cloud',
+      icon: 'assets/logo/google-cloud.png',
+    ),
   ];
 
   static const tools = <SkillIconEntity>[
     SkillIconEntity(title: 'VS Code', icon: 'assets/logo/vscode.png'),
+    SkillIconEntity(
+      title: 'Android Studio',
+      icon: 'assets/logo/android-studio.png',
+    ),
     SkillIconEntity(title: 'Git', icon: 'assets/logo/git.png'),
     SkillIconEntity(title: 'Postman', icon: 'assets/logo/postman.png'),
   ];

@@ -9,68 +9,49 @@ class NavigationRailWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassmorphismWidget(
       width: 390,
-      height: 70,
+      height: 45,
       borderRadius: 10,
-      child: Center(
-        child: Row(
-          mainAxisAlignment: .spaceEvenly,
-          crossAxisAlignment: .center,
-          spacing: 20,
-          children: [
-            // SizedBox(height: 0.0),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                FaIcon(FontAwesomeIcons.solidAddressCard),
-                SizedBox(height: 4),
-                Text("About", style: TextStyle(fontSize: 12)),
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                FaIcon(FontAwesomeIcons.layerGroup),
-                SizedBox(height: 4),
-                Text("Skills", style: TextStyle(fontSize: 12)),
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                FaIcon(FontAwesomeIcons.code),
-                SizedBox(height: 4),
-                Text("Projects", style: TextStyle(fontSize: 12)),
-              ],
-            ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _buildNavItem(context, FontAwesomeIcons.solidAddressCard, "About"),
+          _buildNavItem(context, FontAwesomeIcons.layerGroup, "Skills"),
+          _buildNavItem(context, FontAwesomeIcons.code, "Projects"),
+          _buildNavItem(context, FontAwesomeIcons.briefcase, "Work Experience"),
+          _buildNavItem(context, FontAwesomeIcons.solidEnvelope, "Contacts"),
+        ],
+      ),
+    );
+  }
 
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                FaIcon(FontAwesomeIcons.briefcase),
-                SizedBox(height: 4),
-                Text("Work Exp", style: TextStyle(fontSize: 12)),
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                FaIcon(FontAwesomeIcons.solidEnvelope),
-                SizedBox(height: 4),
-                Text("Contacts", style: TextStyle(fontSize: 12)),
-              ],
-            ),
-
-            // Expanded(
-            //   child: Align(
-            //     alignment: .bottomCenter,
-            //     child: FaIcon(
-            //       FontAwesomeIcons.batteryQuarter,
-            //       ,
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(height: 10),
-          ],
+  Widget _buildNavItem(BuildContext context, IconData icon, String message) {
+    return Center(
+      child: Tooltip(
+        message: message,
+        // Optional: Customizing the tooltip style to match your theme
+        decoration: BoxDecoration(
+          color: Theme.of(
+            context,
+          ).colorScheme.primaryContainer.withValues(alpha: 0.9),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        textStyle: TextStyle(
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
+        verticalOffset: 25, // Distance from the icon
+        child: InkWell(
+          onTap: () {
+            // Handle navigation here
+          },
+          borderRadius: BorderRadius.circular(8),
+          child: FaIcon(
+            icon,
+            size: 25, // Adjusted for a 45px height bar
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
         ),
       ),
     );

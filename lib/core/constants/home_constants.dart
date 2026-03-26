@@ -33,4 +33,13 @@ REST API integration, Firebase services, real-time data systems, CI/CD pipelines
   static const String project = "Projects";
   static const String workExperience = "Work Experience";
   static const String contacts = "Contacts";
+
+  static const String svgBackground = '''
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="560" viewBox="0 0 1440 560">
+  <g fill="none" stroke="rgba(54, 163, 255, 0.93)" stroke-width="2">
+    <path d="M75.19 27.32L118.5 52.32L118.5 102.32L75.19 127.32L31.89 102.32L31.89 52.32z"/>
+    <!-- shortened for clarity -->
+  </g>
+</svg>
+''';
 }

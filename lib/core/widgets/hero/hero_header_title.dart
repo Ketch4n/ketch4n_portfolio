@@ -39,7 +39,7 @@ class _HeroHeaderTitleState extends State<HeroHeaderTitle> {
         SizedBox(height: 10),
         Text(
           PortfolioConfig.description,
-          maxLines: 3,
+          maxLines: 4,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.heroSubTitle(context),
         ),

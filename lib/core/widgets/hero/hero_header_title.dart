@@ -23,23 +23,25 @@ class _HeroHeaderTitleState extends State<HeroHeaderTitle> {
       crossAxisAlignment: CrossAxisAlignment.start,
 
       children: [
-        Text(PortfolioConfig.greeting, style: AppTextStyles.heroTitle),
+        Text(PortfolioConfig.greeting, style: AppTextStyles.heroTitle(context)),
 
         Row(
           children: [
-            Text(PortfolioConfig.a, style: AppTextStyles.heroTitle),
+            Text(PortfolioConfig.a, style: AppTextStyles.heroTitle(context)),
             TypingTextWidget(
               viewModel: titleVM,
-              style: AppTextStyles.heroTitle.copyWith(color: Colors.cyan),
+              style: AppTextStyles.heroTitle(
+                context,
+              ).copyWith(color: Colors.blue),
             ),
           ],
         ),
-
+        SizedBox(height: 10),
         Text(
           PortfolioConfig.description,
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
-          style: AppTextStyles.heroSubTitle,
+          style: AppTextStyles.heroSubTitle(context),
         ),
 
         // const SizedBox(height: 5),

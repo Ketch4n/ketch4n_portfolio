@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ketch4n/core/animations/beam_border.dart';
+import 'package:ketch4n/core/theme/theme_provider.dart';
 import 'package:ketch4n/features/contacts/contacts_page.dart';
 import 'package:ketch4n/features/home/home_page_vm.dart';
 import 'package:ketch4n/features/projects/projects_page.dart';
@@ -55,10 +57,51 @@ class _HomeContentState extends State<_HomeContent> {
         ),
       ),
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: Column(
           children: [
-            const NavigationRailWidget(),
+            Row(
+              // crossAxisAlignment: .center,
+              mainAxisAlignment: .spaceEvenly,
+
+              children: [
+                BeamBorderAnimation(
+                  child: Image.asset(
+                    AppConstants.flutterLogo,
+                    height: 40,
+                    width: 40,
+                  ),
+                ),
+                NavigationRailWidget(),
+                Consumer<ThemeProvider>(
+                  builder: (context, themeProvider, child) {
+                    return Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          themeProvider.isDarkMode
+                              ? Icons.dark_mode
+                              : Icons.light_mode,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        Switch(
+                          value: themeProvider.isDarkMode,
+                          onChanged: (value) {
+                            themeProvider.toggleTheme(value);
+                          },
+                          // Customizing the switch look
+                          activeTrackColor: Colors.deepPurpleAccent.withValues(
+                            alpha: 0.5,
+                          ),
+                          activeThumbColor: Colors.deepPurpleAccent,
+                        ),
+                        SizedBox(width: 30),
+                      ],
+                    );
+                  },
+                ),
+              ],
+            ),
             Expanded(
               child: Scrollbar(
                 controller: ctrl,
@@ -68,8 +111,9 @@ class _HomeContentState extends State<_HomeContent> {
                   controller: ctrl,
                   physics: const AlwaysScrollableScrollPhysics(),
                   child: Column(
+                    spacing: 50,
                     children: [
-                      const HeroHeaderWidget(),
+                      HeroHeaderWidget(),
                       SkillSetPage(),
                       ProjectsPage(),
                       WorkExperiencePage(),

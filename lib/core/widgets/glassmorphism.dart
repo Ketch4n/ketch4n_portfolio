@@ -38,6 +38,10 @@ class GlassmorphismWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the base color from the theme
+    // In Light Mode, this is likely white/grey. In Dark Mode, it's dark.
+    final themeColor = Theme.of(context).colorScheme.onSurface;
+
     return GlassmorphicContainer(
       width: width,
       height: height,
@@ -55,17 +59,18 @@ class GlassmorphismWidget extends StatelessWidget {
         begin: begin,
         end: end,
         colors: [
-          firstColor.withValues(alpha: 0.1),
-          secondColor.withValues(alpha: 0.05),
+          // Use themeColor instead of hardcoded white
+          themeColor.withValues(alpha: 0.1),
+          themeColor.withValues(alpha: 0.05),
         ],
-        // stops: [0.1, 1],
       ),
       borderGradient: LinearGradient(
         begin: begin,
         end: end,
         colors: [
-          Colors.white.withValues(alpha: 0.1),
-          Colors.white.withValues(alpha: 0.5),
+          // Border should also follow the theme
+          themeColor.withValues(alpha: 0.2),
+          themeColor.withValues(alpha: 0.5),
         ],
       ),
       child: child,

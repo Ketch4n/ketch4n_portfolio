@@ -3,6 +3,7 @@ import 'package:ketch4n/core/animations/beam.dart';
 import 'package:ketch4n/core/constants/app_constants.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
+import 'package:ketch4n/core/constants/size_constants.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
 
 class ProjectsPage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
   Widget build(BuildContext context) {
     // final screenHeight = MediaQuery.sizeOf(context).height;
     return Container(
-      constraints: BoxConstraints(maxWidth: 900),
+      constraints: SizeConstants.pageMaxWidth,
       width: double.infinity,
       child: LayoutBuilder(
         builder: (context, constraint) {

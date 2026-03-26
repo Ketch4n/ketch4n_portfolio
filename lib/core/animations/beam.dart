@@ -88,10 +88,7 @@ class _BeamAnimationState extends State<BeamAnimation>
 
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Text(
-            widget.title,
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          ),
+          child: Text(widget.title, style: TextStyle(fontSize: 20)),
         ),
 
         beamLine(false),

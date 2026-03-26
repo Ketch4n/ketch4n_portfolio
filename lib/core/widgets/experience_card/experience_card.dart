@@ -34,7 +34,6 @@ class _ExperienceCardWidgetState extends State<ExperienceCardWidget> {
       child: Column(
         children: [
           ListTile(
-            textColor: Colors.white,
             leading: Container(
               decoration: BoxDecoration(
                 shape: .circle,
@@ -49,15 +48,18 @@ class _ExperienceCardWidgetState extends State<ExperienceCardWidget> {
           ),
 
           Expanded(
-            child: Align(
-              alignment: .bottomCenter,
-              child: Wrap(
-                direction: .horizontal,
-                // runSpacing: 10,
-                spacing: 10,
-                children: widget.techSkillTag
-                    .map((skill) => TextTagWidget(text: skill))
-                    .toList(),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: Align(
+                alignment: .bottomStart,
+                child: Wrap(
+                  direction: .horizontal,
+                  // runSpacing: 10,
+                  spacing: 10,
+                  children: widget.techSkillTag
+                      .map((skill) => TextTagWidget(text: skill))
+                      .toList(),
+                ),
               ),
             ),
           ),

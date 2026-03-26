@@ -19,7 +19,12 @@ class SkillIconWidget extends StatelessWidget {
       children: [
         CustomPaint(
           size: const Size(100, 110),
-          painter: HexagonPainter(themeColor: Colors.white),
+          painter: HexagonPainter(
+            // Your brand color (Blue)
+            themeColor: Theme.of(context).colorScheme.primary,
+            // The adaptive background color
+            surfaceColor: Theme.of(context).colorScheme.surface,
+          ),
           child: SizedBox(
             width: 50,
             height: 60,
@@ -33,7 +38,7 @@ class SkillIconWidget extends StatelessWidget {
             ),
           ),
         ),
-        Text(text, style: TextStyle(color: Colors.white70, fontSize: 12)),
+        Text(text, style: TextStyle(fontSize: 12)),
       ],
     );
   }

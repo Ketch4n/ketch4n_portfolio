@@ -19,12 +19,30 @@ class TextTagWidget extends StatelessWidget {
       create: (_) => TextTagVM(),
       child: Consumer<TextTagVM>(
         builder: (context, vm, _) {
+          // --- 1. PUT YOUR LOGIC HERE ---
+          final theme = Theme.of(context);
+          final isHovered = vm.isHovered;
+
+          // Define your adaptive border
+          final Border border = isHovered
+              ? Border.all(color: Colors.transparent, width: 1)
+              : Border.all(
+                  // This flips between black and white automatically
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
+                  width: 1,
+                );
+
+          // Define your neon shadows
+          // final List<BoxShadow> shadows = isHovered
+          //     ? [BoxShadow(color: Colors.blue.withOpacity(0.4), blurRadius: 10)]
+          //     : [];
+          // ------------------------------
+
           return MouseRegion(
             onEnter: (_) => vm.setHover(true),
             onExit: (_) => vm.setHover(false),
             child: CustomPaint(
-              // The ViewModel decides IF the painter should run
-              painter: vm.isHovered ? NeonBorderPainter() : null,
+              painter: isHovered ? NeonBorderPainter() : null,
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
                 padding: const EdgeInsets.symmetric(
@@ -34,14 +52,15 @@ class TextTagWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: boxColor,
                   borderRadius: BorderRadius.circular(5),
-                  border: vm.border,
-                  boxShadow: vm.shadows,
+                  border: border, // Using your logic
+                  // boxShadow: shadows, // Using your logic
                 ),
                 child: Text(
                   text,
                   style: TextStyle(
-                    color: Colors.white,
                     fontWeight: vm.textWeight,
+                    // Ensure text color also follows the theme!
+                    color: theme.colorScheme.onSurface,
                   ),
                 ),
               ),

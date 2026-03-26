@@ -7,7 +7,8 @@ class PortfolioConfig {
   static const String heroButton = "Hire Me";
   static const String detailsPaneTitle = "Tech-Stack Toolkit";
   static const String description =
-      '''A Passionate Software Develeoper, specializes in Flutter Framework since 2022 with hands-on experience in deploying scalable applications.''';
+      '''A Passionate Software Develeoper, specializes in Flutter Framework since 2022
+with hands-on experience in deploying scalable applications.''';
   static const String introduction =
       '''Mobile Developer with 5+ years of software engineering experience and 4+ years specializing in Flutter for cross
 platform mobile applications with modern architecture such as MVVM and Clean Architecture. Experienced in 

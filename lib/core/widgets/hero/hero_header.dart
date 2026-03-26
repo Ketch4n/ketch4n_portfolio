@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
+import 'package:ketch4n/core/constants/size_constants.dart';
 import 'package:ketch4n/core/widgets/hero/hero_header_leading.dart';
 import 'package:ketch4n/core/widgets/hero/hero_header_title.dart';
 import 'package:ketch4n/core/widgets/hero/hero_heading_subtitle.dart';
@@ -18,41 +19,41 @@ class _HeroHeaderWidgetState extends State<HeroHeaderWidget> {
   @override
   Widget build(BuildContext context) {
     return Flex(
-      mainAxisAlignment: .center,
-      crossAxisAlignment: .start,
       direction: Axis.horizontal,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          // color: Colors.green,
-          constraints: BoxConstraints(maxWidth: 900),
+          constraints: SizeConstants.pageMaxWidth,
+          // height: 400,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // TEXT SECTION
               Expanded(
                 flex: 2,
                 child: Column(
-                  crossAxisAlignment: .start,
+                  mainAxisAlignment:
+                      MainAxisAlignment.center, // Center vertically
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    HeroHeaderTitle(),
-
-                    HeroHeadingSubtitle(),
-                    SizedBox(height: 50),
-                    // SocialProofSection(),
+                    const HeroHeaderTitle(),
+                    const SizedBox(height: 20),
+                    const HeroHeadingSubtitle(),
+                    const SizedBox(height: 40),
                     _buildWrap(totalYears),
-                    SizedBox(height: 50),
-
-                    // AboutPageWidget(),
-                    // ProjectsPage(),
-                    // SkillSetPage(),
-                    // AboutPageWidget(),
                   ],
                 ),
               ),
-              Expanded(flex: 1, child: HeroHeaderLeading()),
+
+              // IMAGE SECTION
+              const Expanded(
+                flex: 1,
+                child: Center(child: HeroHeaderLeading()),
+              ),
             ],
           ),
         ),
-
-        // Expanded(flex: 1, child: Column(children: [SizedBox()])),
       ],
     );
   }

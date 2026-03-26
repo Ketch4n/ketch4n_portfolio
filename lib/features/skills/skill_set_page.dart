@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ketch4n/core/animations/beam.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/constants/hexagon_icons_group_constants.dart';
+import 'package:ketch4n/core/constants/size_constants.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
 import 'package:ketch4n/core/widgets/hexagon/hexagon_icons_group.dart';
 import 'package:ketch4n/core/widgets/hexagon/hexagon_icons_group_vm.dart';
@@ -32,35 +33,49 @@ class _SkillSetPageState extends State<SkillSetPage> {
 
     return Container(
       // color: Colors.green,
-      constraints: BoxConstraints(maxWidth: 900),
-      child: GlassmorphismWidget(
-        leftMargin: 0,
-        rightMargin: 0,
-        height: 400,
-        width: double.infinity,
-        firstColor: ColorConstants.previewColor,
-        child: Column(
-          children: [
-            // HeaderTitleBarWidget(child: PortfolioConfig.detailsPaneTitle),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 22),
-              child: BeamAnimation(title: "Tech-Stack Toolkit"),
-            ),
-            Row(
+      constraints: SizeConstants.pageMaxWidth,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 22),
+            child: BeamAnimation(title: "Tech-Stack Toolkit"),
+          ),
+          // Text.rich(
+          //   TextSpan(
+          //     text:
+          //         ''' " Frameworks and Technologies I have used during my career as a freelance developer,
+          //                         company's tech-stack and personal projects " ''',
+          //   ),
+          // ),
+          // SizedBox(height: 20),
+          GlassmorphismWidget(
+            leftMargin: 0,
+            rightMargin: 0,
+            topMargin: 0,
+            height: 400,
+            width: double.infinity,
+            firstColor: ColorConstants.previewColor,
+            child: Column(
               mainAxisAlignment: .center,
-              spacing: 10,
-              children: techList
-                  .map(
-                    (tech) => Container(
-                      constraints: BoxConstraints(maxWidth: 200),
-                      child: TextTagWidget(text: tech),
-                    ),
-                  )
-                  .toList(),
+              children: [
+                // HeaderTitleBarWidget(child: PortfolioConfig.detailsPaneTitle),
+                Row(
+                  mainAxisAlignment: .center,
+                  spacing: 10,
+                  children: techList
+                      .map(
+                        (tech) => Container(
+                          constraints: BoxConstraints(maxWidth: 200),
+                          child: TextTagWidget(text: tech),
+                        ),
+                      )
+                      .toList(),
+                ),
+                Center(child: _buildTechGrid(viewModel)),
+              ],
             ),
-            Center(child: _buildTechGrid(viewModel)),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

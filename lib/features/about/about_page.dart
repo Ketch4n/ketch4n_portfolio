@@ -60,7 +60,7 @@ class _AboutPageWidgetState extends State<AboutPageWidget> {
                   ),
                   child: Text(
                     PortfolioConfig.introduction,
-                    style: AppTextStyles.heroSubTitle,
+                    style: AppTextStyles.heroSubTitle(context),
                     textAlign: TextAlign.justify,
                   ),
                 ),

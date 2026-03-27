@@ -17,6 +17,7 @@ class _ContactsPageState extends State<ContactsPage> {
   Widget build(BuildContext context) {
     return Container(
       constraints: SizeConstants.pageMaxWidth,
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
           Padding(

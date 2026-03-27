@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
 
 class NavigationRailWidget extends StatelessWidget {
@@ -7,29 +8,110 @@ class NavigationRailWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDesktop = Responsive.isDesktop(context);
+
     return GlassmorphismWidget(
-      width: 390,
-      height: 45,
-      borderRadius: 10,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        // crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          _buildNavItem(context, FontAwesomeIcons.solidAddressCard, "About"),
-          _buildNavItem(context, FontAwesomeIcons.layerGroup, "Skills"),
-          _buildNavItem(context, FontAwesomeIcons.code, "Projects"),
-          _buildNavItem(context, FontAwesomeIcons.briefcase, "Work Experience"),
-          _buildNavItem(context, FontAwesomeIcons.solidEnvelope, "Contacts"),
-        ],
+      width: isDesktop ? 390 : double.infinity,
+      height: isDesktop ? 45 : double.infinity,
+      borderRadius: isDesktop ? 10 : 0,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: isDesktop ? 0 : 30,
+          horizontal: isDesktop ? 0 : 20, // Added horizontal padding for drawer
+        ),
+        child: Center(
+          child: Flex(
+            direction: isDesktop ? Axis.horizontal : Axis.vertical,
+            mainAxisAlignment: isDesktop
+                ? MainAxisAlignment.spaceEvenly
+                : MainAxisAlignment.start,
+            crossAxisAlignment: isDesktop
+                ? CrossAxisAlignment.center
+                : CrossAxisAlignment.start,
+            children: [
+              _buildNavItem(
+                context,
+                FontAwesomeIcons.solidAddressCard,
+                "About",
+                isDesktop,
+              ),
+              if (!isDesktop) const SizedBox(height: 25),
+              _buildNavItem(
+                context,
+                FontAwesomeIcons.layerGroup,
+                "Skills",
+                isDesktop,
+              ),
+              if (!isDesktop) const SizedBox(height: 25),
+              _buildNavItem(
+                context,
+                FontAwesomeIcons.code,
+                "Projects",
+                isDesktop,
+              ),
+              if (!isDesktop) const SizedBox(height: 25),
+              _buildNavItem(
+                context,
+                FontAwesomeIcons.briefcase,
+                "Work Exp",
+                isDesktop,
+              ),
+              if (!isDesktop) const SizedBox(height: 25),
+              _buildNavItem(
+                context,
+                FontAwesomeIcons.solidEnvelope,
+                "Contacts",
+                isDesktop,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  Widget _buildNavItem(BuildContext context, IconData icon, String message) {
-    return Center(
-      child: Tooltip(
+  Widget _buildNavItem(
+    BuildContext context,
+    IconData icon,
+    String message,
+    bool isDesktop,
+  ) {
+    // This is the core clickable content
+    Widget navContent = InkWell(
+      onTap: () {
+        if (!isDesktop) Navigator.pop(context);
+      },
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FaIcon(
+              icon,
+              size: isDesktop ? 22 : 26,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
+            if (!isDesktop) ...[
+              const SizedBox(width: 15),
+              Text(
+                message,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+
+    // Only wrap with Tooltip if on Desktop
+    if (isDesktop) {
+      return Tooltip(
         message: message,
-        // Optional: Customizing the tooltip style to match your theme
+        verticalOffset: 25,
         decoration: BoxDecoration(
           color: Theme.of(
             context,
@@ -41,19 +123,10 @@ class NavigationRailWidget extends StatelessWidget {
           fontSize: 12,
           fontWeight: FontWeight.w500,
         ),
-        verticalOffset: 25, // Distance from the icon
-        child: InkWell(
-          onTap: () {
-            // Handle navigation here
-          },
-          borderRadius: BorderRadius.circular(8),
-          child: FaIcon(
-            icon,
-            size: 25, // Adjusted for a 45px height bar
-            color: Theme.of(context).colorScheme.onSurface,
-          ),
-        ),
-      ),
-    );
+        child: navContent,
+      );
+    }
+
+    return navContent;
   }
 }

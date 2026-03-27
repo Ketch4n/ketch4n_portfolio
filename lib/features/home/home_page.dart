@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/animations/beam_border.dart';
 import 'package:ketch4n/core/theme/theme_provider.dart';
+import 'package:ketch4n/core/utils/screen_breakpoints.dart';
+import 'package:ketch4n/core/widgets/star/cosmic_bg.dart';
 import 'package:ketch4n/features/contacts/contacts_page.dart';
 import 'package:ketch4n/features/home/home_page_vm.dart';
 import 'package:ketch4n/features/projects/projects_page.dart';
 import 'package:ketch4n/features/skills/skill_set_page.dart';
 import 'package:ketch4n/features/work_experience/work_experience_page.dart';
-import 'package:provider/provider.dart'; // Standard for MVVM
+import 'package:provider/provider.dart';
 import 'package:ketch4n/core/constants/app_constants.dart';
 import 'package:ketch4n/core/widgets/hero/hero_header.dart';
 import 'package:ketch4n/core/widgets/loading_screen.dart';
@@ -17,7 +19,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // We wrap this page with the ViewModel provider
     return ChangeNotifierProvider(
       create: (_) => HomeViewModel(),
       child: Consumer<HomeViewModel>(
@@ -25,8 +26,7 @@ class HomePage extends StatelessWidget {
           if (viewModel.isLoading) {
             return const LoadingScreen();
           }
-
-          return _HomeContent();
+          return const _HomeContent();
         },
       ),
     );
@@ -34,6 +34,8 @@ class HomePage extends StatelessWidget {
 }
 
 class _HomeContent extends StatefulWidget {
+  const _HomeContent();
+
   @override
   State<_HomeContent> createState() => _HomeContentState();
 }
@@ -49,60 +51,65 @@ class _HomeContentState extends State<_HomeContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(AppConstants.bgUrl),
-          fit: BoxFit.cover,
-        ),
-      ),
+    // Breakpoint check
+    final bool isDesktop = Responsive.isDesktop(context);
+
+    return CosmicBackground(
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surface,
+        // The Scaffold background is set to a slight transparent surface to let the BG image peek through
+        backgroundColor: Theme.of(
+          context,
+        ).colorScheme.surface.withValues(alpha: 0.4),
+
+        // 1. Mobile/Tablet: Show AppBar with Hamburger Menu
+        appBar: !isDesktop
+            ? AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                centerTitle: true,
+                title: Image.asset(AppConstants.flutterLogo, height: 30),
+                actions: [_buildThemeToggle(), const SizedBox(width: 10)],
+              )
+            : null,
+
+        // 2. Mobile/Tablet: Show Drawer (Hamburger content)
+        drawer: !isDesktop
+            ? Drawer(
+                width: 300,
+                backgroundColor: Theme.of(context).colorScheme.surface,
+                child: const SafeArea(
+                  child:
+                      NavigationRailWidget(), // NavigationRailWidget handles its own Row/Column flip
+                ),
+              )
+            : null,
+
         body: Column(
           children: [
-            // AppBar represent
-            Row(
-              mainAxisAlignment: .spaceEvenly,
+            // 3. Desktop: Show Custom Header Row
+            if (isDesktop)
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 20,
+                  horizontal: 40,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    BeamBorderAnimation(
+                      child: Image.asset(
+                        AppConstants.flutterLogo,
+                        height: 40,
+                        width: 40,
+                      ),
+                    ),
+                    const NavigationRailWidget(),
+                    _buildThemeToggle(),
+                  ],
+                ),
+              ),
 
-              children: [
-                BeamBorderAnimation(
-                  child: Image.asset(
-                    AppConstants.flutterLogo,
-                    height: 40,
-                    width: 40,
-                  ),
-                ),
-                NavigationRailWidget(),
-                Consumer<ThemeProvider>(
-                  builder: (context, themeProvider, child) {
-                    return Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          themeProvider.isDarkMode
-                              ? Icons.dark_mode
-                              : Icons.light_mode,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        Switch(
-                          value: themeProvider.isDarkMode,
-                          onChanged: (value) {
-                            themeProvider.toggleTheme(value);
-                          },
-                          // Customizing the switch look
-                          activeTrackColor: Colors.deepPurpleAccent.withValues(
-                            alpha: 0.5,
-                          ),
-                          activeThumbColor: Colors.deepPurpleAccent,
-                        ),
-                        SizedBox(width: 30),
-                      ],
-                    );
-                  },
-                ),
-              ],
-            ),
-            // Body
+            // 4. Main Scrollable Content
             Expanded(
               child: Scrollbar(
                 controller: ctrl,
@@ -111,14 +118,18 @@ class _HomeContentState extends State<_HomeContent> {
                 child: SingleChildScrollView(
                   controller: ctrl,
                   physics: const AlwaysScrollableScrollPhysics(),
-                  child: Column(
-                    // spacing: 10,
+                  child: const Column(
                     children: [
                       HeroHeaderWidget(),
+                      // SizedBox(height: 80),
                       SkillSetPage(),
+                      // SizedBox(height: 100),
                       ProjectsPage(),
+                      SizedBox(height: 80),
                       WorkExperiencePage(),
+                      // SizedBox(height: 100),
                       ContactsPage(),
+                      SizedBox(height: 100),
                     ],
                   ),
                 ),
@@ -127,6 +138,31 @@ class _HomeContentState extends State<_HomeContent> {
           ],
         ),
       ),
+    );
+  }
+
+  /// Extracted Theme Toggle Widget
+  Widget _buildThemeToggle() {
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              themeProvider.isDarkMode ? Icons.dark_mode : Icons.light_mode,
+              color: Theme.of(context).colorScheme.primary,
+              size: 20,
+            ),
+            const SizedBox(width: 4),
+            Switch(
+              value: themeProvider.isDarkMode,
+              onChanged: (value) => themeProvider.toggleTheme(value),
+              // activeTrackColor: Colors.deepPurpleAccent.withValues(alpha: 0.5),
+              // activeThumbColor: Colors.deepPurpleAccent,
+            ),
+          ],
+        );
+      },
     );
   }
 }

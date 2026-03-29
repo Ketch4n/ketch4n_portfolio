@@ -130,7 +130,7 @@ class _WorkExperiencePageState extends State<WorkExperiencePage> {
         ),
         const SizedBox(height: 12),
         Text(
-          "As a developer at ${entity.title}, I focused on scaling features using ${entity.techSkillTag.take(2).join(' and ')}. Key contributions included UI optimization and state management architecture.",
+          "${entity.highlights}",
           textAlign: isDesktopEven ? TextAlign.end : TextAlign.start,
           style: const TextStyle(
             height: 1.6,

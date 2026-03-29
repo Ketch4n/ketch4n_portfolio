@@ -19,7 +19,7 @@ class _ProfileIconWidgetState extends State<ProfileIconWidget> {
       child: ClipOval(
         child: Image.asset(
           widget.image,
-          width: 170,
+          width: 200,
           height: 200,
           fit: BoxFit.fill,
         ),

@@ -10,6 +10,11 @@ class ExperienceCardConstants {
       subtitle: "Alliance Software Inc.",
       year: "2024-2026",
       techSkillTag: ["Angular", "Kotlin", "Azure DevOps", "Git"],
+      highlights: [
+        "Implemented Angular TS front-end modules for enterprise booking platforms (CebuPac Airlines)",
+        "Developed Android applications using Kotlin and Android Studio and uploads in Play Store (StampMe)",
+        "Mentored junior developers in Flutter and mobile development best practices (Unilab).",
+      ],
     ),
     ExperienceCardEntity(
       title: "Full Stack Developer",
@@ -17,6 +22,11 @@ class ExperienceCardConstants {
       subtitle: "Freelance",
       year: "2022-2024",
       techSkillTag: ["Flutter", "Laravel", "Firebase", "MySQL"],
+      highlights: [
+        "Delivered 10+ mobile and web applications for business owners and academic research projects",
+        "Architected and developed scalable Flutter mobile applications using modular architecture",
+        "Integrated RESTful APIs, Firebase services, and cloud-based data systems.",
+      ],
     ),
     ExperienceCardEntity(
       title: "Web Developer",
@@ -24,6 +34,9 @@ class ExperienceCardConstants {
       subtitle: "Oroquieta City - LGU",
       year: "2021-2022",
       techSkillTag: ["Laravel", "MySQL", "Adobe Photoshop"],
+      highlights: [
+        "Defined mobile architecture standards using MVVM, MVC and Clean Architecture.",
+      ],
     ),
   ];
 }

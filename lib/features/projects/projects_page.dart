@@ -3,9 +3,11 @@ import 'package:ketch4n/core/animations/beam.dart';
 import 'package:ketch4n/core/constants/app_constants.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
+import 'package:ketch4n/core/constants/project_constants.dart';
 import 'package:ketch4n/core/constants/size_constants.dart';
 import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
+import 'package:ketch4n/core/widgets/running_title.dart';
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({super.key});
@@ -27,6 +29,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
     const double cardHeight = 350.0;
     const double mHeight = (cardHeight / 2) + (cardHeight / 4);
 
+    final projects = ProjectConstants.projects;
+
     return Container(
       constraints: SizeConstants.pageMaxWidth,
       width: double.infinity,
@@ -41,9 +45,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
             spacing: 20, // Horizontal space between cards
             runSpacing: 20, // Vertical space between lines (on mobile)
             alignment: WrapAlignment.center, // Centers cards on the screen
-            children: List.generate(
-              3,
-              (index) => GlassmorphismWidget(
+            children: projects.map((project) {
+              return GlassmorphismWidget(
                 leftMargin: 0,
                 rightMargin: 0,
                 firstColor: ColorConstants.previewColor,
@@ -73,26 +76,22 @@ class _ProjectsPageState extends State<ProjectsPage> {
                               topRight: Radius.circular(20),
                             ),
                             child: Image.asset(
-                              AppConstants.phoneMockup,
+                              project.type == 0
+                                  ? AppConstants.phoneMockup
+                                  : AppConstants.tabletMockup,
                               fit: BoxFit.fitHeight,
                               width: double.infinity,
                             ),
                           ),
                         ),
-                        const Positioned(
+                        Positioned(
                           child: ListTile(
                             leading: Icon(
                               Icons.circle,
                               color: Colors.green,
                               size: 12,
                             ),
-                            title: Text(
-                              "Flutter App",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                            title: ScrollingTitle(text: project.appName),
                           ),
                         ),
                       ],
@@ -100,8 +99,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     // You can add project description text here
                   ],
                 ),
-              ),
-            ),
+              );
+            }).toList(),
           ),
         ],
       ),

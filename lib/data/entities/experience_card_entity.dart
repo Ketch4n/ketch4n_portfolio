@@ -4,6 +4,7 @@ class ExperienceCardEntity {
   final String subtitle;
   final String year;
   final List<String> techSkillTag;
+  final List<String> highlights;
 
   const ExperienceCardEntity({
     required this.title,
@@ -11,5 +12,6 @@ class ExperienceCardEntity {
     required this.subtitle,
     required this.year,
     required this.techSkillTag,
+    required this.highlights,
   });
 }

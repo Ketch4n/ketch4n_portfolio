@@ -1,4 +1,4 @@
-import 'package:ketch4n/data/entities/skill_icon_entity.dart';
+import 'package:ketch4n/core/widgets/skill_icon/skill_icon_entity.dart';
 
 class HexagonIconsGroupContants {
   HexagonIconsGroupContants._(); // Prevent instantiation
@@ -20,13 +20,9 @@ class HexagonIconsGroupContants {
   static const backend = <SkillIconEntity>[
     SkillIconEntity(title: 'Laravel', icon: 'assets/logo/laravel.png'),
     SkillIconEntity(title: 'Csharp', icon: 'assets/logo/c-sharp.png'),
-    // SkillIconEntity(title: 'Kotlin', icon: 'assets/logo/kotlin.png'),
     SkillIconEntity(title: 'MySQL', icon: 'assets/logo/MySQL.png'),
     SkillIconEntity(title: 'Sqlite', icon: 'assets/logo/sqlite.png'),
-
     SkillIconEntity(title: 'Firebase', icon: 'assets/logo/firebase.png'),
-
-    // SkillIconEntity(title: 'Csharp', icon: 'assets/logo/csharp.png'),
   ];
 
   static const cicd = <SkillIconEntity>[
@@ -56,7 +52,6 @@ class HexagonIconsGroupContants {
   ];
 
   static const uiux = <SkillIconEntity>[
-    // SkillIconEntity(title: 'Ollama', icon: 'logo/ollama2.png'),
     SkillIconEntity(title: 'Photoshop', icon: 'assets/logo/adobe-ps.png'),
     SkillIconEntity(title: 'Figma', icon: 'assets/logo/figma.png'),
   ];
@@ -64,7 +59,6 @@ class HexagonIconsGroupContants {
   static const ml = <SkillIconEntity>[
     SkillIconEntity(title: 'TensorFlow', icon: 'assets/logo/tensorflow.png'),
     SkillIconEntity(title: 'Ollama', icon: 'assets/logo/ollama2.png'),
-    // SkillIconEntity(title: 'HuggingFace', icon: 'assets/logo/hf-logo.png'),
   ];
 
   static const ide = <SkillIconEntity>[

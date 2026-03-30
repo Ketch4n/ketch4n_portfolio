@@ -1,15 +1,17 @@
-import 'package:ketch4n/data/entities/experience_card_entity.dart';
-import 'package:ketch4n/data/entities/skill_icon_entity.dart';
+import 'package:ketch4n/core/widgets/glass_card/glass_card_entity.dart';
+import 'package:ketch4n/core/widgets/skill_icon/skill_icon_entity.dart';
 
 class ExperienceCardConstants {
   ExperienceCardConstants._();
 
-  static const cards = <ExperienceCardEntity>[
-    ExperienceCardEntity(
+  static const String projectHighlights = "Project Highlights";
+
+  static const cards = <GlassCardEntity>[
+    GlassCardEntity(
       title: "Software Developer - TS2",
       leading: "assets/company_logo/ais.jpg",
       subtitle: "Alliance Software Inc.",
-      year: "2024-2026",
+      trailing: "2024-2026",
       techSkillTag: [
         "Angular",
         "Kotlin",
@@ -41,11 +43,11 @@ class ExperienceCardConstants {
         ),
       ],
     ),
-    ExperienceCardEntity(
+    GlassCardEntity(
       title: "Full Stack Developer",
       leading: "assets/company_logo/fluravel.png",
       subtitle: "Freelance | Independent",
-      year: "2021-2024",
+      trailing: "2021-2024",
       techSkillTag: [
         "Flutter",
         "Laravel",

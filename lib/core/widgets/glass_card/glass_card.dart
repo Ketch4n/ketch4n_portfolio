@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
+import 'package:ketch4n/core/widgets/glass_card/glass_card_entity.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
 import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
 
 class GlassCardWidget extends StatefulWidget {
-  final String? leading;
-  final String title;
-  final String? subtitle;
-  final String? year;
-  final List<String>? techSkillTag;
-  const GlassCardWidget({
-    super.key,
-    this.leading,
-    required this.title,
-    this.subtitle,
-    this.year,
-    this.techSkillTag,
-  });
+  final GlassCardEntity cardEntity;
+  const GlassCardWidget({super.key, required this.cardEntity});
 
   @override
   State<GlassCardWidget> createState() => _GlassCardWidgetState();
@@ -42,12 +32,18 @@ class _GlassCardWidgetState extends State<GlassCardWidget> {
                   border: Border.all(color: Colors.white, width: 2),
                 ),
                 child: ClipOval(
-                  child: Image.asset(widget.leading!, fit: BoxFit.cover),
+                  child: Image.asset(
+                    widget.cardEntity.leading!,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-              title: Text(widget.title),
-              subtitle: Text(widget.subtitle!),
-              trailing: Text(widget.year!, style: TextStyle(fontSize: 15)),
+              title: Text(widget.cardEntity.title),
+              subtitle: Text(widget.cardEntity.subtitle!),
+              trailing: Text(
+                widget.cardEntity.trailing!,
+                style: TextStyle(fontSize: 15),
+              ),
             ),
 
             Expanded(
@@ -59,7 +55,7 @@ class _GlassCardWidgetState extends State<GlassCardWidget> {
                     direction: .horizontal,
                     runSpacing: 10,
                     spacing: 10,
-                    children: widget.techSkillTag!
+                    children: widget.cardEntity.techSkillTag!
                         .map((skill) => TextTagWidget(text: skill))
                         .toList(),
                   ),

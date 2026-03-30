@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/animations/beam.dart';
 import 'package:ketch4n/core/constants/hexagon_icons_group_constants.dart';
-import 'package:ketch4n/core/constants/size_constants.dart';
+import 'package:ketch4n/core/constants/layout_constraints.dart';
 import 'package:ketch4n/core/widgets/hexagon/hexagon_icons_group_vm.dart';
-import 'package:ketch4n/core/widgets/skill_icon.dart';
+import 'package:ketch4n/core/widgets/skill_icon/skill_icon.dart';
 import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +33,7 @@ class _SkillSetPageState extends State<SkillSetPage> {
     ];
 
     return Container(
-      constraints: SizeConstants.pageMaxWidth,
+      constraints: LayoutConstraints.pageMaxWidth,
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       child: Column(
         spacing: 30,

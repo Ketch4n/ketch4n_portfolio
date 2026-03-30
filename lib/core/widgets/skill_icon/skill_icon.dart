@@ -16,12 +16,12 @@ class SkillIconWidget extends StatelessWidget {
     return Tooltip(
       message: text,
       child: SizedBox(
-        width: 70, // Fixed width for each "tile" in the Wrap
+        width: 70,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             CustomPaint(
-              size: const Size(80, 90), // Adjusted to look better in a grid
+              size: const Size(80, 90),
               painter: HexagonPainter(
                 themeColor: Theme.of(context).colorScheme.primary,
                 surfaceColor: Theme.of(context).colorScheme.surface,
@@ -39,17 +39,6 @@ class SkillIconWidget extends StatelessWidget {
                 ),
               ),
             ),
-            // const SizedBox(height: 4),
-            // Text(
-            //   text,
-            //   textAlign: TextAlign.center,
-            //   style: const TextStyle(
-            //     fontSize: 12,
-            //     //  letterSpacing: -0.5,
-            //   ),
-            //   maxLines: 1,
-            //   overflow: TextOverflow.ellipsis,
-            // ),
           ],
         ),
       ),

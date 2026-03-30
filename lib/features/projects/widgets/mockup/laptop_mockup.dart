@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:ketch4n/features/projects/project_model.dart';
-import 'package:ketch4n/features/projects/widgets/mockup/trapezoid_clipper_laptop_stand.dart';
 
 class LaptopMockup extends StatefulWidget {
   const LaptopMockup({super.key, required this.projectDetails});
@@ -49,7 +48,7 @@ class _LaptopMockupState extends State<LaptopMockup> {
     const bezelH = 12.0; // reduced from 24
     const chinH = 16.0; // reduced from 32
     const baseH = 10.0; // reduced from 18
-    const standH = 8.0; // reduced from 10
+    // const standH = 8.0; // reduced from 10
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -171,14 +170,14 @@ class _LaptopMockupState extends State<LaptopMockup> {
         ),
 
         // ── Stand / base ───────────────────────────────────────────────────
-        ClipPath(
-          clipper: TrapezoidClipper(),
-          child: Container(
-            width: laptopW * 0.55,
-            height: standH,
-            color: const Color(0xFF222222),
-          ),
-        ),
+        // ClipPath(
+        //   clipper: TrapezoidClipper(),
+        //   child: Container(
+        //     width: laptopW * 0.55,
+        //     height: standH,
+        //     color: const Color(0xFF222222),
+        //   ),
+        // ),
 
         // ── Feet line ──────────────────────────────────────────────────────
         Container(

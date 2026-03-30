@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ketch4n/core/widgets/skill_icon.dart';
-import 'package:ketch4n/data/entities/skill_icon_entity.dart';
+import 'package:ketch4n/core/widgets/skill_icon/skill_icon.dart';
+import 'package:ketch4n/core/widgets/skill_icon/skill_icon_entity.dart';
 import 'package:ketch4n/core/widgets/hexagon/hexagon_icons_group_vm.dart';
 import 'package:provider/provider.dart';
 

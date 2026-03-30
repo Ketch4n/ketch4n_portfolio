@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
-import 'package:ketch4n/core/constants/size_constants.dart';
+import 'package:ketch4n/core/constants/layout_constraints.dart';
 import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/hero/hero_header_leading.dart';
 import 'package:ketch4n/core/widgets/hero/hero_header_title.dart';
@@ -26,7 +26,7 @@ class _HeroHeaderWidgetState extends State<HeroHeaderWidget> {
     return Center(
       // Use Center to keep it within pageMaxWidth
       child: Container(
-        constraints: SizeConstants.pageMaxWidth,
+        constraints: LayoutConstraints.pageMaxWidth,
         padding: EdgeInsets.symmetric(
           horizontal: Responsive.value(context, mobile: 20, desktop: 40),
           vertical: 40,

@@ -4,7 +4,7 @@ import 'package:ketch4n/core/constants/app_constants.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
 import 'package:ketch4n/core/constants/project_constants.dart';
-import 'package:ketch4n/core/constants/size_constants.dart';
+import 'package:ketch4n/core/constants/layout_constraints.dart';
 import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
 import 'package:ketch4n/core/widgets/running_title.dart';
@@ -34,7 +34,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
     // final projectDetails = ProjectConstants.projects;
 
     return Container(
-      constraints: SizeConstants.pageMaxWidth,
+      constraints: LayoutConstraints.pageMaxWidth,
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(

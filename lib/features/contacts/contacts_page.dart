@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ketch4n/core/animations/beam.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
-import 'package:ketch4n/core/constants/size_constants.dart';
+import 'package:ketch4n/core/constants/layout_constraints.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
 
 class ContactsPage extends StatefulWidget {
@@ -16,7 +16,7 @@ class _ContactsPageState extends State<ContactsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: SizeConstants.pageMaxWidth,
+      constraints: LayoutConstraints.pageMaxWidth,
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [

@@ -8,6 +8,7 @@ import 'package:ketch4n/core/constants/size_constants.dart';
 import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/glassmorphism.dart';
 import 'package:ketch4n/core/widgets/running_title.dart';
+import 'package:ketch4n/features/projects/project_details_page.dart';
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({super.key});
@@ -30,6 +31,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
     const double mHeight = (cardHeight / 2) + (cardHeight / 4);
 
     final projects = ProjectConstants.projects;
+    // final projectDetails = ProjectConstants.projects;
 
     return Container(
       constraints: SizeConstants.pageMaxWidth,
@@ -46,46 +48,73 @@ class _ProjectsPageState extends State<ProjectsPage> {
             runSpacing: 20, // Vertical space between lines (on mobile)
             alignment: WrapAlignment.center, // Centers cards on the screen
             children: projects.map((project) {
-              return GlassmorphismWidget(
-                leftMargin: 0,
-                rightMargin: 0,
-                firstColor: ColorConstants.previewColor,
-                width: cardWidth,
-                height: cardHeight,
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          height: mHeight,
-                          margin: const EdgeInsets.all(1),
-                          decoration: BoxDecoration(
-                            color: ColorConstants.previewColor,
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                            ),
-                            border: Border.all(
-                              color: Colors.white.withValues(alpha: 0.1),
-                            ),
-                          ),
-                          child: ClipRRect(
-                            // Clip the image to match border radius
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                            ),
-                            child: Image.asset(
-                              project.type == 0
-                                  ? AppConstants.phoneMockup
-                                  : AppConstants.tabletMockup,
-                              fit: BoxFit.fitHeight,
-                              width: double.infinity,
-                            ),
+              return GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    barrierColor: Colors.black.withValues(
+                      alpha: 0.7,
+                    ), // Dims the background
+                    builder: (BuildContext context) {
+                      return Dialog(
+                        backgroundColor:
+                            Colors.transparent, // Required for glass effect
+                        insetPadding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 40,
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: SizedBox(
+                            width: 1000, // Max width for desktop/web
+                            child: ProjectDetailScreen(
+                              projectDetails: project,
+                            ), // Your layout widget
                           ),
                         ),
-                        Positioned(
-                          child: ListTile(
+                      );
+                    },
+                  );
+                },
+                child: GlassmorphismWidget(
+                  leftMargin: 0,
+                  rightMargin: 0,
+                  firstColor: ColorConstants.previewColor,
+                  width: cardWidth,
+                  height: cardHeight,
+                  child: Column(
+                    children: [
+                      Stack(
+                        children: [
+                          Container(
+                            height: mHeight,
+                            margin: const EdgeInsets.all(1),
+                            decoration: BoxDecoration(
+                              color: ColorConstants.previewColor,
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              ),
+                              border: Border.all(
+                                color: Colors.white.withValues(alpha: 0.1),
+                              ),
+                            ),
+                            child: ClipRRect(
+                              // Clip the image to match border radius
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              ),
+                              child: Image.asset(
+                                project.type == 0
+                                    ? AppConstants.phoneMockup
+                                    : AppConstants.tabletMockup,
+                                fit: BoxFit.fitHeight,
+                                width: double.infinity,
+                              ),
+                            ),
+                          ),
+                          ListTile(
                             leading: Icon(
                               Icons.circle,
                               color: Colors.green,
@@ -93,11 +122,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
                             ),
                             title: ScrollingTitle(text: project.appName),
                           ),
-                        ),
-                      ],
-                    ),
-                    // You can add project description text here
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               );
             }).toList(),

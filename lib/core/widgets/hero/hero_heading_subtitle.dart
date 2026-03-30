@@ -18,17 +18,16 @@ class _HeroHeadingSubtitleState extends State<HeroHeadingSubtitle> {
       mainAxisAlignment: .start,
       children: [
         // SizedBox(width: 210),
-        FilledButton(
-          style: FilledButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-          onPressed: () {},
-          child: const Text(PortfolioConfig.hireMe),
-        ),
-
-        SizedBox(width: 10),
+        // FilledButton(
+        //   style: FilledButton.styleFrom(
+        //     shape: RoundedRectangleBorder(
+        //       borderRadius: BorderRadius.circular(10),
+        //     ),
+        //   ),
+        //   onPressed: () {},
+        //   child: const Text(PortfolioConfig.hireMe),
+        // ),
+        // SizedBox(width: 10),
         FilledButton(
           style: FilledButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -51,7 +50,7 @@ class _HeroHeadingSubtitleState extends State<HeroHeadingSubtitle> {
         ),
         Link(
           target: LinkTarget.blank,
-          uri: Uri.parse(PortfolioConfig.githubUrl),
+          uri: Uri.parse(PortfolioConfig.linkedInUrl),
           builder: (context, followLink) => IconButton(
             tooltip: "LinkedIn",
             onPressed: followLink,

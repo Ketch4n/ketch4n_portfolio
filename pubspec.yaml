@@ -71,11 +71,14 @@ flutter:
     - assets/certificates/
     - assets/company_logo/
     - assets/dev/
+    - assets/docs/
     - assets/icon_logo/
     - assets/icon_name/
     - assets/logo/
-    - assets/projects/
-    - assets/docs/
+    - assets/mockup/
+    - assets/project_bg/
+    - assets/project_icon/
+    - assets/project_ss/face_recognition_nmscst/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

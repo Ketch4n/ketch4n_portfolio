@@ -84,10 +84,10 @@ Widget _buildWrap(int years, bool isMobile) {
         TextTagWidget(text: years.toString() + PortfolioConfig.yrsExp),
 
         // SizedBox(width: 10),
-        TextTagWidget(text: "10 + Mobile Applications"),
+        TextTagWidget(text: "7 + Web & Mobile Applications"),
 
         // SizedBox(width: 10),
-        TextTagWidget(text: "3 Play Store Apps"),
+        TextTagWidget(text: "3 Company Apps"),
       ],
     ),
   );

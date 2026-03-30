@@ -1,4 +1,5 @@
 import 'package:ketch4n/data/entities/experience_card_entity.dart';
+import 'package:ketch4n/data/entities/skill_icon_entity.dart';
 
 class ExperienceCardConstants {
   ExperienceCardConstants._();
@@ -9,33 +10,63 @@ class ExperienceCardConstants {
       leading: "assets/company_logo/ais.jpg",
       subtitle: "Alliance Software Inc.",
       year: "2024-2026",
-      techSkillTag: ["Angular", "Kotlin", "Azure DevOps", "Git"],
+      techSkillTag: [
+        "Angular",
+        "Kotlin",
+        "Flutter",
+        "Azure DevOps",
+        "Git",
+        "PostgreSQL",
+        "REST API",
+        "Agile",
+        "Scrum",
+      ],
       highlights: [
         "Implemented Angular TS front-end modules for enterprise booking platforms (CebuPac Airlines)",
         "Developed Android applications using Kotlin and Android Studio and uploads in Play Store (StampMe)",
         "Mentored junior developers in Flutter and mobile development best practices (Unilab).",
       ],
+      projects: [
+        SkillIconEntity(
+          title: 'Cebu Pacific Airlines',
+          icon: "assets/project_icon/cebpac.jpg",
+        ),
+        SkillIconEntity(
+          title: 'Unilab',
+          icon: "assets/project_icon/unilab.jpg",
+        ),
+        SkillIconEntity(
+          title: 'Stamp Me',
+          icon: "assets/project_icon/stampme.jpg",
+        ),
+      ],
     ),
     ExperienceCardEntity(
       title: "Full Stack Developer",
       leading: "assets/company_logo/fluravel.png",
-      subtitle: "Freelance",
-      year: "2022-2024",
-      techSkillTag: ["Flutter", "Laravel", "Firebase", "MySQL"],
+      subtitle: "Freelance | Independent",
+      year: "2021-2024",
+      techSkillTag: [
+        "Flutter",
+        "Laravel",
+        "Firebase",
+        "MySQL",
+        "REST API",
+        "Git",
+        "Hosting",
+        "Google Cloud Platform",
+        "TensorFlow Lite",
+      ],
       highlights: [
-        "Delivered 10+ mobile and web applications for business owners and academic research projects",
+        "Delivered 7 + mobile and web applications for business owners and academic research projects",
         "Architected and developed scalable Flutter mobile applications using modular architecture",
         "Integrated RESTful APIs, Firebase services, and cloud-based data systems.",
       ],
-    ),
-    ExperienceCardEntity(
-      title: "Web Developer",
-      leading: "assets/company_logo/oro.png",
-      subtitle: "Oroquieta City - LGU",
-      year: "2021-2022",
-      techSkillTag: ["Laravel", "MySQL", "Adobe Photoshop"],
-      highlights: [
-        "Defined mobile architecture standards using MVVM, MVC and Clean Architecture.",
+      projects: [
+        SkillIconEntity(
+          title: 'Face Recognition',
+          icon: "assets/project_icon/face.jpg",
+        ),
       ],
     ),
   ];

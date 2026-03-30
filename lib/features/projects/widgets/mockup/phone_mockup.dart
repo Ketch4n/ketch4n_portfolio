@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:ketch4n/features/projects/project_model.dart';
+import 'package:ketch4n/features/projects/project_entity.dart';
 
 class PhoneMockup extends StatefulWidget {
   const PhoneMockup({super.key, required this.projectDetails});
 
-  final ProjectModel projectDetails;
+  final ProjectEntity projectDetails;
 
   @override
   State<PhoneMockup> createState() => _PhoneMockupState();

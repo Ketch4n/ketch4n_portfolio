@@ -1,10 +1,10 @@
-import 'package:ketch4n/features/projects/project_model.dart';
+import 'package:ketch4n/features/projects/project_entity.dart';
 
 class ProjectConstants {
   ProjectConstants._();
 
-  static final projects = <ProjectModel>[
-    ProjectModel(
+  static final projects = <ProjectEntity>[
+    ProjectEntity(
       appName: "Face Recognition - NMSCST",
       longName: "Attendance System with Geolocation and Facial Recognition",
       iconPath: "assets/project_icon/face.jpg",
@@ -27,7 +27,7 @@ class ProjectConstants {
       //   SkillIconEntity(title: 'Riverpod', icon: "assets/logo/riverpod.png"),
       // ],
     ),
-    ProjectModel(
+    ProjectEntity(
       appName: "Expensar - Subscription and Finance Tracker",
       longName: "AI-Powered Subscription Intelligence",
       iconPath: "assets/icon_logo/flutter.png",
@@ -45,7 +45,7 @@ class ProjectConstants {
         'assets/projects/ss/d.jpg',
       ],
     ),
-    ProjectModel(
+    ProjectEntity(
       appName: "Document Request - USTP",
       longName: "Document Request System for USTP",
       iconPath: "assets/project_icon/document_request.jpg",
@@ -57,7 +57,7 @@ class ProjectConstants {
       ],
       type: 0,
     ),
-    ProjectModel(
+    ProjectEntity(
       appName: "Repository Management System - USTP",
       longName: "Repository Management System for USTP",
       iconPath: "assets/project_icon/repository.jpg",
@@ -69,7 +69,7 @@ class ProjectConstants {
       ],
       type: 0,
     ),
-    ProjectModel(
+    ProjectEntity(
       appName: "Online Ordering System - Chopstick Restobar",
       longName: "Online Ordering System for Chopstick Restobar",
       iconPath: "assets/project_icon/online_ordering.jpg",
@@ -81,7 +81,7 @@ class ProjectConstants {
       ],
       type: 0,
     ),
-    ProjectModel(
+    ProjectEntity(
       appName: "Inventory Management System - AgriVet",
       longName: "Inventory Management System for AgriVet",
       iconPath: "assets/project_icon/inventory.jpg",
@@ -93,7 +93,7 @@ class ProjectConstants {
       ],
       type: 0,
     ),
-    ProjectModel(
+    ProjectEntity(
       appName: "Job Portal - Peso Oroquieta",
       longName: "Job Portal for Peso Oroquieta",
       iconPath: "assets/project_icon/job_portal.jpg",
@@ -105,7 +105,7 @@ class ProjectConstants {
       ],
       type: 0,
     ),
-    ProjectModel(
+    ProjectEntity(
       appName: "Read Manga - Auto Translation",
       longName: "Auto Translation for Read Manga",
       iconPath: "assets/project_icon/read_manga.jpg",

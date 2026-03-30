@@ -1,4 +1,4 @@
-class ProjectModel {
+class ProjectEntity {
   final String appName;
   final String longName;
   final String iconPath;
@@ -10,7 +10,7 @@ class ProjectModel {
   // final List<SkillIconEntity> techStack;
   final int type;
 
-  ProjectModel({
+  ProjectEntity({
     required this.appName,
     required this.longName,
     required this.iconPath,

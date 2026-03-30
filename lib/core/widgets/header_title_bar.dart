@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ketch4n/core/widgets/glassmorphism.dart';
+import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism.dart';
+import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism_entity.dart';
 
 class HeaderTitleBarWidget extends StatefulWidget {
   const HeaderTitleBarWidget({
@@ -18,14 +19,16 @@ class _HeaderTitleBarWidgetState extends State<HeaderTitleBarWidget> {
   @override
   Widget build(BuildContext context) {
     return GlassmorphismWidget(
-      width: widget.width,
-      height: 50,
-      borderRadius: 10,
-      firstColor: Colors.blue,
-      child: Center(
-        child: Text(
-          widget.child,
-          style: TextStyle(fontSize: 20, color: Colors.white),
+      entity: GlassmorphismEntity(
+        width: widget.width,
+        height: 50,
+        borderRadius: 10,
+        firstColor: Colors.blue,
+        child: Center(
+          child: Text(
+            widget.child,
+            style: TextStyle(fontSize: 20, color: Colors.white),
+          ),
         ),
       ),
     );

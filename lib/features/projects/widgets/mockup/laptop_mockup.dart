@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:ketch4n/features/projects/project_model.dart';
+import 'package:ketch4n/features/projects/project_entity.dart';
 
 class LaptopMockup extends StatefulWidget {
   const LaptopMockup({super.key, required this.projectDetails});
 
-  final ProjectModel projectDetails;
+  final ProjectEntity projectDetails;
 
   @override
   State<LaptopMockup> createState() => _LaptopMockupState();

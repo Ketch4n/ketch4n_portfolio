@@ -3,7 +3,8 @@ import 'package:ketch4n/core/animations/beam.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
 import 'package:ketch4n/core/constants/layout_constraints.dart';
-import 'package:ketch4n/core/widgets/glassmorphism.dart';
+import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism.dart';
+import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism_entity.dart';
 
 class ContactsPage extends StatefulWidget {
   const ContactsPage({super.key});
@@ -25,15 +26,18 @@ class _ContactsPageState extends State<ContactsPage> {
             child: BeamAnimation(title: PortfolioConfig.contacts),
           ),
           GlassmorphismWidget(
-            leftMargin: 0,
-            rightMargin: 0,
-            topMargin: 0,
-            height: 240,
-            width: double.infinity,
-            firstColor: ColorConstants.previewColor,
-            child: Column(children: [
+            entity: GlassmorphismEntity(
+              width: double.infinity,
+              height: 240,
+              leftMargin: 0,
+              rightMargin: 0,
+              topMargin: 0,
+
+              firstColor: ColorConstants.previewColor,
+              child: Column(children: [
                
               ],
+            ),
             ),
           ),
         ],

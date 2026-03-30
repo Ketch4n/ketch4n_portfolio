@@ -19,20 +19,24 @@ class ProjectsPage extends StatefulWidget {
 }
 
 class _ProjectsPageState extends State<ProjectsPage> {
+  static const int _initialCount = 3;
+  bool _showAll = false;
+
   @override
   Widget build(BuildContext context) {
     final bool isMobile = Responsive.isMobile(context);
 
-    // Adjust card dimensions based on screen size
     final double cardWidth = isMobile
-        ? MediaQuery.sizeOf(context).width *
-              0.9 // Almost full width on mobile
+        ? MediaQuery.sizeOf(context).width * 0.9
         : 272.0;
     const double cardHeight = 350.0;
     const double mHeight = (cardHeight / 2) + (cardHeight / 4);
 
     final projects = ProjectConstants.projects;
-    // final projectDetails = ProjectConstants.projects;
+    final visibleProjects = _showAll
+        ? projects
+        : projects.take(_initialCount).toList();
+    final remainingCount = projects.length - _initialCount;
 
     return Container(
       constraints: LayoutConstraints.pageMaxWidth,
@@ -43,23 +47,19 @@ class _ProjectsPageState extends State<ProjectsPage> {
           BeamAnimation(title: PortfolioConfig.project.toUpperCase()),
           const SizedBox(height: 40),
 
-          // Use Wrap instead of Row for automatic multi-line support
           Wrap(
-            spacing: 20, // Horizontal space between cards
-            runSpacing: 20, // Vertical space between lines (on mobile)
-            alignment: WrapAlignment.center, // Centers cards on the screen
-            children: projects.map((project) {
+            spacing: 20,
+            runSpacing: 20,
+            alignment: WrapAlignment.center,
+            children: visibleProjects.map((project) {
               return GestureDetector(
                 onTap: () {
                   showDialog(
                     context: context,
-                    barrierColor: Colors.black.withValues(
-                      alpha: 0.7,
-                    ), // Dims the background
+                    barrierColor: Colors.black.withValues(alpha: 0.7),
                     builder: (BuildContext context) {
                       return Dialog(
-                        backgroundColor:
-                            Colors.transparent, // Required for glass effect
+                        backgroundColor: Colors.transparent,
                         insetPadding: const EdgeInsets.symmetric(
                           horizontal: 20,
                           vertical: 40,
@@ -67,10 +67,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(30),
                           child: SizedBox(
-                            width: 1000, // Max width for desktop/web
-                            child: ProjectDetailScreen(
-                              projectDetails: project,
-                            ), // Your layout widget
+                            width: 1000,
+                            child: ProjectDetailScreen(projectDetails: project),
                           ),
                         ),
                       );
@@ -102,7 +100,6 @@ class _ProjectsPageState extends State<ProjectsPage> {
                                 ),
                               ),
                               child: ClipRRect(
-                                // Clip the image to match border radius
                                 borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(20),
                                   topRight: Radius.circular(20),
@@ -117,7 +114,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                               ),
                             ),
                             ListTile(
-                              leading: Icon(
+                              leading: const Icon(
                                 Icons.circle,
                                 color: Colors.green,
                                 size: 12,
@@ -133,6 +130,47 @@ class _ProjectsPageState extends State<ProjectsPage> {
               );
             }).toList(),
           ),
+
+          // Show more / show less button
+          if (projects.length > _initialCount) ...[
+            const SizedBox(height: 32),
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 250),
+              child: TextButton.icon(
+                key: ValueKey(_showAll),
+                onPressed: () => setState(() => _showAll = !_showAll),
+                icon: Icon(
+                  _showAll
+                      ? Icons.keyboard_arrow_up_rounded
+                      : Icons.keyboard_arrow_down_rounded,
+                ),
+                label: Text(
+                  _showAll
+                      ? 'Show less'
+                      : 'Show all projects ($remainingCount more)',
+                ),
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 12,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    side: BorderSide(
+                      color: Colors.white.withValues(alpha: 0.2),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Showing ${visibleProjects.length} of ${projects.length}',
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: Colors.white54),
+            ),
+          ],
         ],
       ),
     );

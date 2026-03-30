@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/animations/electric_border.dart';
-// Import your reusable widget file here
-// import 'package:ketch4n/core/widgets/electric_split_border.dart';
+import 'package:ketch4n/core/constants/app_constants.dart';
 import 'package:ketch4n/core/widgets/profile_icon.dart';
 
 class LoadingScreen extends StatelessWidget {
@@ -26,12 +25,12 @@ class LoadingScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(
                   8.0,
                 ), // Space between bolt and image
-                child: ProfileIconWidget(image: "assets/dev/noob.png"),
+                child: ProfileIconWidget(image: AppConstants.profileImg),
               ),
             ),
             const SizedBox(height: 30),
             Text(
-              "Loading Christian's Portfolio...",
+              AppConstants.loading,
               style: TextStyle(
                 color: Colors.white.withValues(alpha: 0.7),
                 letterSpacing: 1.2,

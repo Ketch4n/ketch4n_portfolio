@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
-import 'package:ketch4n/core/widgets/hero/hero_heading_subtitle.dart';
 import 'package:ketch4n/features/projects/project_entity.dart';
 import 'package:ketch4n/features/projects/widgets/mockup/laptop_mockup.dart';
 import 'package:ketch4n/features/projects/widgets/mockup/phone_mockup.dart';
@@ -151,7 +150,7 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
               fontWeight: FontWeight.w300,
             ),
           ),
-          const HeroHeadingSubtitle(),
+          // const ButtonHeaderWidget(),
 
           // _buildGlassCard(
           //   title: "Description",

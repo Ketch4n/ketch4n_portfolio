@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
 import 'package:ketch4n/core/constants/layout_constraints.dart';
 import 'package:ketch4n/core/utils/screen_breakpoints.dart';
+import 'package:ketch4n/core/widgets/buttons/button_item_entity.dart';
 import 'package:ketch4n/core/widgets/hero/hero_header_leading.dart';
 import 'package:ketch4n/core/widgets/hero/hero_header_title.dart';
-import 'package:ketch4n/core/widgets/hero/hero_heading_subtitle.dart';
+import 'package:ketch4n/core/widgets/buttons/button_header.dart';
 import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
 
 class HeroHeaderWidget extends StatefulWidget {
@@ -50,7 +52,27 @@ class _HeroHeaderWidgetState extends State<HeroHeaderWidget> {
                 children: [
                   const HeroHeaderTitle(),
                   const SizedBox(height: 20),
-                  const HeroHeadingSubtitle(),
+                  ButtonHeaderWidget(
+                    actionButtons: [
+                      ActionButtonItemEntity(
+                        label: "View Resume",
+                        onPressed: () {},
+                      ),
+                    ],
+                    iconLinks: [
+                      ButtonItemEntity(
+                        url: PortfolioConfig.githubUrl,
+                        icon: FaIcon(FontAwesomeIcons.github),
+                        tooltip: "GitHub",
+                      ),
+                      ButtonItemEntity(
+                        url: PortfolioConfig.linkedInUrl,
+                        icon: FaIcon(FontAwesomeIcons.linkedin),
+
+                        tooltip: "LinkedIn",
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 40),
                   _buildWrap(totalYears, isMobile),
                 ],

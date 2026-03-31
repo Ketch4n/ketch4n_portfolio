@@ -4,19 +4,19 @@ import 'package:ketch4n/core/constants/home_constants.dart';
 import 'package:ketch4n/core/constants/layout_constraints.dart';
 import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/buttons/button_item_entity.dart';
-import 'package:ketch4n/core/widgets/hero/hero_header_leading.dart';
-import 'package:ketch4n/core/widgets/hero/hero_header_title.dart';
+import 'package:ketch4n/features/about/widgets/header/header_card.dart';
+import 'package:ketch4n/features/about/widgets/header/header_hero.dart';
 import 'package:ketch4n/core/widgets/buttons/button_header.dart';
 import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
 
-class HeroHeaderWidget extends StatefulWidget {
-  const HeroHeaderWidget({super.key});
+class AboutPage extends StatefulWidget {
+  const AboutPage({super.key});
 
   @override
-  State<HeroHeaderWidget> createState() => _HeroHeaderWidgetState();
+  State<AboutPage> createState() => _AboutPageState();
 }
 
-class _HeroHeaderWidgetState extends State<HeroHeaderWidget> {
+class _AboutPageState extends State<AboutPage> {
   final int startYear = 2022;
   int get totalYears => DateTime.now().year - startYear;
 
@@ -50,7 +50,7 @@ class _HeroHeaderWidgetState extends State<HeroHeaderWidget> {
                     ? CrossAxisAlignment.center
                     : CrossAxisAlignment.start,
                 children: [
-                  const HeroHeaderTitle(),
+                  const HeaderHeroWidget(),
                   const SizedBox(height: 20),
                   ButtonHeaderWidget(
                     actionButtons: [
@@ -83,7 +83,7 @@ class _HeroHeaderWidgetState extends State<HeroHeaderWidget> {
             if (isMobile) const SizedBox(height: 60),
 
             // IMAGE SECTION
-            Flexible(flex: isMobile ? 0 : 1, child: const HeroHeaderLeading()),
+            Flexible(flex: isMobile ? 0 : 1, child: const HeaderCardWidget()),
           ],
         ),
       ),

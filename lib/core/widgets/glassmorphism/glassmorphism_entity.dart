@@ -18,7 +18,7 @@ class GlassmorphismEntity {
 
   GlassmorphismEntity({
     required this.width,
-    required this.height,
+    this.height = 0,
 
     this.borderRadius = 20,
     this.blur = 20,

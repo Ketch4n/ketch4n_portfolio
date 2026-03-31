@@ -1,13 +1,15 @@
+import 'package:ketch4n/core/widgets/skill_icon/skill_icon_entity.dart';
+
 class ProjectEntity {
   final String appName;
   final String longName;
   final String iconPath;
   final List<String> mockup;
-  // final String githubLink;
-  // final String demoLink;
-  // final String description;
-  // final String useCase;
-  // final List<SkillIconEntity> techStack;
+  final String githubLink;
+  final String demoLink;
+  final String description;
+  final String useCase;
+  final List<SkillIconEntity> techStack;
   final int type;
 
   ProjectEntity({
@@ -15,11 +17,11 @@ class ProjectEntity {
     required this.longName,
     required this.iconPath,
     required this.mockup,
-    // required this.githubLink,
-    // required this.demoLink,
-    // required this.description,
-    // required this.useCase,
-    // required this.techStack,
+    required this.githubLink,
+    required this.demoLink,
+    required this.description,
+    required this.useCase,
+    required this.techStack,
     required this.type,
   });
 }

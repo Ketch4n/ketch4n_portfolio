@@ -1,3 +1,4 @@
+import 'package:ketch4n/core/widgets/skill_icon/skill_icon_entity.dart';
 import 'package:ketch4n/features/projects/project_entity.dart';
 
 class ProjectConstants {
@@ -19,31 +20,41 @@ class ProjectConstants {
         'assets/project_ss/face_recognition_nmscst/g.jpg',
         'assets/project_ss/face_recognition_nmscst/h.jpg',
       ],
-      // techStack: [
-      //   SkillIconEntity(title: 'Flutter', icon: "assets/logo/flutter.png"),
-      //   SkillIconEntity(title: 'Dart', icon: "assets/logo/dart.png"),
-      //   SkillIconEntity(title: 'Firebase', icon: "assets/logo/firebase.png"),
-      //   SkillIconEntity(title: 'Hive', icon: "assets/logo/hive.png"),
-      //   SkillIconEntity(title: 'Riverpod', icon: "assets/logo/riverpod.png"),
-      // ],
+      githubLink: '',
+      demoLink: '',
+      description:
+          "This project is an attendance system that utilizes geolocation and"
+          "facial recognition technology to accurately track and manage attendance."
+          "It is designed to enhance security and streamline the attendance process"
+          "for educational institutions or organizations.",
+      useCase: '',
+      techStack: [
+        SkillIconEntity(title: 'Flutter', icon: "assets/logo/flutter.png"),
+        SkillIconEntity(title: 'Dart', icon: "assets/logo/dart.png"),
+        SkillIconEntity(title: 'Firebase', icon: "assets/logo/firebase.png"),
+        SkillIconEntity(title: 'Hive', icon: "assets/logo/hive.png"),
+        SkillIconEntity(title: 'Riverpod', icon: "assets/logo/riverpod.png"),
+      ],
     ),
     ProjectEntity(
       appName: "Expensar - Subscription and Finance Tracker",
       longName: "AI-Powered Subscription Intelligence",
       iconPath: "assets/icon_logo/flutter.png",
-      // description:
-      //     "Expensar simplifies financial tracking by focusing on subscription management."
-      //     "It uses AI to identify recurring costs and provides a dashboard for smart financial decision-making.",
+      description:
+          "Expensar simplifies financial tracking by focusing on subscription management."
+          "It uses AI to identify recurring costs and provides a dashboard for smart financial decision-making.",
       type: 0,
-      // useCase:
-      //     "• Problem: Forgotten subscriptions leading to money loss.\n"
-      //     "• Solution: Automated tracking and AI-driven alerts.",
+      useCase:
+          "• Problem: Forgotten subscriptions leading to money loss.\n"
+          "• Solution: Automated tracking and AI-driven alerts.",
       mockup: const [
         'assets/projects/ss/a.jpg',
         'assets/projects/ss/b.jpg',
         'assets/projects/ss/c.jpg',
         'assets/projects/ss/d.jpg',
       ],
+      githubLink: '',
+      demoLink: '',  techStack: [],
     ),
     ProjectEntity(
       appName: "Document Request - USTP",
@@ -56,6 +67,8 @@ class ProjectConstants {
         'assets/projects/ss/document_request_ustp/d.jpg',
       ],
       type: 0,
+      githubLink: '',
+      demoLink: '', description: '', useCase: '', techStack: [],
     ),
     ProjectEntity(
       appName: "Repository Management System - USTP",
@@ -68,6 +81,8 @@ class ProjectConstants {
         'assets/projects/ss/repository_management/d.jpg',
       ],
       type: 0,
+      githubLink: '',
+      demoLink: '', description: '', useCase: '', techStack: [],
     ),
     ProjectEntity(
       appName: "Online Ordering System - Chopstick Restobar",
@@ -80,6 +95,8 @@ class ProjectConstants {
         'assets/projects/ss/online_ordering/chopstick/d.jpg',
       ],
       type: 0,
+      githubLink: '',
+      demoLink: '', description: '', useCase: '', techStack: [],
     ),
     ProjectEntity(
       appName: "Inventory Management System - AgriVet",
@@ -92,6 +109,8 @@ class ProjectConstants {
         'assets/projects/ss/inventory/agrivet/d.jpg',
       ],
       type: 0,
+      githubLink: '',
+      demoLink: '', description: '', useCase: '', techStack: [],
     ),
     ProjectEntity(
       appName: "Job Portal - Peso Oroquieta",
@@ -104,6 +123,8 @@ class ProjectConstants {
         'assets/projects/ss/job_portal/peso_oroquieta/d.jpg',
       ],
       type: 0,
+      githubLink: '',
+      demoLink: '', description: '', useCase: '', techStack: [],
     ),
     ProjectEntity(
       appName: "Read Manga - Auto Translation",
@@ -116,6 +137,8 @@ class ProjectConstants {
         'assets/projects/ss/read_manga/auto_translation/d.jpg',
       ],
       type: 0,
+      githubLink: '',
+      demoLink: '', description: '', useCase: '', techStack: [],
     ),
   ];
 }

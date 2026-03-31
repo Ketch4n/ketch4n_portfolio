@@ -3,8 +3,8 @@ import 'package:ketch4n/core/animations/electric_border.dart';
 import 'package:ketch4n/core/animations/skeleton_card_loader.dart';
 import 'package:ketch4n/core/constants/app_constants.dart';
 
-class HeroHeaderLeading extends StatelessWidget {
-  const HeroHeaderLeading({super.key});
+class HeaderCardWidget extends StatelessWidget {
+  const HeaderCardWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

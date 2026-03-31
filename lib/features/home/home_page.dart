@@ -10,7 +10,7 @@ import 'package:ketch4n/features/skills/skill_set_page.dart';
 import 'package:ketch4n/features/work_experience/work_experience_page.dart';
 import 'package:provider/provider.dart';
 import 'package:ketch4n/core/constants/app_constants.dart';
-import 'package:ketch4n/core/widgets/hero/hero_header.dart';
+import 'package:ketch4n/features/about/about_page.dart';
 import 'package:ketch4n/core/widgets/loading_screen.dart';
 import 'package:ketch4n/core/widgets/navigation_rail.dart';
 
@@ -120,7 +120,7 @@ class _HomeContentState extends State<_HomeContent> {
                   physics: const AlwaysScrollableScrollPhysics(),
                   child: const Column(
                     children: [
-                      HeroHeaderWidget(),
+                      AboutPage(),
                       // SizedBox(height: 80),
                       SkillSetPage(),
                       // SizedBox(height: 100),

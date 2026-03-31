@@ -4,14 +4,14 @@ import 'package:ketch4n/core/theme/app_text_style.dart';
 import 'package:ketch4n/core/widgets/typing_text/typing_text.dart';
 import 'package:ketch4n/core/widgets/typing_text/typing_text_vm.dart';
 
-class HeroHeaderTitle extends StatefulWidget {
-  const HeroHeaderTitle({super.key});
+class HeaderHeroWidget extends StatefulWidget {
+  const HeaderHeroWidget({super.key});
 
   @override
-  State<HeroHeaderTitle> createState() => _HeroHeaderTitleState();
+  State<HeaderHeroWidget> createState() => _HeaderHeroWidgetState();
 }
 
-class _HeroHeaderTitleState extends State<HeroHeaderTitle> {
+class _HeaderHeroWidgetState extends State<HeaderHeroWidget> {
   final titleVM = TypingTextVM(
     texts: PortfolioConfig.roles,
     typingSpeed: const Duration(milliseconds: 50),

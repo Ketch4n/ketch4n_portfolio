@@ -96,14 +96,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.12.0"
-  glassmorphism:
-    dependency: "direct main"
-    description:
-      name: glassmorphism
-      sha256: c0f65ea2681d4ee6d4125b947946d983335cd44765e835cdc039894b076a6e31
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.0"
   hexcolor:
     dependency: "direct main"
     description:
@@ -200,14 +192,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.5+1"
-  sidebar_with_animation:
-    dependency: "direct main"
-    description:
-      name: sidebar_with_animation
-      sha256: d96bdd8e43acf80fd9ead65c52f623d4b12720eec3c34cd129739df60cae6157
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.3"
   sky_engine:
     dependency: transitive
     description: flutter

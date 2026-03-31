@@ -1,7 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:ketch4n/core/widgets/hexagon/hexagon_icons_group_vm.dart';
+import 'package:ketch4n/core/theme/light_dark_mode.dart';
+import 'package:ketch4n/core/theme/theme_provider.dart';
 import 'package:ketch4n/features/home/home_page.dart';
-// import 'package:ketch4n/data/viewModels/home_page_vm.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
@@ -9,22 +11,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        // ChangeNotifierProvider(create: (context) => HomeViewModel()),
-        ChangeNotifierProvider(create: (_) => HexaIconsVM()),
-      ],
-      child: MaterialApp(
-        title: 'Ketch4n',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.blueAccent,
-            // brightness: Brightness.dark,
-          ),
-        ),
-        home: const HomePage(),
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    return MaterialApp(
+      title: 'Ketch4n',
+      debugShowCheckedModeBanner: false,
+      themeMode: themeProvider.themeMode,
+      theme: LightDarkMode.lightTheme,
+      darkTheme: LightDarkMode.darkTheme,
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        scrollbars: false, // Prevents auto - causing double visible scrollbar
+        dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.touch,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.unknown,
+        },
       ),
+      home: const HomePage(),
     );
   }
 }

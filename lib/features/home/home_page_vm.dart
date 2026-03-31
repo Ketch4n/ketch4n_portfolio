@@ -1,28 +1,24 @@
-// import 'package:flutter/material.dart';
-// import 'package:ketch4n/core/constants/home_constants.dart';
+import 'package:flutter/material.dart';
 
-// class HomeViewModel extends ChangeNotifier {
-//   late List<String> roles;
-//   late String name;
-//   late String greeting;
-//   late String a;
-//   late String heroButton;
-//   late String description;
+class HomeViewModel extends ChangeNotifier {
+  bool _isLoading = true;
+  bool get isLoading => _isLoading;
 
-//   HomeViewModel() {
-//     _initializeData();
-//   }
+  HomeViewModel() {
+    _init();
+  }
 
-//   void _initializeData() {
-//     roles = PortfolioConfig.roles;
-//     name = PortfolioConfig.name;
-//     greeting = PortfolioConfig.greeting;
-//     a = PortfolioConfig.a;
-//     heroButton = PortfolioConfig.heroButton;
-//     description = PortfolioConfig.description;
-//   }
+  Future<void> _init() async {
+    await simulateLoading();
+  }
 
-//   void notifyUpdate() {
-//     notifyListeners();
-//   }
-// }
+  Future<void> simulateLoading() async {
+    _isLoading = true;
+    notifyListeners(); // Tell the UI to show the loader
+
+    await Future.delayed(const Duration(seconds: 3));
+
+    _isLoading = false;
+    notifyListeners(); // Tell the UI to hide the loader and show content
+  }
+}

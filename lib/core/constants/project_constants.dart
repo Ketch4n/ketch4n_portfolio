@@ -223,7 +223,6 @@ class ProjectConstants {
       iconPath: "assets/company_logo/chopstick.jpg",
       mockup: const ["assets/company_logo/chopstick.jpg"],
 
-      githubLink: '',
       description:
           "This project is a dine-in menu application designed for Chopstick Restobar, a local restaurant in Oroquieta. "
           "The application aims to enhance the dining experience by providing an interactive menu, allowing customers to place orders online, and track their orders in real-time.",

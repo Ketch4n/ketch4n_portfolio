@@ -3,7 +3,7 @@ class ProjectEntity {
   final String longName;
   final String iconPath;
   final List<String> mockup;
-  final String githubLink;
+  final String? githubLink;
   // final String demoLink;
   final String description;
   final List<UseCaseEntity> useCase;
@@ -18,7 +18,7 @@ class ProjectEntity {
     required this.longName,
     required this.iconPath,
     required this.mockup,
-    required this.githubLink,
+    this.githubLink,
     // required this.demoLink,
     required this.description,
     required this.useCase,

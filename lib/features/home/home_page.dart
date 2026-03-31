@@ -128,7 +128,7 @@ class _HomeContentState extends State<_HomeContent> {
                       SizedBox(height: 80),
                       WorkExperiencePage(),
                       // SizedBox(height: 100),
-                      ContactsPage(),
+                      // ContactsPage(),
                       SizedBox(height: 100),
                     ],
                   ),

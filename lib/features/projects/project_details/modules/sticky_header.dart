@@ -91,11 +91,12 @@ class _ProjectDetailsStickyHeaderState
               ),
             ],
             iconLinks: [
-              ButtonItemEntity(
-                icon: const FaIcon(FontAwesomeIcons.github),
-                tooltip: "Github",
-                url: widget.projectDetails.githubLink,
-              ),
+              if (widget.projectDetails.githubLink != null)
+                ButtonItemEntity(
+                  icon: const FaIcon(FontAwesomeIcons.github),
+                  tooltip: "Github",
+                  url: widget.projectDetails.githubLink!,
+                ),
             ],
           ),
         ],

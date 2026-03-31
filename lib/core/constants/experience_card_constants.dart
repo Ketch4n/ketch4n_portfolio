@@ -30,15 +30,15 @@ class ExperienceCardConstants {
       ],
       projects: [
         SkillIconEntity(
-          title: 'Cebu Pacific Airlines',
+          title: 'Cebu Pacific Airlines (Angular)',
           icon: "assets/project_icon/cebpac.jpg",
         ),
         SkillIconEntity(
-          title: 'Unilab',
+          title: 'Unilab (Flutter)',
           icon: "assets/project_icon/unilab.jpg",
         ),
         SkillIconEntity(
-          title: 'Stamp Me',
+          title: 'Stamp Me (Kotlin)',
           icon: "assets/project_icon/stampme.jpg",
         ),
       ],

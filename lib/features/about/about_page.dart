@@ -26,8 +26,8 @@ class _AboutPageState extends State<AboutPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text("Download Resume"),
-          content: const Text("Do you want to download the PDF?"),
+          title: const Text("Confirm Download?"),
+          content: const Text("Christian Mangao - Resume.pdf"),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
@@ -82,7 +82,7 @@ class _AboutPageState extends State<AboutPage> {
                   ButtonHeaderWidget(
                     actionButtons: [
                       ActionButtonItemEntity(
-                        label: "View Resume",
+                        label: "Resume",
                         onPressed: () {
                           showDownloadConfirmDialog(context);
                         },

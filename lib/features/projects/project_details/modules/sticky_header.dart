@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ketch4n/core/animations/helper/slide_direction.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/widgets/buttons/button_header.dart';
 import 'package:ketch4n/core/widgets/buttons/button_item_entity.dart';
@@ -53,27 +54,31 @@ class _ProjectDetailsStickyHeaderState
               ),
               const SizedBox(width: 20),
               Expanded(
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(
-                    widget.projectDetails.appName,
-                    textAlign: widget.isMobile
-                        ? TextAlign.center
-                        : TextAlign.start,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                child: SlideInTransition(
+                  direction: SlideDirection.leftToRight,
+                  delay: Duration(milliseconds: 250),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      widget.projectDetails.appName,
+                      textAlign: widget.isMobile
+                          ? TextAlign.center
+                          : TextAlign.start,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  subtitle: Text(
-                    widget.projectDetails.longName,
-                    textAlign: widget.isMobile
-                        ? TextAlign.center
-                        : TextAlign.start,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w300,
+                    subtitle: Text(
+                      widget.projectDetails.longName,
+                      textAlign: widget.isMobile
+                          ? TextAlign.center
+                          : TextAlign.start,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w300,
+                      ),
                     ),
                   ),
                 ),
@@ -83,21 +88,25 @@ class _ProjectDetailsStickyHeaderState
 
           const SizedBox(height: 10),
 
-          ButtonHeaderWidget(
-            actionButtons: [],
-            textTags: [
-              ...widget.projectDetails.tag.map(
-                (tag) => TextTagWidget(text: tag),
-              ),
-            ],
-            iconLinks: [
-              if (widget.projectDetails.githubLink != null)
-                ButtonItemEntity(
-                  icon: const FaIcon(FontAwesomeIcons.github),
-                  tooltip: "Github",
-                  url: widget.projectDetails.githubLink!,
+          SlideInTransition(
+            direction: SlideDirection.rightToLeft,
+            delay: Duration(milliseconds: 500),
+            child: ButtonHeaderWidget(
+              actionButtons: [],
+              textTags: [
+                ...widget.projectDetails.tag.map(
+                  (tag) => TextTagWidget(text: tag),
                 ),
-            ],
+              ],
+              iconLinks: [
+                if (widget.projectDetails.githubLink != null)
+                  ButtonItemEntity(
+                    icon: const FaIcon(FontAwesomeIcons.github),
+                    tooltip: "Github",
+                    url: widget.projectDetails.githubLink!,
+                  ),
+              ],
+            ),
           ),
         ],
       ),

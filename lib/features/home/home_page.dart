@@ -3,7 +3,6 @@ import 'package:ketch4n/core/animations/beam_border.dart';
 import 'package:ketch4n/core/theme/theme_provider.dart';
 import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/star/cosmic_bg.dart';
-import 'package:ketch4n/features/contacts/contacts_page.dart';
 import 'package:ketch4n/features/home/home_page_vm.dart';
 import 'package:ketch4n/features/projects/projects_page.dart';
 import 'package:ketch4n/features/skills/skill_set_page.dart';

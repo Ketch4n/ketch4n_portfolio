@@ -5,11 +5,13 @@ import 'text_tag_vm.dart'; // Ensure this matches your file path
 
 class TextTagWidget extends StatelessWidget {
   final String text;
+  final String? textSize;
   final Color boxColor;
 
   const TextTagWidget({
     super.key,
     required this.text,
+    this.textSize,
     this.boxColor = Colors.transparent,
   });
 
@@ -59,7 +61,9 @@ class TextTagWidget extends StatelessWidget {
                   text,
                   style: TextStyle(
                     fontWeight: vm.textWeight,
-                    // Ensure text color also follows the theme!
+                    fontSize: textSize != null
+                        ? double.tryParse(textSize!)
+                        : null,
                     color: theme.colorScheme.onSurface,
                   ),
                 ),

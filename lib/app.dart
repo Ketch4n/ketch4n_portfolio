@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/theme/light_dark_mode.dart';
 import 'package:ketch4n/core/theme/theme_provider.dart';
@@ -16,6 +18,14 @@ class MyApp extends StatelessWidget {
       themeMode: themeProvider.themeMode,
       theme: LightDarkMode.lightTheme,
       darkTheme: LightDarkMode.darkTheme,
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.touch,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.unknown,
+        },
+      ),
       home: const HomePage(),
     );
   }

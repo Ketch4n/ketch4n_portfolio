@@ -72,6 +72,7 @@ class _AboutPageState extends State<AboutPage> {
                         tooltip: "LinkedIn",
                       ),
                     ],
+                    textTags: [],
                   ),
                   const SizedBox(height: 40),
                   _buildWrap(totalYears, isMobile),

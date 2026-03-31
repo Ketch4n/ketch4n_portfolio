@@ -77,6 +77,8 @@ flutter:
     - assets/project_bg/
     - assets/project_icon/
     - assets/project_ss/face_recognition_nmscst/
+    - assets/project_ss/document_request_ustp/
+    - assets/project_ss/repository_ustp/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/widgets/buttons/button_item_entity.dart';
+import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
 import 'package:url_launcher/link.dart';
 
 class ButtonHeaderWidget extends StatelessWidget {
@@ -7,6 +8,7 @@ class ButtonHeaderWidget extends StatelessWidget {
     super.key,
     required this.actionButtons,
     required this.iconLinks,
+    required this.textTags,
     this.alignment = MainAxisAlignment.start,
     this.spacing = 5.0,
     this.buttonBorderRadius = 10.0,
@@ -14,6 +16,7 @@ class ButtonHeaderWidget extends StatelessWidget {
 
   final List<ActionButtonItemEntity> actionButtons;
   final List<ButtonItemEntity> iconLinks;
+  final List<TextTagWidget> textTags;
   final MainAxisAlignment alignment;
   final double spacing;
   final double buttonBorderRadius;
@@ -38,6 +41,15 @@ class ButtonHeaderWidget extends StatelessWidget {
       if (i < actionButtons.length - 1 || iconLinks.isNotEmpty) {
         children.add(SizedBox(width: spacing));
       }
+    }
+
+    for (final textTagItem in textTags) {
+      children.add(
+        Padding(
+          padding: EdgeInsets.only(right: spacing),
+          child: textTagItem,
+        ),
+      );
     }
 
     for (final link in iconLinks) {

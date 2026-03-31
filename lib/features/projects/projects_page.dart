@@ -9,7 +9,7 @@ import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism.dart';
 import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism_entity.dart';
 import 'package:ketch4n/core/widgets/running_title.dart';
-import 'package:ketch4n/features/projects/project_details_page.dart';
+import 'package:ketch4n/features/projects/project_details/project_details_screen.dart';
 
 class ProjectsPage extends StatefulWidget {
   const ProjectsPage({super.key});
@@ -54,25 +54,35 @@ class _ProjectsPageState extends State<ProjectsPage> {
             children: visibleProjects.map((project) {
               return GestureDetector(
                 onTap: () {
-                  showDialog(
-                    context: context,
-                    barrierColor: Colors.black.withValues(alpha: 0.7),
-                    builder: (BuildContext context) {
-                      return Dialog(
-                        backgroundColor: Colors.transparent,
-                        insetPadding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 40,
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(30),
-                          child: SizedBox(
-                            width: 1000,
-                            child: ProjectDetailScreen(projectDetails: project),
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      opaque:
+                          false, // Vital: allows seeing the previous page underneath
+                      barrierDismissible: true,
+                      barrierColor: Colors.black.withValues(alpha: 0.7),
+                      transitionDuration: const Duration(
+                        milliseconds: 400,
+                      ), // Adjust speed
+                      pageBuilder: (context, _, _) {
+                        return Dialog(
+                          backgroundColor: Colors.transparent,
+                          insetPadding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 40,
                           ),
-                        ),
-                      );
-                    },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: SizedBox(
+                              width: 1000,
+                              child: ProjectDetailScreen(
+                                projectDetails: project,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   );
                 },
                 child: GlassmorphismWidget(
@@ -83,6 +93,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     rightMargin: 0,
                     firstColor: ColorConstants.previewColor,
                     child: Column(
+                      mainAxisAlignment: .start,
                       children: [
                         Stack(
                           children: [
@@ -105,9 +116,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                                   topRight: Radius.circular(20),
                                 ),
                                 child: Image.asset(
-                                  project.type == 0
-                                      ? AppConstants.phoneMockup
-                                      : AppConstants.tabletMockup,
+                                  AppConstants.phoneMockup,
                                   fit: BoxFit.fitHeight,
                                   width: double.infinity,
                                 ),
@@ -122,6 +131,37 @@ class _ProjectsPageState extends State<ProjectsPage> {
                               title: ScrollingTitle(text: project.appName),
                             ),
                           ],
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: ListTile(
+                              leading: Hero(
+                                tag: project.appName,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(5),
+                                  child: Image.asset(
+                                    project.iconPath,
+                                    width: 50,
+                                    height: 50,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              title: Text(
+                                project.longName,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              // subtitle: Text(
+                              //   project.description,
+                              //   maxLines: 4,
+                              //   overflow: TextOverflow.ellipsis,
+                              //   style: const TextStyle(fontSize: 12),
+                              // ),
+                            ),
+                          ),
                         ),
                       ],
                     ),

@@ -66,7 +66,7 @@ class ExperienceCardConstants {
       ],
       projects: [
         SkillIconEntity(
-          title: 'Face Recognition',
+          title: 'Face Recognition - NMSCST',
           icon: "assets/project_icon/face.jpg",
         ),
       ],

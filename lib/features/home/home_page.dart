@@ -67,7 +67,7 @@ class _HomeContentState extends State<_HomeContent> {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 centerTitle: true,
-                title: Image.asset(AppConstants.flutterLogo, height: 30),
+                // title: Image.asset(AppConstants.flutterLogo, height: 30),
                 actions: [_buildThemeToggle(), const SizedBox(width: 10)],
               )
             : null,

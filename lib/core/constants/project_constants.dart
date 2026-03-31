@@ -5,10 +5,35 @@ class ProjectConstants {
 
   static final projects = <ProjectEntity>[
     ProjectEntity(
-      appName: "Face Recognition - NMSCST",
-      longName: "Attendance System with Geolocation and Facial Recognition",
-      iconPath: "assets/project_icon/face.jpg",
+      appName: "Expensar",
+      longName: "Subscription and Finance Tracker with AI",
+      iconPath: "assets/icon_logo/flutter.png",
+      description:
+          "Expensar simplifies financial tracking by focusing on subscription management. "
+          "It uses AI to identify recurring costs and provides a dashboard for smart financial decision-making. ",
+
       // type: 0,
+      useCase: [
+        UseCaseEntity(
+          problem:
+              "Forgotten subscriptions leading to money loss."
+              "Automated tracking and AI-driven alerts.",
+          solution:
+              "An app that identifies and tracks subscriptions, providing insights"
+              "and alerts to help users manage their finances effectively.",
+        ),
+      ],
+      mockup: const ['assets/icon_logo/flutter.png'],
+      githubLink: "https://github.com/Ketch4n/Expensar",
+      tag: ["Personal", "In Development", "Flutter"],
+    ),
+
+    // FACE RECOGNITION - NMSCST
+    ProjectEntity(
+      appName: "Attendance NMSCST",
+      longName: "Face Recognition Attendance with Geolocation",
+      iconPath: "assets/project_icon/face.jpg",
+
       mockup: const [
         'assets/project_ss/face_recognition_nmscst/a.jpg',
         'assets/project_ss/face_recognition_nmscst/b.jpg',
@@ -21,7 +46,7 @@ class ProjectConstants {
       ],
       githubLink:
           "https://github.com/Ketch4n/ATTENDANCE-NMSCT/tree/mobile_prod",
-      // demoLink: '',
+
       description:
           "This project is an attendance system that utilizes geolocation and "
           "facial recognition technology to accurately track and manage attendance. "
@@ -63,17 +88,12 @@ class ProjectConstants {
           "Google Maps API",
         ],
       ),
-      // techStack: [
-      //   SkillIconEntity(title: 'Flutter', icon: "assets/logo/flutter.png"),
-      //   SkillIconEntity(title: 'Dart', icon: "assets/logo/dart.png"),
-      //   SkillIconEntity(title: 'Firebase', icon: "assets/logo/firebase.png"),
-      //   SkillIconEntity(title: 'Hive', icon: "assets/logo/hive.png"),
-      //   SkillIconEntity(title: 'Riverpod', icon: "assets/logo/riverpod.png"),
-      // ],
     ),
+
+    // REPOSITORY - USTP
     ProjectEntity(
-      appName: "Repository Management System - USTP",
-      longName: "Online Archive for Academic Resources",
+      appName: "UpPARADor",
+      longName: "Academic resource repository with Cloud Storage",
       iconPath: "assets/company_logo/ustp2.jpg",
       mockup: const [
         'assets/project_ss/repository_ustp/a.png',
@@ -102,7 +122,7 @@ class ProjectConstants {
       ],
       clientDetails: ClientDetailsEntity(
         name: "USTP",
-        logoPath: "assets/company_logo/ustp2.jpg",
+        logoPath: "assets/company_logo/ustp1.jpg",
         sector: "Students from USTP",
         type: "Thesis",
       ),
@@ -120,9 +140,11 @@ class ProjectConstants {
         tag: ["Flutter Web", "Laravel", "MySQL", "Firebase", "Hostinger"],
       ),
     ),
+
+    // DOCU - USTP
     ProjectEntity(
-      appName: "Document Request - USTP",
-      longName: "Online Document Request for MIS",
+      appName: "Docu-USTP",
+      longName: "Online Document Request with Notifications",
       iconPath: "assets/company_logo/mobod.jpg",
       mockup: const [
         'assets/project_ss/document_request_ustp/a.jpg',
@@ -152,69 +174,78 @@ class ProjectConstants {
       tag: ["Freelance", "Firebase", "Flutter"],
       clientDetails: ClientDetailsEntity(
         name: "USTP",
-        logoPath: "assets/company_logo/ustp2.jpg",
+        logoPath: "assets/company_logo/ustp1.jpg",
         sector: "Students from USTP",
-        type: "Thesis",
+        type: "Project",
       ),
     ),
-    ProjectEntity(
-      appName: "Expensar - Subscription and Finance Tracker",
-      longName: "AI-Powered Subscription Intelligence",
-      iconPath: "assets/icon_logo/flutter.png",
-      description:
-          "Expensar simplifies financial tracking by focusing on subscription management. "
-          "It uses AI to identify recurring costs and provides a dashboard for smart financial decision-making. ",
 
-      // type: 0,
+    // INVENTORY CS
+    ProjectEntity(
+      appName: "Oro-AgriVet",
+      longName: "Inventory Management System in 3 platform",
+      iconPath: "assets/company_logo/box.png",
+      mockup: const [
+        // 'assets/project_ss/inventory_cs/a.jpg',
+        'assets/project_ss/inventory_cs/b.jpg',
+        'assets/project_ss/inventory_cs/c.jpg',
+        'assets/project_ss/inventory_cs/d.jpg',
+        'assets/project_ss/inventory_cs/e.jpg',
+        'assets/project_ss/inventory_cs/f.jpg',
+      ],
+
+      githubLink: "https://github.com/Ketch4n/INVENTORY-CS",
+
+      description:
+          "This project is an inventory management system designed for AgriVet, a local agricultural store in Oroquieta. "
+          "The system aims to streamline inventory tracking, manage stock levels, and enhance overall efficiency in the store's operations.",
       useCase: [
         UseCaseEntity(
           problem:
-              "Forgotten subscriptions leading to money loss."
-              "Automated tracking and AI-driven alerts.",
+              "The owner wants automation of process in their growing business",
           solution:
-              "An app that identifies and tracks subscriptions, providing insights"
-              "and alerts to help users manage their finances effectively.",
+              "Develope and Deploy a Desktop, Mobile and Web App for them",
         ),
       ],
-      mockup: const ['assets/icon_logo/flutter.png'],
-      githubLink: "https://github.com/Ketch4n/Expensar",
-      tag: ["Personal", "In Development", "Flutter"],
+      tag: ["Freelance", "C#", "Flutter"],
+      clientDetails: ClientDetailsEntity(
+        name: "Oro-AgriVet",
+        logoPath: "assets/company_logo/oro.png",
+        sector: "Local Business in Oroquieta",
+        type: "Business Project",
+      ),
     ),
 
-    // ProjectEntity(
-    //   appName: "Online Ordering System - Chopstick Restobar",
-    //   longName: "Online Ordering System for Chopstick Restobar",
-    //   iconPath: "assets/project_icon/online_ordering.jpg",
-    //   mockup: const [
-    //     'assets/projects/ss/online_ordering/chopstick/a.jpg',
-    //     'assets/projects/ss/online_ordering/chopstick/b.jpg',
-    //     'assets/projects/ss/online_ordering/chopstick/c.jpg',
-    //     'assets/projects/ss/online_ordering/chopstick/d.jpg',
-    //   ],
-    //   type: 0,
-    //   githubLink: '',
-    //   demoLink: '',
-    //   description: '',
-    //   useCase: '',
-    //   techStack: [],
-    // ),
-    // ProjectEntity(
-    //   appName: "Inventory Management System - AgriVet",
-    //   longName: "Inventory Management System for AgriVet",
-    //   iconPath: "assets/project_icon/inventory.jpg",
-    //   mockup: const [
-    //     'assets/projects/ss/inventory/agrivet/a.jpg',
-    //     'assets/projects/ss/inventory/agrivet/b.jpg',
-    //     'assets/projects/ss/inventory/agrivet/c.jpg',
-    //     'assets/projects/ss/inventory/agrivet/d.jpg',
-    //   ],
-    //   type: 0,
-    //   githubLink: '',
-    //   demoLink: '',
-    //   description: '',
-    //   useCase: '',
-    //   techStack: [],
-    // ),
+    // Chopstick
+    ProjectEntity(
+      appName: "Chopstick Restobar",
+      longName: "Dine-in Menu App with Online Ordering and Tracking",
+      iconPath: "assets/company_logo/chopstick.jpg",
+      mockup: const ["assets/company_logo/chopstick.jpg"],
+
+      githubLink: '',
+      description:
+          "This project is a dine-in menu application designed for Chopstick Restobar, a local restaurant in Oroquieta. "
+          "The application aims to enhance the dining experience by providing an interactive menu, allowing customers to place orders online, and track their orders in real-time.",
+      useCase: [
+        UseCaseEntity(
+          problem:
+              "The restaurant wants to expand their business by accepting online orders."
+              "And also to automate the dine-in process using tablet as menu.",
+          solution:
+              "Develope and Deploy a Mobile and Web App for them to accept online orders"
+              "and also to automate the dine-in process using tablet as menu.",
+        ),
+      ],
+      tag: ["Thesis", "PHP", "Flutter"],
+      clientDetails: ClientDetailsEntity(
+        name: "Chopstick Restobar",
+        logoPath: "assets/company_logo/chopstick.jpg",
+        sector: "Local Business in Oroquieta",
+        type: "Business Thesis",
+      ),
+    ),
+
     // ProjectEntity(
     //   appName: "Job Portal - Peso Oroquieta",
     //   longName: "Job Portal for Peso Oroquieta",

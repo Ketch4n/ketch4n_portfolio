@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       theme: LightDarkMode.lightTheme,
       darkTheme: LightDarkMode.darkTheme,
       scrollBehavior: const MaterialScrollBehavior().copyWith(
+        scrollbars: false, // Prevents auto - causing double visible scrollbar
         dragDevices: {
           PointerDeviceKind.mouse,
           PointerDeviceKind.touch,

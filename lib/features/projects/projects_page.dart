@@ -138,12 +138,11 @@ class _ProjectsPageState extends State<ProjectsPage> {
                               leading: Hero(
                                 tag: project.appName,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(5),
+                                  borderRadius: BorderRadius.circular(8),
                                   child: Image.asset(
                                     project.iconPath,
                                     width: 50,
                                     height: 50,
-                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),

@@ -16,24 +16,38 @@ class ProjectDetailsMobileLayout extends StatefulWidget {
 
 class _ProjectDetailsMobileLayoutState
     extends State<ProjectDetailsMobileLayout> {
+  final ScrollController _verticalScrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _verticalScrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.only(right: 16),
-      child: Column(
-        children: [
-          ProjectDetailsStickyHeader(
-            projectDetails: widget.projectDetails,
-            isMobile: true,
-          ),
-          const SizedBox(height: 20),
-          ProjectDetailsScrollableContent(
-            projectDetails: widget.projectDetails,
-          ),
-          const SizedBox(height: 20),
-          PhoneMockup(projectDetails: widget.projectDetails),
-        ],
+    return RawScrollbar(
+      controller: _verticalScrollController,
+      thumbVisibility: true,
+      trackVisibility: true,
+      child: SingleChildScrollView(
+        controller: _verticalScrollController,
+        physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.only(right: 16),
+        child: Column(
+          children: [
+            ProjectDetailsStickyHeader(
+              projectDetails: widget.projectDetails,
+              isMobile: true,
+            ),
+            const SizedBox(height: 20),
+            ProjectDetailsScrollableContent(
+              projectDetails: widget.projectDetails,
+            ),
+            const SizedBox(height: 20),
+            PhoneMockup(projectDetails: widget.projectDetails),
+          ],
+        ),
       ),
     );
   }

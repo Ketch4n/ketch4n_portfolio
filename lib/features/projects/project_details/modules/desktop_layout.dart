@@ -16,6 +16,14 @@ class ProjectDetailsDesktopLayout extends StatefulWidget {
 
 class _ProjectDetailsDesktopLayoutState
     extends State<ProjectDetailsDesktopLayout> {
+  final ScrollController _verticalScrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _verticalScrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -43,11 +51,18 @@ class _ProjectDetailsDesktopLayoutState
                       radius: Radius.circular(8),
                     ),
                   ),
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.only(right: 16),
-                    child: ProjectDetailsScrollableContent(
-                      projectDetails: widget.projectDetails,
+                  child: RawScrollbar(
+                    controller: _verticalScrollController,
+                    thumbVisibility: true,
+                    trackVisibility: true,
+                    child: SingleChildScrollView(
+                      controller: _verticalScrollController,
+
+                      physics: const BouncingScrollPhysics(),
+                      padding: const EdgeInsets.only(right: 16),
+                      child: ProjectDetailsScrollableContent(
+                        projectDetails: widget.projectDetails,
+                      ),
                     ),
                   ),
                 ),

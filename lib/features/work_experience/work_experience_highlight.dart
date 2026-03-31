@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ketch4n/core/animations/beam_border.dart';
 import 'package:ketch4n/core/constants/experience_card_constants.dart';
 import 'package:ketch4n/core/widgets/glass_card/glass_card_entity.dart';
 import 'package:ketch4n/core/widgets/skill_icon/skill_icon_entity.dart';
+import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
 
 class WorkExperienceHighlight extends StatefulWidget {
   final GlassCardEntity entity;
@@ -40,18 +42,12 @@ class _WorkExperienceHighlightState extends State<WorkExperienceHighlight> {
         Text(
           "${widget.entity.highlights}",
           textAlign: widget.isDesktopEven ? TextAlign.end : TextAlign.start,
-          style: const TextStyle(
-            height: 1.6,
-            // color: Colors.white70,
-            fontSize: 14,
-          ),
+          style: const TextStyle(height: 1.6, fontSize: 14),
         ),
         SizedBox(height: 20),
         Row(
-          spacing: 12, // Horizontal gap between project items
-          // Alternating logic:
-          // If Even (Card is on the Left), Details are on the Right -> Align projects to the Right (.end)
-          // If Odd (Card is on the Right), Details are on the Left -> Align projects to the Left (.start)
+          spacing: 12,
+
           mainAxisAlignment: widget.isDesktopEven
               ? MainAxisAlignment.end
               : MainAxisAlignment.start,
@@ -80,6 +76,20 @@ class _WorkExperienceHighlightState extends State<WorkExperienceHighlight> {
             );
           }).toList(),
         ),
+
+        if (widget.entity.textTag != null) ...[
+          SizedBox(height: 20),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            alignment: widget.isDesktopEven
+                ? WrapAlignment.end
+                : WrapAlignment.start,
+            children: (widget.entity.textTag as List<String>).map((tag) {
+              return BeamBorderAnimation(child: TextTagWidget(text: tag));
+            }).toList(),
+          ),
+        ],
       ],
     );
   }

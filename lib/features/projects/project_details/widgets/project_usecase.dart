@@ -31,6 +31,8 @@ class _ProjectUsecaseCardState extends State<ProjectUsecaseCard> {
               child: TextTagWidget(text: "Use Case"),
             ),
             subtitle: Column(
+              mainAxisAlignment: .start,
+              crossAxisAlignment: .start,
               children: [
                 widget.projectDetails.useCase.isEmpty
                     ? const Text(

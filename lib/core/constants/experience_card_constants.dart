@@ -64,12 +64,8 @@ class ExperienceCardConstants {
         "Architected and developed scalable Flutter mobile applications using modular architecture",
         "Integrated RESTful APIs, Firebase services, and cloud-based data systems.",
       ],
-      projects: [
-        SkillIconEntity(
-          title: 'Face Recognition - NMSCST',
-          icon: "assets/project_icon/face.jpg",
-        ),
-      ],
+      projects: [],
+      textTag: ["3 Academic Applications", " 2 Local Businesses Systems"],
     ),
   ];
 }

@@ -8,6 +8,7 @@ class GlassCardEntity {
   final List<String>? techSkillTag;
   final List<String>? highlights;
   final List<SkillIconEntity>? projects;
+  final List<String>? textTag;
 
   const GlassCardEntity({
     required this.title,
@@ -17,5 +18,6 @@ class GlassCardEntity {
     this.techSkillTag,
     this.highlights,
     this.projects,
+    this.textTag,
   });
 }

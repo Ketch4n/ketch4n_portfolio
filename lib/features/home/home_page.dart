@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ketch4n/core/animations/beam_border.dart';
 import 'package:ketch4n/core/theme/theme_provider.dart';
 import 'package:ketch4n/core/utils/screen_breakpoints.dart';
+import 'package:ketch4n/core/widgets/ai_chat/ai_chat.dart';
 import 'package:ketch4n/core/widgets/star/cosmic_bg.dart';
 import 'package:ketch4n/features/home/home_page_vm.dart';
 import 'package:ketch4n/features/projects/projects_page.dart';
@@ -83,57 +84,63 @@ class _HomeContentState extends State<_HomeContent> {
               )
             : null,
 
-        body: Column(
+        body: Stack(
+          fit: StackFit.expand,
           children: [
-            // 3. Desktop: Show Custom Header Row
-            if (isDesktop)
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 20,
-                  horizontal: 40,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    BeamBorderAnimation(
-                      child: Image.asset(
-                        AppConstants.flutterLogo,
-                        height: 40,
-                        width: 40,
+            Column(
+              children: [
+                // 3. Desktop: Show Custom Header Row
+                if (isDesktop)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20,
+                      horizontal: 40,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        BeamBorderAnimation(
+                          child: Image.asset(
+                            AppConstants.flutterLogo,
+                            height: 40,
+                            width: 40,
+                          ),
+                        ),
+                        const NavigationRailWidget(),
+                        _buildThemeToggle(),
+                      ],
+                    ),
+                  ),
+
+                // 4. Main Scrollable Content
+                Expanded(
+                  child: Scrollbar(
+                    controller: ctrl,
+                    interactive: true,
+                    thumbVisibility: true,
+                    child: SingleChildScrollView(
+                      controller: ctrl,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      child: const Column(
+                        children: [
+                          AboutPage(),
+                          // SizedBox(height: 80),
+                          SkillSetPage(),
+                          // SizedBox(height: 100),
+                          ProjectsPage(),
+                          SizedBox(height: 80),
+                          WorkExperiencePage(),
+                          // SizedBox(height: 100),
+                          // ContactsPage(),
+                          SizedBox(height: 100),
+                        ],
                       ),
                     ),
-                    const NavigationRailWidget(),
-                    _buildThemeToggle(),
-                  ],
-                ),
-              ),
-
-            // 4. Main Scrollable Content
-            Expanded(
-              child: Scrollbar(
-                controller: ctrl,
-                interactive: true,
-                thumbVisibility: true,
-                child: SingleChildScrollView(
-                  controller: ctrl,
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  child: const Column(
-                    children: [
-                      AboutPage(),
-                      // SizedBox(height: 80),
-                      SkillSetPage(),
-                      // SizedBox(height: 100),
-                      ProjectsPage(),
-                      SizedBox(height: 80),
-                      WorkExperiencePage(),
-                      // SizedBox(height: 100),
-                      // ContactsPage(),
-                      SizedBox(height: 100),
-                    ],
                   ),
                 ),
-              ),
+              ],
             ),
+            const Positioned(bottom: 0, right: 0, child: AiChatWidget()),
           ],
         ),
       ),

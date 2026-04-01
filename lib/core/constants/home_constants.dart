@@ -19,7 +19,8 @@ REST API integration, Firebase services, real-time data systems, CI/CD pipelines
     "Full Stack $dev",
     "Software $dev",
   ];
-
+  static const String resumeLink =
+      "https://raw.githubusercontent.com/Ketch4n/ketch4n_portfolio/dev/assets/docs/christian_mangao_resume.pdf";
   static const String linkedInUrl =
       "https://www.linkedin.com/in/christian-mangao-3ba341290/";
   static const String githubUrl = "https://github.com/Ketch4n";

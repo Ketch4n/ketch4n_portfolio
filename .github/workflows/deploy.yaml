@@ -21,7 +21,7 @@ jobs:
         run: flutter pub get
 
       - name: Build Web
-        run: flutter build web --release --base-href "/ketch4n_portfolio/"
+        run: flutter build web --release --base-href "/ketch4n_portfolio/" --dart-define=GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

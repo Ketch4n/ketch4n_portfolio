@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
 import 'package:ketch4n/core/constants/layout_constraints.dart';
-import 'package:ketch4n/core/services/pdf_viewer.dart';
+import 'package:ketch4n/features/about/widgets/download_resume.dart';
 import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/buttons/button_item_entity.dart';
 import 'package:ketch4n/features/about/widgets/header/header_card.dart';
@@ -20,32 +20,6 @@ class AboutPage extends StatefulWidget {
 class _AboutPageState extends State<AboutPage> {
   final int startYear = 2022;
   int get totalYears => DateTime.now().year - startYear;
-
-  Future<void> showDownloadConfirmDialog(BuildContext context) async {
-    final result = await showDialog<bool>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text("Confirm Download?"),
-          content: const Text("Christian Mangao - Resume.pdf"),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: const Text("Cancel"),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: const Text("Download"),
-            ),
-          ],
-        );
-      },
-    );
-
-    if (result == true) {
-      downloadResume(); // call your download function
-    }
-  }
 
   @override
   Widget build(BuildContext context) {

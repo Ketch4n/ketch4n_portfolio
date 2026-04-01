@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:ketch4n/core/animations/beam.dart';
+import 'package:ketch4n/core/constants/color_constants.dart';
+import 'package:ketch4n/core/constants/home_constants.dart';
+import 'package:ketch4n/core/constants/layout_constraints.dart';
+import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism.dart';
+import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism_entity.dart';
+
+class ContactsPage extends StatefulWidget {
+  const ContactsPage({super.key});
+
+  @override
+  State<ContactsPage> createState() => _ContactsPageState();
+}
+
+class _ContactsPageState extends State<ContactsPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: LayoutConstraints.pageMaxWidth,
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 22),
+            child: BeamAnimation(title: PortfolioConfig.contacts),
+          ),
+          GlassmorphismWidget(
+            entity: GlassmorphismEntity(
+              width: double.infinity,
+              height: 240,
+              leftMargin: 0,
+              rightMargin: 0,
+              topMargin: 0,
+
+              firstColor: ColorConstants.previewColor,
+              child: Column(children: [
+               
+              ],
+            ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -1,0 +1,13 @@
+class AppConstants {
+  AppConstants._(); // Prevent instantiation
+
+  static const String appName = "Ketch4n";
+  static const String bgUrl = "assets/dev/night.jpg";
+  static const String flutterLogo = "assets/icon_logo/flutter.png";
+  static const String profileImg = "assets/dev/noob.png";
+  static const String phoneMockup = "assets/mockup/iphone16_flutter.png";
+  static const String tabletMockup = "assets/mockup/laptop.png";
+  static const String loading = "Loading Christian's Portfolio...";
+  static const String darkSuit = "assets/dev/gemini.png";
+  static const String lightSuit = "assets/dev/gemini_light.png";
+}

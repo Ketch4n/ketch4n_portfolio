@@ -25,6 +25,8 @@ REST API integration, Firebase services, real-time data systems, CI/CD pipelines
       "https://www.linkedin.com/in/christian-mangao-3ba341290/";
   static const String githubUrl = "https://github.com/Ketch4n";
   static const String facebookUrl = "https://web.facebook.com/ketch4n";
+  static const String holaAI =
+      "👋 Hola! I'm Ketchan, the AI Dev Agent of Christian. Ask me anything about my skills, experience, or projects!";
 
   static const String hireMe = "Hire Me";
   static const String viewResume = "View Resume";

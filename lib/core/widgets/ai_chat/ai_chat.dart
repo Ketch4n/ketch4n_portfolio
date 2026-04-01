@@ -1,5 +1,8 @@
 // lib/widgets/ai_chat_widget.dart
 import 'package:flutter/material.dart';
+import 'package:ketch4n/core/constants/app_constants.dart';
+import 'package:ketch4n/core/constants/color_constants.dart';
+import 'package:ketch4n/core/constants/home_constants.dart';
 import 'package:ketch4n/core/services/groq_service.dart';
 
 class AiChatWidget extends StatefulWidget {
@@ -33,13 +36,7 @@ class _AiChatWidgetState extends State<AiChatWidget>
       curve: Curves.easeOutBack,
     );
     // Welcome message
-    _messages.add(
-      _ChatMessage(
-        text:
-            "👋 Hi! I'm an AI assistant for this portfolio. Ask me anything about my skills, experience, or projects!",
-        isUser: false,
-      ),
-    );
+    _messages.add(_ChatMessage(text: PortfolioConfig.holaAI, isUser: false));
   }
 
   void _toggleChat() {
@@ -108,10 +105,10 @@ class _AiChatWidgetState extends State<AiChatWidget>
             // backgroundColor: const Color(0xFF6C63FF),
             icon: Icon(
               _isOpen ? Icons.close : Icons.chat_bubble_outline,
-              color: Colors.white,
+              // color: Colors.white,
             ),
             label: Text(
-              _isOpen ? 'Close' : 'Ask about me',
+              _isOpen ? 'Close' : 'Ask Agent',
               style: const TextStyle(color: Colors.white),
             ),
           ),
@@ -126,7 +123,7 @@ class _AiChatWidgetState extends State<AiChatWidget>
       height: 520,
       margin: const EdgeInsets.only(bottom: 90, right: 24),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ColorConstants.previewColor,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -151,21 +148,21 @@ class _AiChatWidgetState extends State<AiChatWidget>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: const BoxDecoration(
-        color: Color(0xFF6C63FF),
+        color: Colors.blue,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: Row(
         children: [
-          const CircleAvatar(
-            backgroundColor: Colors.white24,
-            child: Icon(Icons.smart_toy, color: Colors.white, size: 20),
+          CircleAvatar(
+            backgroundColor: Colors.white,
+            child: Image.asset(AppConstants.profileImg),
           ),
           const SizedBox(width: 10),
           const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Portfolio AI',
+                'Ketchan',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -218,7 +215,7 @@ class _AiChatWidgetState extends State<AiChatWidget>
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         constraints: const BoxConstraints(maxWidth: 280),
         decoration: BoxDecoration(
-          color: isUser ? const Color(0xFF6C63FF) : const Color(0xFFF1F0FF),
+          color: isUser ? Colors.blue : const Color(0xFFF1F0FF),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(16),
             topRight: const Radius.circular(16),
@@ -266,7 +263,7 @@ class _AiChatWidgetState extends State<AiChatWidget>
                 hintText: 'Ask about skills, projects...',
                 hintStyle: const TextStyle(fontSize: 13),
                 filled: true,
-                fillColor: const Color(0xFFF5F5F5),
+                // fillColor: const Color(0xFFF5F5F5),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25),
                   borderSide: BorderSide.none,

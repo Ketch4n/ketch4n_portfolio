@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ketch4n/core/constants/app_constants.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
-import 'package:ketch4n/core/services/groq_service.dart';
+import 'package:ketch4n/core/services/ai_agent_service.dart';
 
 class AiChatWidget extends StatefulWidget {
   const AiChatWidget({super.key});
@@ -14,7 +14,7 @@ class AiChatWidget extends StatefulWidget {
 
 class _AiChatWidgetState extends State<AiChatWidget>
     with SingleTickerProviderStateMixin {
-  final GroqService _groq = GroqService();
+  final AIAgentService _aiAgent = AIAgentService();
   final TextEditingController _inputController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   final List<_ChatMessage> _messages = [];
@@ -55,7 +55,7 @@ class _AiChatWidgetState extends State<AiChatWidget>
     _inputController.clear();
     _scrollToBottom();
 
-    final reply = await _groq.sendMessage(text);
+    final reply = await _aiAgent.sendMessage(text);
 
     setState(() {
       _messages.add(_ChatMessage(text: reply, isUser: false));
@@ -189,7 +189,7 @@ class _AiChatWidgetState extends State<AiChatWidget>
                   ),
                 );
               });
-              _groq.clearHistory();
+              _aiAgent.clearHistory();
             },
           ),
         ],

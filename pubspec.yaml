@@ -40,7 +40,6 @@ dependencies:
   font_awesome_flutter: ^10.12.0
   url_launcher: ^6.3.2
   http: ^1.6.0
-  flutter_dotenv: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -80,7 +79,6 @@ flutter:
     - assets/project_ss/document_request_ustp/
     - assets/project_ss/repository_ustp/
     - assets/project_ss/inventory_cs/
-    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

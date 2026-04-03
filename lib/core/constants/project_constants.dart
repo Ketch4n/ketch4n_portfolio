@@ -244,40 +244,5 @@ class ProjectConstants {
         type: "Business Thesis",
       ),
     ),
-
-    // ProjectEntity(
-    //   appName: "Job Portal - Peso Oroquieta",
-    //   longName: "Job Portal for Peso Oroquieta",
-    //   iconPath: "assets/project_icon/job_portal.jpg",
-    //   mockup: const [
-    //     'assets/projects/ss/job_portal/peso_oroquieta/a.jpg',
-    //     'assets/projects/ss/job_portal/peso_oroquieta/b.jpg',
-    //     'assets/projects/ss/job_portal/peso_oroquieta/c.jpg',
-    //     'assets/projects/ss/job_portal/peso_oroquieta/d.jpg',
-    //   ],
-    //   type: 0,
-    //   githubLink: '',
-    //   demoLink: '',
-    //   description: '',
-    //   useCase: '',
-    //   techStack: [],
-    // ),
-    // ProjectEntity(
-    //   appName: "Read Manga - Auto Translation",
-    //   longName: "Auto Translation for Read Manga",
-    //   iconPath: "assets/project_icon/read_manga.jpg",
-    //   mockup: const [
-    //     'assets/projects/ss/read_manga/auto_translation/a.jpg',
-    //     'assets/projects/ss/read_manga/auto_translation/b.jpg',
-    //     'assets/projects/ss/read_manga/auto_translation/c.jpg',
-    //     'assets/projects/ss/read_manga/auto_translation/d.jpg',
-    //   ],
-    //   type: 0,
-    //   githubLink: '',
-    //   demoLink: '',
-    //   description: '',
-    //   useCase: '',
-    //   techStack: [],
-    // ),
   ];
 }

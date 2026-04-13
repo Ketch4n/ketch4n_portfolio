@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ketch4n/core/constants/app_constants.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
+import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/ai_chat/ai_chat_provider.dart';
 import 'package:ketch4n/core/animations/chat_pop.dart';
 import 'package:ketch4n/core/animations/typing_indicator.dart';
@@ -55,6 +56,7 @@ class _AiChatWidgetState extends ConsumerState<AiChatWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = Responsive.isMobile(context);
     final chatState = ref.watch(chatProvider);
 
     return Stack(
@@ -64,7 +66,7 @@ class _AiChatWidgetState extends ConsumerState<AiChatWidget> {
         if (chatState.isOpen)
           ChatPopTransition(
             isOpen: chatState.isOpen,
-            child: _buildChatPanel(chatState),
+            child: _buildChatPanel(isMobile, chatState),
           ),
 
         /// FAB Button
@@ -75,7 +77,9 @@ class _AiChatWidgetState extends ConsumerState<AiChatWidget> {
             icon: Icon(
               chatState.isOpen ? Icons.close : Icons.chat_bubble_outline,
             ),
-            label: Text(chatState.isOpen ? 'Close' : 'Ask Agent'),
+            label: isMobile
+                ? Text(chatState.isOpen ? 'Close' : 'Ask')
+                : Text(chatState.isOpen ? 'Close' : 'Ask Agent'),
           ),
         ),
       ],
@@ -85,10 +89,11 @@ class _AiChatWidgetState extends ConsumerState<AiChatWidget> {
   /// =========================
   /// CHAT PANEL
   /// =========================
-  Widget _buildChatPanel(ChatState state) {
+  Widget _buildChatPanel(bool isMobile, ChatState state) {
     return Container(
+      constraints: isMobile ? BoxConstraints(maxWidth: 316) : null,
       width: 370,
-      height: 520,
+      height: isMobile ? 480 : 520,
       margin: const EdgeInsets.only(bottom: 90, right: 24),
       decoration: BoxDecoration(
         color: ColorConstants.previewColor,

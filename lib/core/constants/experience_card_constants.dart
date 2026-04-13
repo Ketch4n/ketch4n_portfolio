@@ -56,8 +56,8 @@ class ExperienceCardConstants {
         "REST API",
         "Git",
         "Hosting",
-        "Google Cloud Platform",
-        "TensorFlow Lite",
+        "Google Cloud",
+        "TensorFlow",
       ],
       highlights: [
         "Delivered 7 + mobile and web applications for business owners and academic research projects",

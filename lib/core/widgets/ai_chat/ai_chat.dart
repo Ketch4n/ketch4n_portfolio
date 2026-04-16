@@ -1,69 +1,44 @@
 // lib/widgets/ai_chat_widget.dart
 import 'package:flutter/material.dart';
-import 'package:ketch4n/core/services/groq_service.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ketch4n/core/constants/app_constants.dart';
+import 'package:ketch4n/core/constants/color_constants.dart';
+import 'package:ketch4n/core/utils/screen_breakpoints.dart';
+import 'package:ketch4n/core/widgets/ai_chat/ai_chat_provider.dart';
+import 'package:ketch4n/core/animations/chat_pop.dart';
+import 'package:ketch4n/core/animations/typing_indicator.dart';
+import 'ai_chat_entity.dart';
 
-class AiChatWidget extends StatefulWidget {
+class AiChatWidget extends ConsumerStatefulWidget {
   const AiChatWidget({super.key});
 
   @override
-  State<AiChatWidget> createState() => _AiChatWidgetState();
+  ConsumerState<AiChatWidget> createState() => _AiChatWidgetState();
 }
 
-class _AiChatWidgetState extends State<AiChatWidget>
-    with SingleTickerProviderStateMixin {
-  final GroqService _groq = GroqService();
+class _AiChatWidgetState extends ConsumerState<AiChatWidget> {
   final TextEditingController _inputController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-  final List<_ChatMessage> _messages = [];
-  bool _isOpen = false;
-  bool _isLoading = false;
-
-  late AnimationController _animController;
-  late Animation<double> _scaleAnim;
 
   @override
-  void initState() {
-    super.initState();
-    _animController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 250),
-    );
-    _scaleAnim = CurvedAnimation(
-      parent: _animController,
-      curve: Curves.easeOutBack,
-    );
-    // Welcome message
-    _messages.add(
-      _ChatMessage(
-        text:
-            "👋 Hi! I'm an AI assistant for this portfolio. Ask me anything about my skills, experience, or projects!",
-        isUser: false,
-      ),
-    );
+  void dispose() {
+    _inputController.dispose();
+    _scrollController.dispose();
+    super.dispose();
   }
 
   void _toggleChat() {
-    setState(() => _isOpen = !_isOpen);
-    _isOpen ? _animController.forward() : _animController.reverse();
+    ref.read(chatProvider.notifier).toggleChat();
   }
 
   Future<void> _sendMessage() async {
     final text = _inputController.text.trim();
-    if (text.isEmpty || _isLoading) return;
+    if (text.isEmpty) return;
 
-    setState(() {
-      _messages.add(_ChatMessage(text: text, isUser: true));
-      _isLoading = true;
-    });
     _inputController.clear();
-    _scrollToBottom();
 
-    final reply = await _groq.sendMessage(text);
+    await ref.read(chatProvider.notifier).sendMessage(text);
 
-    setState(() {
-      _messages.add(_ChatMessage(text: reply, isUser: false));
-      _isLoading = false;
-    });
     _scrollToBottom();
   }
 
@@ -80,53 +55,48 @@ class _AiChatWidgetState extends State<AiChatWidget>
   }
 
   @override
-  void dispose() {
-    _animController.dispose();
-    _inputController.dispose();
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final isMobile = Responsive.isMobile(context);
+    final chatState = ref.watch(chatProvider);
+
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
-        // Chat panel
-        if (_isOpen)
-          ScaleTransition(
-            scale: _scaleAnim,
-            alignment: Alignment.bottomRight,
-            child: _buildChatPanel(),
+        /// Chat Panel
+        if (chatState.isOpen)
+          ChatPopTransition(
+            isOpen: chatState.isOpen,
+            child: _buildChatPanel(isMobile, chatState),
           ),
 
-        // FAB toggle button
+        /// FAB Button
         Padding(
           padding: const EdgeInsets.all(24),
           child: FloatingActionButton.extended(
             onPressed: _toggleChat,
-            // backgroundColor: const Color(0xFF6C63FF),
             icon: Icon(
-              _isOpen ? Icons.close : Icons.chat_bubble_outline,
-              color: Colors.white,
+              chatState.isOpen ? Icons.close : Icons.chat_bubble_outline,
             ),
-            label: Text(
-              _isOpen ? 'Close' : 'Ask about me',
-              style: const TextStyle(color: Colors.white),
-            ),
+            label: isMobile
+                ? Text(chatState.isOpen ? 'Close' : 'Ask')
+                : Text(chatState.isOpen ? 'Close' : 'Ask Agent'),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildChatPanel() {
+  /// =========================
+  /// CHAT PANEL
+  /// =========================
+  Widget _buildChatPanel(bool isMobile, ChatState state) {
     return Container(
+      constraints: isMobile ? BoxConstraints(maxWidth: 316) : null,
       width: 370,
-      height: 520,
+      height: isMobile ? 480 : 520,
       margin: const EdgeInsets.only(bottom: 90, right: 24),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ColorConstants.previewColor,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -139,33 +109,39 @@ class _AiChatWidgetState extends State<AiChatWidget>
       child: Column(
         children: [
           _buildHeader(),
-          Expanded(child: _buildMessageList()),
-          if (_isLoading) _buildTypingIndicator(),
+          Expanded(child: _buildMessageList(state)),
+
+          /// 🔥 NEW Typing Indicator (Wave Dots)
+          if (state.isLoading) const TypingIndicator(),
+
           _buildInputBar(),
         ],
       ),
     );
   }
 
+  /// =========================
+  /// HEADER
+  /// =========================
   Widget _buildHeader() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: const BoxDecoration(
-        color: Color(0xFF6C63FF),
+        color: Colors.blue,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: Row(
         children: [
-          const CircleAvatar(
-            backgroundColor: Colors.white24,
-            child: Icon(Icons.smart_toy, color: Colors.white, size: 20),
+          CircleAvatar(
+            backgroundColor: Colors.white,
+            child: Image.asset(AppConstants.profileImg),
           ),
           const SizedBox(width: 10),
           const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Portfolio AI',
+                'Ketchan',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -183,16 +159,7 @@ class _AiChatWidgetState extends State<AiChatWidget>
             icon: const Icon(Icons.refresh, color: Colors.white70, size: 18),
             tooltip: 'Clear chat',
             onPressed: () {
-              setState(() {
-                _messages.clear();
-                _messages.add(
-                  _ChatMessage(
-                    text: "Chat cleared! Ask me anything about this portfolio.",
-                    isUser: false,
-                  ),
-                );
-              });
-              _groq.clearHistory();
+              ref.read(chatProvider.notifier).clearChat();
             },
           ),
         ],
@@ -200,17 +167,24 @@ class _AiChatWidgetState extends State<AiChatWidget>
     );
   }
 
-  Widget _buildMessageList() {
+  /// =========================
+  /// MESSAGE LIST
+  /// =========================
+  Widget _buildMessageList(ChatState state) {
     return ListView.builder(
       controller: _scrollController,
       padding: const EdgeInsets.all(12),
-      itemCount: _messages.length,
-      itemBuilder: (_, i) => _buildBubble(_messages[i]),
+      itemCount: state.messages.length,
+      itemBuilder: (_, i) => _buildBubble(state.messages[i]),
     );
   }
 
-  Widget _buildBubble(_ChatMessage msg) {
+  /// =========================
+  /// CHAT BUBBLE
+  /// =========================
+  Widget _buildBubble(ChatMessage msg) {
     final isUser = msg.isUser;
+
     return Align(
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
@@ -218,7 +192,7 @@ class _AiChatWidgetState extends State<AiChatWidget>
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         constraints: const BoxConstraints(maxWidth: 280),
         decoration: BoxDecoration(
-          color: isUser ? const Color(0xFF6C63FF) : const Color(0xFFF1F0FF),
+          color: isUser ? Colors.blue : const Color(0xFFF1F0FF),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(16),
             topRight: const Radius.circular(16),
@@ -237,19 +211,9 @@ class _AiChatWidgetState extends State<AiChatWidget>
     );
   }
 
-  Widget _buildTypingIndicator() {
-    return const Padding(
-      padding: EdgeInsets.only(left: 16, bottom: 6),
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Text(
-          'AI is typing...',
-          style: TextStyle(color: Colors.grey, fontSize: 12),
-        ),
-      ),
-    );
-  }
-
+  /// =========================
+  /// INPUT BAR
+  /// =========================
   Widget _buildInputBar() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -266,7 +230,6 @@ class _AiChatWidgetState extends State<AiChatWidget>
                 hintText: 'Ask about skills, projects...',
                 hintStyle: const TextStyle(fontSize: 13),
                 filled: true,
-                fillColor: const Color(0xFFF5F5F5),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25),
                   borderSide: BorderSide.none,
@@ -284,7 +247,7 @@ class _AiChatWidgetState extends State<AiChatWidget>
             child: Container(
               padding: const EdgeInsets.all(10),
               decoration: const BoxDecoration(
-                color: Color(0xFF6C63FF),
+                color: Colors.blue,
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.send, color: Colors.white, size: 18),
@@ -294,10 +257,4 @@ class _AiChatWidgetState extends State<AiChatWidget>
       ),
     );
   }
-}
-
-class _ChatMessage {
-  final String text;
-  final bool isUser;
-  _ChatMessage({required this.text, required this.isUser});
 }

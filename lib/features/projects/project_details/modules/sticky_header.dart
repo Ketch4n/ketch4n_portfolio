@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ketch4n/core/animations/helper/slide_direction.dart';
+import 'package:ketch4n/core/animations/slide_direction.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/widgets/buttons/button_header.dart';
 import 'package:ketch4n/core/widgets/buttons/button_item_entity.dart';

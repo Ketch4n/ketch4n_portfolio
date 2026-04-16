@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ketch4n/core/animations/helper/slide_direction.dart';
+import 'package:ketch4n/core/animations/slide_direction.dart';
 import 'package:ketch4n/features/projects/project_details/widgets/project_admin_screenshot.dart';
 import 'package:ketch4n/features/projects/project_details/widgets/project_client.dart';
 import 'package:ketch4n/features/projects/project_details/widgets/project_description.dart';

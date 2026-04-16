@@ -52,7 +52,7 @@ class _HomeContentState extends State<_HomeContent> {
   @override
   Widget build(BuildContext context) {
     // Breakpoint check
-    final bool isDesktop = Responsive.isDesktop(context);
+    final bool isMobile = Responsive.isMobile(context);
 
     return CosmicBackground(
       child: Scaffold(
@@ -62,35 +62,36 @@ class _HomeContentState extends State<_HomeContent> {
         ).colorScheme.surface.withValues(alpha: 0.4),
 
         // 1. Mobile/Tablet: Show AppBar with Hamburger Menu
-        appBar: !isDesktop
+        appBar: isMobile
             ? AppBar(
                 backgroundColor: Colors.transparent,
                 elevation: 0,
-                centerTitle: true,
+                // centerTitle: true,
+                // leading: Image.asset(AppConstants.flutterLogo, height: 20),
+                title: NavigationRailWidget(),
                 // title: Image.asset(AppConstants.flutterLogo, height: 30),
                 actions: [_buildThemeToggle(), const SizedBox(width: 10)],
               )
             : null,
 
         // 2. Mobile/Tablet: Show Drawer (Hamburger content)
-        drawer: !isDesktop
-            ? Drawer(
-                width: 300,
-                backgroundColor: Theme.of(context).colorScheme.surface,
-                child: const SafeArea(
-                  child:
-                      NavigationRailWidget(), // NavigationRailWidget handles its own Row/Column flip
-                ),
-              )
-            : null,
-
+        // drawer: !isDesktop
+        //     ? Drawer(
+        //         width: 300,
+        //         backgroundColor: Theme.of(context).colorScheme.surface,
+        //         child: const SafeArea(
+        //           child:
+        //               NavigationRailWidget(), // NavigationRailWidget handles its own Row/Column flip
+        //         ),
+        //       )
+        //     : null,
         body: Stack(
           fit: StackFit.expand,
           children: [
             Column(
               children: [
                 // 3. Desktop: Show Custom Header Row
-                if (isDesktop)
+                if (!isMobile)
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       vertical: 20,
@@ -151,22 +152,20 @@ class _HomeContentState extends State<_HomeContent> {
   Widget _buildThemeToggle() {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) {
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              themeProvider.isDarkMode ? Icons.dark_mode : Icons.light_mode,
-              color: Theme.of(context).colorScheme.primary,
-              size: 20,
-            ),
-            const SizedBox(width: 4),
-            Switch(
-              value: themeProvider.isDarkMode,
-              onChanged: (value) => themeProvider.toggleTheme(value),
-              // activeTrackColor: Colors.deepPurpleAccent.withValues(alpha: 0.5),
-              // activeThumbColor: Colors.deepPurpleAccent,
-            ),
-          ],
+        final isDark = themeProvider.isDarkMode;
+
+        return Switch(
+          value: isDark,
+          onChanged: (value) => themeProvider.toggleTheme(value),
+          // Correct way to map icons to the switch thumb
+          thumbIcon: WidgetStateProperty.resolveWith<Icon?>((
+            Set<WidgetState> states,
+          ) {
+            if (states.contains(WidgetState.selected)) {
+              return const Icon(Icons.dark_mode);
+            }
+            return const Icon(Icons.light_mode);
+          }),
         );
       },
     );

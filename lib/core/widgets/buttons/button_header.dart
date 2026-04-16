@@ -29,19 +29,22 @@ class ButtonHeaderWidget extends StatelessWidget {
     for (int i = 0; i < actionButtons.length; i++) {
       final btn = actionButtons[i];
       children.add(
-        FilledButton(
-          style: FilledButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(buttonBorderRadius),
+        Padding(
+          padding: const EdgeInsets.only(top: 3.0),
+          child: FilledButton(
+            style: FilledButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(buttonBorderRadius),
+              ),
             ),
-          ),
-          onPressed: btn.onPressed,
-          child: Row(
-            spacing: 10,
-            children: [
-              FaIcon(FontAwesomeIcons.download),
-              Text(btn.label, style: TextStyle(fontWeight: FontWeight.bold)),
-            ],
+            onPressed: btn.onPressed,
+            child: Wrap(
+              spacing: 10,
+              children: [
+                FaIcon(FontAwesomeIcons.download),
+                Text(btn.label, style: TextStyle(fontWeight: FontWeight.bold)),
+              ],
+            ),
           ),
         ),
       );
@@ -52,10 +55,7 @@ class ButtonHeaderWidget extends StatelessWidget {
 
     for (final textTagItem in textTags) {
       children.add(
-        Padding(
-          padding: EdgeInsets.only(right: spacing),
-          child: textTagItem,
-        ),
+        Padding(padding: const EdgeInsets.only(top: 3.0), child: textTagItem),
       );
     }
 
@@ -73,6 +73,6 @@ class ButtonHeaderWidget extends StatelessWidget {
       );
     }
 
-    return Row(mainAxisAlignment: alignment, children: children);
+    return Wrap(runSpacing: spacing, spacing: spacing, children: children);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism.dart';
 import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism_entity.dart';
 import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
@@ -16,6 +17,7 @@ class ProjectClientCard extends StatefulWidget {
 class _ProjectClientCardState extends State<ProjectClientCard> {
   @override
   Widget build(BuildContext context) {
+    final bool isMobile = Responsive.isMobile(context);
     return GlassmorphismWidget(
       entity: GlassmorphismEntity(
         width: double.infinity,
@@ -52,10 +54,12 @@ class _ProjectClientCardState extends State<ProjectClientCard> {
               textAlign: TextAlign.start,
               style: TextStyle(color: Theme.of(context).colorScheme.primary),
             ),
-            trailing: SizedBox(
-              height: 35,
-              child: TextTagWidget(text: "Client", textSize: "16"),
-            ),
+            trailing: isMobile
+                ? null
+                : SizedBox(
+                    height: 35,
+                    child: TextTagWidget(text: "Client", textSize: "16"),
+                  ),
           ),
         ),
       ),

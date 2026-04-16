@@ -27,6 +27,7 @@ class HexagonIconsGroupContants {
 
   static const cicd = <SkillIconEntity>[
     SkillIconEntity(title: 'CodeMagic', icon: 'assets/logo/codemagic.png'),
+    SkillIconEntity(title: 'Supabase', icon: 'assets/logo/supabase.png'),
     SkillIconEntity(title: 'Azure', icon: 'assets/logo/azure.png'),
     SkillIconEntity(title: 'Shorebird', icon: 'assets/logo/shorebird.png'),
     SkillIconEntity(title: 'Docker', icon: 'assets/logo/docker.png'),

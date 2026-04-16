@@ -23,98 +23,92 @@ class _AboutPageState extends State<AboutPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Check screen type once at the top of build
     final bool isMobile = Responsive.isMobile(context);
 
+    // Grouping text content to avoid duplication in the layout switch
+    final List<Widget> textContent = [
+      const HeaderHeroWidget(),
+      const SizedBox(height: 20),
+      ButtonHeaderWidget(
+        alignment: isMobile
+            ? MainAxisAlignment.center
+            : MainAxisAlignment.start,
+        actionButtons: [
+          ActionButtonItemEntity(
+            label: "Resume",
+            onPressed: () => showDownloadConfirmDialog(context),
+          ),
+        ],
+        iconLinks: [
+          ButtonItemEntity(
+            url: PortfolioConfig.githubUrl,
+            icon: const FaIcon(FontAwesomeIcons.github),
+            tooltip: "GitHub",
+          ),
+          ButtonItemEntity(
+            url: PortfolioConfig.linkedInUrl,
+            icon: const FaIcon(FontAwesomeIcons.linkedin),
+            tooltip: "LinkedIn",
+          ),
+        ],
+        textTags: const [],
+      ),
+      const SizedBox(height: 40),
+      _buildWrap(totalYears, isMobile),
+    ];
+
     return Center(
-      // Use Center to keep it within pageMaxWidth
       child: Container(
         constraints: LayoutConstraints.pageMaxWidth,
         padding: EdgeInsets.symmetric(
           horizontal: Responsive.value(context, mobile: 20, desktop: 40),
           vertical: 40,
         ),
-        child: Flex(
-          // Switch Axis based on screen size
-          direction: isMobile ? Axis.vertical : Axis.horizontal,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: isMobile
-              ? CrossAxisAlignment.center
-              : CrossAxisAlignment.center,
-          children: [
-            // TEXT SECTION
-            Flexible(
-              flex: isMobile ? 0 : 2,
-              child: Column(
+        // Use a Column for Mobile and Row for Desktop for the cleanest code
+        child: isMobile
+            ? Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: isMobile
-                    ? CrossAxisAlignment.center
-                    : CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const HeaderHeroWidget(),
-                  const SizedBox(height: 20),
-                  ButtonHeaderWidget(
-                    actionButtons: [
-                      ActionButtonItemEntity(
-                        label: "Resume",
-                        onPressed: () {
-                          showDownloadConfirmDialog(context);
-                        },
-                      ),
-                    ],
-                    iconLinks: [
-                      ButtonItemEntity(
-                        url: PortfolioConfig.githubUrl,
-                        icon: FaIcon(FontAwesomeIcons.github),
-                        tooltip: "GitHub",
-                      ),
-                      ButtonItemEntity(
-                        url: PortfolioConfig.linkedInUrl,
-                        icon: FaIcon(FontAwesomeIcons.linkedin),
-
-                        tooltip: "LinkedIn",
-                      ),
-                    ],
-                    textTags: [],
+                  const HeaderCardWidget(), // Image section first on mobile
+                  const SizedBox(height: 50),
+                  ...textContent, // Button and text sections below
+                ],
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: textContent,
+                    ),
                   ),
-                  const SizedBox(height: 40),
-                  _buildWrap(totalYears, isMobile),
+                  const SizedBox(width: 40), // Gap between text and image
+                  const Expanded(flex: 1, child: HeaderCardWidget()),
                 ],
               ),
-            ),
-
-            // SPACER for Mobile
-            if (isMobile) const SizedBox(height: 60),
-
-            // IMAGE SECTION
-            Flexible(flex: isMobile ? 0 : 1, child: const HeaderCardWidget()),
-          ],
-        ),
       ),
     );
   }
-}
 
-Widget _buildWrap(int years, bool isMobile) {
-  return Container(
-    // padding: EdgeInsets.only(left: 210),
-    // margin: EdgeInsets.only(left: 210),
-    // color: Colors.blue,
-    constraints: BoxConstraints(maxWidth: 500),
-    child: Wrap(
-      spacing: 10,
-      runSpacing: 10,
-      children: [
-        TextTagWidget(text: PortfolioConfig.role),
-        // SizedBox(width: 10),
-        TextTagWidget(text: years.toString() + PortfolioConfig.yrsExp),
-
-        // SizedBox(width: 10),
-        TextTagWidget(text: "7 + Web & Mobile Applications"),
-
-        // SizedBox(width: 10),
-        TextTagWidget(text: "3 Company Apps"),
-      ],
-    ),
-  );
+  Widget _buildWrap(int years, bool isMobile) {
+    return Container(
+      constraints: BoxConstraints(maxWidth: isMobile ? double.infinity : 500),
+      child: Wrap(
+        alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
+        spacing: 10,
+        runSpacing: 10,
+        children: [
+          TextTagWidget(text: PortfolioConfig.role),
+          TextTagWidget(text: "$years ${PortfolioConfig.yrsExp}"),
+          const TextTagWidget(text: "7+ Web & Mobile Applications"),
+          const TextTagWidget(text: "3 Company Apps"),
+        ],
+      ),
+    );
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
 import 'package:ketch4n/core/theme/app_text_style.dart';
+import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/typing_text/typing_text.dart';
 import 'package:ketch4n/core/widgets/typing_text/typing_text_vm.dart';
 
@@ -18,21 +19,26 @@ class _HeaderHeroWidgetState extends State<HeaderHeroWidget> {
   );
   @override
   Widget build(BuildContext context) {
+    final bool isMobile = Responsive.isMobile(context);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: isMobile ? .center : CrossAxisAlignment.start,
 
       children: [
         Text(PortfolioConfig.greeting, style: AppTextStyles.heroTitle(context)),
 
         Row(
+          crossAxisAlignment: .start,
+          mainAxisAlignment: isMobile ? .center : .start,
           children: [
             Text(PortfolioConfig.a, style: AppTextStyles.heroTitle(context)),
-            TypingTextWidget(
-              viewModel: titleVM,
-              style: AppTextStyles.heroTitle(
-                context,
-              ).copyWith(color: Colors.blue),
+            Flexible(
+              child: TypingTextWidget(
+                viewModel: titleVM,
+                style: AppTextStyles.heroTitle(
+                  context,
+                ).copyWith(color: Colors.blue),
+              ),
             ),
           ],
         ),
@@ -42,6 +48,7 @@ class _HeaderHeroWidgetState extends State<HeaderHeroWidget> {
           maxLines: 4,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.heroSubTitle(context),
+          textAlign: isMobile ? .center : .start,
         ),
 
         // const SizedBox(height: 5),

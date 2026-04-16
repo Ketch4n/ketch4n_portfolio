@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
+import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/glass_card/glass_card_entity.dart';
 import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism.dart';
 import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism_entity.dart';
@@ -16,20 +17,21 @@ class GlassCardWidget extends StatefulWidget {
 class _GlassCardWidgetState extends State<GlassCardWidget> {
   @override
   Widget build(BuildContext context) {
+    final bool isMobile = Responsive.isMobile(context);
     return GlassmorphismWidget(
       entity: GlassmorphismEntity(
         width: double.infinity,
-        height: 240,
+        height: isMobile ? 280 : 240,
         leftMargin: 0,
         rightMargin: 0,
         firstColor: ColorConstants.previewColor,
-        child: _buildCardContent(widget.cardEntity),
+        child: _buildCardContent(widget.cardEntity, isMobile),
       ),
     );
   }
 }
 
-Widget _buildCardContent(GlassCardEntity entity) {
+Widget _buildCardContent(GlassCardEntity entity, bool isMobile) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Column(
@@ -45,8 +47,12 @@ Widget _buildCardContent(GlassCardEntity entity) {
             ),
           ),
           title: Text(entity.title),
-          subtitle: Text(entity.subtitle!),
-          trailing: Text(entity.trailing!, style: TextStyle(fontSize: 15)),
+          subtitle: Text(
+            '${entity.subtitle} - ${isMobile ? entity.trailing : ""}',
+          ),
+          trailing: !isMobile
+              ? Text(entity.trailing!, style: TextStyle(fontSize: 15))
+              : null,
         ),
 
         Expanded(

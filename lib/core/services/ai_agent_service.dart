@@ -2,11 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class AIAgentService {
-  static String get _anonKey =>
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9odXBlZnRhaXVubXBpbWFuamF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNzc3NjEsImV4cCI6MjA5MDY1Mzc2MX0.pwaFQHinf9iSWZuTr1yDNq9Axw_3v0Bfqrfja-jaeMw';
-
   static String get _baseUrl =>
-      'https://ohupeftaiunmpimanjay.supabase.co/functions/v1/ai-chat';
+      'https://ketch4n-portfolio-backend.vercel.app/api/chat';
 
   final List<Map<String, String>> _conversationHistory = [];
 
@@ -16,10 +13,7 @@ class AIAgentService {
     try {
       final response = await http.post(
         Uri.parse(_baseUrl),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $_anonKey',
-        },
+        headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'messages': _conversationHistory}),
       );
 

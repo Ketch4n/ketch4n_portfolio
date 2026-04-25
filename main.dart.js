@@ -28343,7 +28343,7 @@ $S:2}
 A.avY.prototype={
 $1(a){var s=A.dd().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/425cfb54d01a9472b3e81d9e76fd63a4a44cfbcb/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/59aa584fdf100e6c78c785d8a5b565d1de4b48ab/":s)+a},
 $S:36}
 A.NS.prototype={
 gA(a){var s=this.a
@@ -87653,8 +87653,8 @@ s=p}for(;;)switch(s){case 0:d=n.a
 c=t.N
 d.push(A.ax(["role","user","content",a],c,c))
 p=4
-h=A.f4("https://ohupeftaiunmpimanjay.supabase.co/functions/v1/ai-chat",0,null)
-g=A.ax(["Content-Type","application/json","Authorization","Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9odXBlZnRhaXVubXBpbWFuamF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwNzc3NjEsImV4cCI6MjA5MDY1Mzc2MX0.pwaFQHinf9iSWZuTr1yDNq9Axw_3v0Bfqrfja-jaeMw"],c,c)
+h=A.f4("https://ketch4n-portfolio-backend.vercel.app/api/chat",0,null)
+g=A.ax(["Content-Type","application/json"],c,c)
 s=7
 return A.R(A.aXG(h,B.cR.WN(A.ax(["messages",d],c,t.xW),null),g),$async$kV)
 case 7:m=a1

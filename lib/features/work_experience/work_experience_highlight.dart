@@ -79,7 +79,7 @@ class WorkExperienceHighlight extends StatelessWidget {
           }).toList(),
         ),
         if (entity.textTag != null) ...[
-          const SizedBox(height: 20),
+          // const SizedBox(height: 20),
           Wrap(
             spacing: 10,
             runSpacing: 10,

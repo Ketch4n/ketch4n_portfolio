@@ -27,13 +27,25 @@ class NavigationRailWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _buildNavItem(context, FontAwesomeIcons.solidAddressCard, "About"),
+          _buildNavItem(
+            context,
+            FontAwesomeIcons.solidAddressCard as IconData,
+            "About",
+          ),
 
-          _buildNavItem(context, FontAwesomeIcons.layerGroup, "Skills"),
+          _buildNavItem(
+            context,
+            FontAwesomeIcons.layerGroup as IconData,
+            "Skills",
+          ),
 
-          _buildNavItem(context, FontAwesomeIcons.code, "Projects"),
+          _buildNavItem(context, FontAwesomeIcons.code as IconData, "Projects"),
 
-          _buildNavItem(context, FontAwesomeIcons.briefcase, "Work Exp"),
+          _buildNavItem(
+            context,
+            FontAwesomeIcons.briefcase as IconData,
+            "Work Exp",
+          ),
         ],
       ),
     );
@@ -50,7 +62,7 @@ class NavigationRailWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             FaIcon(
-              icon,
+              icon as FaIconData?,
               size: 22,
               color: Theme.of(context).colorScheme.onSurface,
             ),

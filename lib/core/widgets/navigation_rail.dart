@@ -27,31 +27,19 @@ class NavigationRailWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _buildNavItem(
-            context,
-            FontAwesomeIcons.solidAddressCard as IconData,
-            "About",
-          ),
+          _buildNavItem(context, FontAwesomeIcons.solidAddressCard, "About"),
 
-          _buildNavItem(
-            context,
-            FontAwesomeIcons.layerGroup as IconData,
-            "Skills",
-          ),
+          _buildNavItem(context, FontAwesomeIcons.layerGroup, "Skills"),
 
-          _buildNavItem(context, FontAwesomeIcons.code as IconData, "Projects"),
+          _buildNavItem(context, FontAwesomeIcons.code, "Projects"),
 
-          _buildNavItem(
-            context,
-            FontAwesomeIcons.briefcase as IconData,
-            "Work Exp",
-          ),
+          _buildNavItem(context, FontAwesomeIcons.briefcase, "Work Exp"),
         ],
       ),
     );
   }
 
-  Widget _buildNavItem(BuildContext context, IconData icon, String message) {
+  Widget _buildNavItem(BuildContext context, FaIconData icon, String message) {
     // This is the core clickable content
     Widget navContent = InkWell(
       onTap: () {},
@@ -62,7 +50,7 @@ class NavigationRailWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             FaIcon(
-              icon as FaIconData?,
+              icon,
               size: 22,
               color: Theme.of(context).colorScheme.onSurface,
             ),

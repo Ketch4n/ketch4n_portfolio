@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ketch4n/core/constants/home_constants.dart';
 import 'package:ketch4n/core/constants/layout_constraints.dart';
-import 'package:ketch4n/features/about/widgets/download_resume.dart';
+import 'package:ketch4n/core/services/print_resume.dart';
 import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/buttons/button_item_entity.dart';
 import 'package:ketch4n/features/about/widgets/header/header_card.dart';
@@ -36,7 +36,7 @@ class _AboutPageState extends State<AboutPage> {
         actionButtons: [
           ActionButtonItemEntity(
             label: "Resume",
-            onPressed: () => showDownloadConfirmDialog(context),
+            onPressed: () => printResume(),
           ),
         ],
         iconLinks: [

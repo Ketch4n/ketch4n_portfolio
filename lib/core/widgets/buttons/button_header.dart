@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ketch4n/core/widgets/buttons/button_item_entity.dart';
 import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
 import 'package:url_launcher/link.dart';
@@ -41,7 +40,7 @@ class ButtonHeaderWidget extends StatelessWidget {
             child: Wrap(
               spacing: 10,
               children: [
-                FaIcon(FontAwesomeIcons.download),
+                Icon(Icons.remove_red_eye),
                 Text(btn.label, style: TextStyle(fontWeight: FontWeight.bold)),
               ],
             ),

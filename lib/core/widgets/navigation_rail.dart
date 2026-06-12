@@ -39,7 +39,7 @@ class NavigationRailWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItem(BuildContext context, IconData icon, String message) {
+  Widget _buildNavItem(BuildContext context, FaIconData icon, String message) {
     // This is the core clickable content
     Widget navContent = InkWell(
       onTap: () {},

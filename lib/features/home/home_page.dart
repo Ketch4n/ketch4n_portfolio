@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ketch4n/core/animations/beam_border.dart';
 import 'package:ketch4n/core/theme/theme_provider.dart';
 import 'package:ketch4n/core/utils/screen_breakpoints.dart';
@@ -8,39 +9,37 @@ import 'package:ketch4n/features/home/home_page_vm.dart';
 import 'package:ketch4n/features/projects/projects_page.dart';
 import 'package:ketch4n/features/skills/skill_set_page.dart';
 import 'package:ketch4n/features/work_experience/work_experience_page.dart';
-import 'package:provider/provider.dart';
 import 'package:ketch4n/core/constants/app_constants.dart';
 import 'package:ketch4n/features/about/about_page.dart';
 import 'package:ketch4n/core/widgets/loading_screen.dart';
 import 'package:ketch4n/core/widgets/navigation_rail.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => HomeViewModel(),
-      child: Consumer<HomeViewModel>(
-        builder: (context, viewModel, child) {
-          if (viewModel.isLoading) {
-            return const LoadingScreen();
-          }
-          return const _HomeContent();
-        },
-      ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final homeAsync = ref.watch(homeProvider);
+
+    return homeAsync.when(
+      loading: () => const LoadingScreen(),
+      error: (_, _) => const LoadingScreen(),
+      data: (loaded) {
+        if (!loaded) return const LoadingScreen();
+        return const _HomeContent();
+      },
     );
   }
 }
 
-class _HomeContent extends StatefulWidget {
+class _HomeContent extends ConsumerStatefulWidget {
   const _HomeContent();
 
   @override
-  State<_HomeContent> createState() => _HomeContentState();
+  ConsumerState<_HomeContent> createState() => _HomeContentState();
 }
 
-class _HomeContentState extends State<_HomeContent> {
+class _HomeContentState extends ConsumerState<_HomeContent> {
   final ScrollController ctrl = ScrollController();
 
   @override
@@ -51,46 +50,26 @@ class _HomeContentState extends State<_HomeContent> {
 
   @override
   Widget build(BuildContext context) {
-    // Breakpoint check
     final bool isMobile = Responsive.isMobile(context);
 
     return CosmicBackground(
       child: Scaffold(
-        // The Scaffold background is set to a slight transparent surface to let the BG image peek through
         backgroundColor: Theme.of(
           context,
         ).colorScheme.surface.withValues(alpha: 0.4),
-
-        // 1. Mobile/Tablet: Show AppBar with Hamburger Menu
         appBar: isMobile
             ? AppBar(
                 backgroundColor: Colors.transparent,
                 elevation: 0,
-                // centerTitle: true,
-                // leading: Image.asset(AppConstants.flutterLogo, height: 20),
                 title: NavigationRailWidget(),
-                // title: Image.asset(AppConstants.flutterLogo, height: 30),
                 actions: [_buildThemeToggle(), const SizedBox(width: 10)],
               )
             : null,
-
-        // 2. Mobile/Tablet: Show Drawer (Hamburger content)
-        // drawer: !isDesktop
-        //     ? Drawer(
-        //         width: 300,
-        //         backgroundColor: Theme.of(context).colorScheme.surface,
-        //         child: const SafeArea(
-        //           child:
-        //               NavigationRailWidget(), // NavigationRailWidget handles its own Row/Column flip
-        //         ),
-        //       )
-        //     : null,
         body: Stack(
           fit: StackFit.expand,
           children: [
             Column(
               children: [
-                // 3. Desktop: Show Custom Header Row
                 if (!isMobile)
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -112,8 +91,6 @@ class _HomeContentState extends State<_HomeContent> {
                       ],
                     ),
                   ),
-
-                // 4. Main Scrollable Content
                 Expanded(
                   child: Scrollbar(
                     controller: ctrl,
@@ -125,14 +102,10 @@ class _HomeContentState extends State<_HomeContent> {
                       child: const Column(
                         children: [
                           AboutPage(),
-                          // SizedBox(height: 80),
                           SkillSetPage(),
-                          // SizedBox(height: 100),
                           ProjectsPage(),
                           SizedBox(height: 80),
                           WorkExperiencePage(),
-                          // SizedBox(height: 100),
-                          // ContactsPage(),
                           SizedBox(height: 100),
                         ],
                       ),
@@ -148,16 +121,16 @@ class _HomeContentState extends State<_HomeContent> {
     );
   }
 
-  /// Extracted Theme Toggle Widget
   Widget _buildThemeToggle() {
-    return Consumer<ThemeProvider>(
-      builder: (context, themeProvider, child) {
-        final isDark = themeProvider.isDarkMode;
+    return Consumer(
+      builder: (context, ref, _) {
+        final themeState = ref.watch(themeProvider);
+        final isDark = themeState.isDarkMode;
 
         return Switch(
           value: isDark,
-          onChanged: (value) => themeProvider.toggleTheme(value),
-          // Correct way to map icons to the switch thumb
+          onChanged: (value) =>
+              ref.read(themeProvider.notifier).toggleTheme(value),
           thumbIcon: WidgetStateProperty.resolveWith<Icon?>((
             Set<WidgetState> states,
           ) {

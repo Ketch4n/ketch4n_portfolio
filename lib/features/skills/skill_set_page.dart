@@ -1,27 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ketch4n/core/animations/beam.dart';
 import 'package:ketch4n/core/constants/hexagon_icons_group_constants.dart';
 import 'package:ketch4n/core/constants/layout_constraints.dart';
 import 'package:ketch4n/core/widgets/hexagon/hexagon_icons_group_vm.dart';
 import 'package:ketch4n/core/widgets/skill_icon/skill_icon.dart';
+import 'package:ketch4n/core/widgets/skill_icon/skill_icon_entity.dart';
 import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
-import 'package:provider/provider.dart';
 
-class SkillSetPage extends StatefulWidget {
+class SkillSetPage extends ConsumerWidget {
   const SkillSetPage({super.key});
 
   @override
-  State<SkillSetPage> createState() => _SkillSetPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final categories = ref.watch(hexaIconsProvider);
 
-class _SkillSetPageState extends State<SkillSetPage> {
-  @override
-  Widget build(BuildContext context) {
-    final viewModel = context.watch<HexaIconsVM>();
-    // final bool isMobile = Responsive.isMobile(context);
-    // final bool isTablet = Responsive.isTablet(context);
-
-    // Define techList here so it is available within the build scope
     final techList = [
       HexagonIconsGroupContants.stateManagementConst,
       HexagonIconsGroupContants.frameworksConst,
@@ -53,9 +46,7 @@ class _SkillSetPageState extends State<SkillSetPage> {
                       .map((tech) => TextTagWidget(text: tech))
                       .toList(),
                 ),
-
-                // The Individual Icons Wrap
-                _buildIndividualIconsWrap(viewModel),
+                _buildIndividualIconsWrap(categories),
                 SizedBox(height: 30),
               ],
             ),
@@ -65,14 +56,13 @@ class _SkillSetPageState extends State<SkillSetPage> {
     );
   }
 
-  Widget _buildIndividualIconsWrap(HexaIconsVM vm) {
-    // This flattens the Map<String, List<SkillIconEntity>> into one List<SkillIconEntity>
-    final allIcons = vm.categories.values.expand((list) => list).toList();
+  Widget _buildIndividualIconsWrap(
+    Map<String, List<SkillIconEntity>> categories,
+  ) {
+    final allIcons = categories.values.expand((list) => list).toList();
 
     return Wrap(
       alignment: WrapAlignment.center,
-      // spacing: 15, // Horizontal space between hexagons
-      // runSpacing: 0, // Vertical space between rows
       children: allIcons.map((item) {
         return SkillIconWidget(assetPath: item.icon, text: item.title);
       }).toList(),

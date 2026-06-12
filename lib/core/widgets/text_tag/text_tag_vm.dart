@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class TextTagVM extends ChangeNotifier {
-  bool _isHovered = false;
-  bool get isHovered => _isHovered;
+class TextTagState {
+  final bool isHovered;
+  const TextTagState({this.isHovered = false});
+
+  FontWeight get textWeight => isHovered ? FontWeight.bold : FontWeight.normal;
+}
+
+class TextTagNotifier extends Notifier<TextTagState> {
+  @override
+  TextTagState build() => const TextTagState();
 
   void setHover(bool value) {
-    if (_isHovered == value) return;
-    _isHovered = value;
-    notifyListeners();
+    if (state.isHovered == value) return;
+    state = TextTagState(isHovered: value);
   }
-
-  // Keep the weight here if you want, as it's a data-driven style
-  FontWeight get textWeight => _isHovered ? FontWeight.bold : FontWeight.normal;
 }
+
+final textTagProvider =
+    NotifierProvider.autoDispose<TextTagNotifier, TextTagState>(
+      TextTagNotifier.new,
+    );

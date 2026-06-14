@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism.dart';
 import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism_entity.dart';
-import 'package:ketch4n/features/projects/project_entity.dart';
+import 'package:ketch4n/features/projects/domain/entities/project_entity.dart';
 
 class ProjectDescriptionCard extends StatefulWidget {
   const ProjectDescriptionCard({super.key, required this.projectDetails});

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/animations/slide_direction.dart';
-import 'package:ketch4n/features/projects/project_details/widgets/project_admin_screenshot.dart';
-import 'package:ketch4n/features/projects/project_details/widgets/project_client.dart';
-import 'package:ketch4n/features/projects/project_details/widgets/project_description.dart';
-import 'package:ketch4n/features/projects/project_details/widgets/project_usecase.dart';
-import 'package:ketch4n/features/projects/project_entity.dart';
+import 'package:ketch4n/features/projects/presentation/widgets/project_details_screen/project_admin_screenshot.dart';
+import 'package:ketch4n/features/projects/presentation/widgets/project_details_screen/project_client.dart';
+import 'package:ketch4n/features/projects/presentation/widgets/project_details_screen/project_description.dart';
+import 'package:ketch4n/features/projects/presentation/widgets/project_details_screen/project_usecase.dart';
+import 'package:ketch4n/features/projects/domain/entities/project_entity.dart';
 // ... your other imports
 
 class ProjectDetailsScrollableContent extends StatefulWidget {

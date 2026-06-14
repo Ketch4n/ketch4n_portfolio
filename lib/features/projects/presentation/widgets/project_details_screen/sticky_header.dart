@@ -5,7 +5,7 @@ import 'package:ketch4n/core/constants/color_constants.dart';
 import 'package:ketch4n/core/widgets/buttons/button_header.dart';
 import 'package:ketch4n/core/widgets/buttons/button_item_entity.dart';
 import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
-import 'package:ketch4n/features/projects/project_entity.dart';
+import 'package:ketch4n/features/projects/domain/entities/project_entity.dart';
 
 class ProjectDetailsStickyHeader extends StatefulWidget {
   const ProjectDetailsStickyHeader({

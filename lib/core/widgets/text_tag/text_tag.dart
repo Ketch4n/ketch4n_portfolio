@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ketch4n/core/widgets/text_tag/text_tag_painter.dart';
-import 'text_tag_vm.dart';
 
-class TextTagWidget extends ConsumerWidget {
+class TextTagWidget extends StatefulWidget {
   final String text;
   final String? textSize;
   final Color boxColor;
@@ -16,14 +14,17 @@ class TextTagWidget extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final vm = ref.watch(textTagProvider);
-    final notifier = ref.read(textTagProvider.notifier);
+  State<TextTagWidget> createState() => _TextTagWidgetState();
+}
 
+class _TextTagWidgetState extends State<TextTagWidget> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isHovered = vm.isHovered;
 
-    final Border border = isHovered
+    final Border border = _isHovered
         ? Border.all(color: Colors.transparent, width: 1)
         : Border.all(
             color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
@@ -31,23 +32,25 @@ class TextTagWidget extends ConsumerWidget {
           );
 
     return MouseRegion(
-      onEnter: (_) => notifier.setHover(true),
-      onExit: (_) => notifier.setHover(false),
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
       child: CustomPaint(
-        painter: isHovered ? NeonBorderPainter() : null,
+        painter: _isHovered ? NeonBorderPainter() : null,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           decoration: BoxDecoration(
-            color: boxColor,
+            color: widget.boxColor,
             borderRadius: BorderRadius.circular(5),
             border: border,
           ),
           child: Text(
-            text,
+            widget.text,
             style: TextStyle(
-              fontWeight: vm.textWeight,
-              fontSize: textSize != null ? double.tryParse(textSize!) : null,
+              fontWeight: _isHovered ? FontWeight.bold : FontWeight.normal,
+              fontSize: widget.textSize != null
+                  ? double.tryParse(widget.textSize!)
+                  : null,
               color: theme.colorScheme.onSurface,
             ),
           ),

@@ -1,4 +1,7 @@
-import 'package:ketch4n/features/projects/project_entity.dart';
+import 'package:ketch4n/features/projects/domain/entities/admin_screens_entity.dart';
+import 'package:ketch4n/features/projects/domain/entities/client_details_entity.dart';
+import 'package:ketch4n/features/projects/domain/entities/project_entity.dart';
+import 'package:ketch4n/features/projects/domain/entities/use_case_entity.dart';
 
 class ProjectConstants {
   ProjectConstants._();

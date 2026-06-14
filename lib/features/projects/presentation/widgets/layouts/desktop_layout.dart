@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ketch4n/features/projects/project_details/modules/scrollable_content.dart';
-import 'package:ketch4n/features/projects/project_details/modules/sticky_header.dart';
-import 'package:ketch4n/features/projects/project_entity.dart';
-import 'package:ketch4n/features/projects/widgets/mockup/phone_mockup.dart';
+import 'package:ketch4n/features/projects/presentation/widgets/project_details_screen/scrollable_content.dart';
+import 'package:ketch4n/features/projects/presentation/widgets/project_details_screen/sticky_header.dart';
+import 'package:ketch4n/features/projects/domain/entities/project_entity.dart';
+import 'package:ketch4n/features/projects/presentation/widgets/mockup/phone_mockup.dart';
 
 class ProjectDetailsDesktopLayout extends StatefulWidget {
   const ProjectDetailsDesktopLayout({super.key, required this.projectDetails});

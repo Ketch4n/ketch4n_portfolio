@@ -29,37 +29,50 @@ class _ProjectDetailsScrollableContentState
       children: [
         const SizedBox(height: 20),
 
-        // Card 1: Starts immediately
-        SlideInTransition(
-          direction: SlideDirection.leftToRight,
-          delay: Duration(milliseconds: 0),
-          child: ProjectDescriptionCard(projectDetails: widget.projectDetails),
-        ),
-
-        // Card 2: Starts after 150ms
-        SlideInTransition(
-          direction: SlideDirection.leftToRight,
-          delay: Duration(milliseconds: 150),
-          child: ProjectUsecaseCard(projectDetails: widget.projectDetails),
-        ),
-
-        // Card 3: Starts after 300ms
-        if (widget.projectDetails.clientDetails != null) ...[
-          SlideInTransition(
-            direction: SlideDirection.leftToRight,
-            delay: Duration(milliseconds: 300),
-            child: ProjectClientCard(projectDetails: widget.projectDetails),
-          ),
-        ],
-
+        // Admin screenshot at the top if available
         if (widget.projectDetails.adminScreenshot != null) ...[
-          const SizedBox(height: 20),
           SlideInTransition(
             direction: SlideDirection.leftToRight,
-            delay: Duration(milliseconds: 450),
+            delay: Duration(milliseconds: 0),
             child: ProjectAdminScreenshotCard(
               projectDetails: widget.projectDetails,
             ),
+          ),
+          const SizedBox(height: 20),
+        ],
+
+        // Description
+        SlideInTransition(
+          direction: SlideDirection.leftToRight,
+          delay: Duration(
+            milliseconds: widget.projectDetails.adminScreenshot != null
+                ? 150
+                : 0,
+          ),
+          child: ProjectDescriptionCard(projectDetails: widget.projectDetails),
+        ),
+
+        // Use cases
+        SlideInTransition(
+          direction: SlideDirection.leftToRight,
+          delay: Duration(
+            milliseconds: widget.projectDetails.adminScreenshot != null
+                ? 300
+                : 150,
+          ),
+          child: ProjectUsecaseCard(projectDetails: widget.projectDetails),
+        ),
+
+        // Client details
+        if (widget.projectDetails.clientDetails != null) ...[
+          SlideInTransition(
+            direction: SlideDirection.leftToRight,
+            delay: Duration(
+              milliseconds: widget.projectDetails.adminScreenshot != null
+                  ? 450
+                  : 300,
+            ),
+            child: ProjectClientCard(projectDetails: widget.projectDetails),
           ),
         ],
 

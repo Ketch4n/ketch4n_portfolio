@@ -31,6 +31,7 @@ class _ProjectDetailsStickyHeaderState
       padding: const EdgeInsets.only(bottom: 10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,9 +62,7 @@ class _ProjectDetailsStickyHeaderState
                     contentPadding: EdgeInsets.zero,
                     title: Text(
                       widget.projectDetails.appName,
-                      textAlign: widget.isMobile
-                          ? TextAlign.center
-                          : TextAlign.start,
+                      textAlign: TextAlign.start,
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -71,9 +70,7 @@ class _ProjectDetailsStickyHeaderState
                     ),
                     subtitle: Text(
                       widget.projectDetails.longName,
-                      textAlign: widget.isMobile
-                          ? TextAlign.center
-                          : TextAlign.start,
+                      textAlign: TextAlign.start,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
                         fontSize: 18,

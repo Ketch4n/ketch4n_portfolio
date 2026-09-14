@@ -45,7 +45,7 @@ class _HeaderHeroWidgetState extends State<HeaderHeroWidget> {
         SizedBox(height: 10),
         Text(
           PortfolioConfig.description,
-          maxLines: 4,
+          maxLines: 10,
           overflow: TextOverflow.ellipsis,
           style: AppTextStyles.heroSubTitle(context),
           textAlign: isMobile ? .center : .start,

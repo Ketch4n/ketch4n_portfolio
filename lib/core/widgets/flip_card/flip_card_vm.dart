@@ -1,13 +1,16 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class FlipCardVM extends ChangeNotifier {
-  bool _isHovered = false;
-  bool get isHovered => _isHovered;
+class FlipCardNotifier extends Notifier<bool> {
+  @override
+  bool build() => false;
 
   void setHover(bool value) {
-    if (_isHovered != value) {
-      _isHovered = value;
-      notifyListeners();
+    if (state != value) {
+      state = value;
     }
   }
 }
+
+final flipCardProvider = NotifierProvider.autoDispose<FlipCardNotifier, bool>(
+  FlipCardNotifier.new,
+);

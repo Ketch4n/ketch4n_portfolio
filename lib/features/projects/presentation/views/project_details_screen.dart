@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/constants/color_constants.dart';
-import 'package:ketch4n/features/projects/project_details/modules/desktop_layout.dart';
-import 'package:ketch4n/features/projects/project_details/modules/mobile_layout.dart';
-import 'package:ketch4n/features/projects/project_entity.dart';
+import 'package:ketch4n/features/projects/presentation/widgets/layouts/desktop_layout.dart';
+import 'package:ketch4n/features/projects/presentation/widgets/layouts/mobile_layout.dart';
+import 'package:ketch4n/features/projects/domain/entities/project_entity.dart';
 
 class ProjectDetailScreen extends StatefulWidget {
   const ProjectDetailScreen({super.key, required this.projectDetails});

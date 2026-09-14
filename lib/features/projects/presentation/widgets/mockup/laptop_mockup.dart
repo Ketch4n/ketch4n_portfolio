@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:ketch4n/features/projects/project_entity.dart';
+import 'package:ketch4n/features/projects/domain/entities/project_entity.dart';
 
 class LaptopMockup extends StatefulWidget {
   const LaptopMockup({super.key, required this.projectDetails});

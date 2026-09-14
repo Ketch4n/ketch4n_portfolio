@@ -39,6 +39,7 @@ class HexagonIconsGroupContants {
   ];
 
   static const tools = <SkillIconEntity>[
+    SkillIconEntity(title: 'Kiro', icon: 'assets/logo/kiro.png'),
     SkillIconEntity(title: 'VS Code', icon: 'assets/logo/vscode.png'),
     SkillIconEntity(
       title: 'Android Studio',

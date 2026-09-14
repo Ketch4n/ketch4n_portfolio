@@ -3,7 +3,7 @@ import 'package:ketch4n/core/utils/screen_breakpoints.dart';
 import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism.dart';
 import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism_entity.dart';
 import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
-import 'package:ketch4n/features/projects/project_entity.dart';
+import 'package:ketch4n/features/projects/domain/entities/project_entity.dart';
 
 class ProjectClientCard extends StatefulWidget {
   const ProjectClientCard({super.key, required this.projectDetails});

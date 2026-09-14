@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ketch4n/core/widgets/skill_icon/skill_icon.dart';
 import 'package:ketch4n/core/widgets/skill_icon/skill_icon_entity.dart';
 import 'package:ketch4n/core/widgets/hexagon/hexagon_icons_group_vm.dart';
-import 'package:provider/provider.dart';
 
-class HexagonIconsGroupWidget extends StatelessWidget {
+class HexagonIconsGroupWidget extends ConsumerWidget {
   final String title;
-  final List<SkillIconEntity> items; // Pass data in directly
+  final List<SkillIconEntity> items;
 
   const HexagonIconsGroupWidget({
     super.key,
@@ -15,24 +15,18 @@ class HexagonIconsGroupWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final viewModel = context.watch<HexaIconsVM>();
-    final items = viewModel.categories[title] ?? [];
+  Widget build(BuildContext context, WidgetRef ref) {
+    final categories = ref.watch(hexaIconsProvider);
+    final items = categories[title] ?? [];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Text(
-        //   title,
-        //   style: const TextStyle(fontSize: 18, color: Colors.white70),
-        // ),
-        // const SizedBox(height: 10),
         SizedBox(
           height: 240,
           child: Center(
             child: Column(
-              // mainAxisSize: MainAxisSize.min,
               children: items
                   .map(
                     (item) =>

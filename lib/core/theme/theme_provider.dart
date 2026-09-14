@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ThemeProvider extends ChangeNotifier {
-  // Default to system settings (follows browser/OS)
-  ThemeMode _themeMode = ThemeMode.system;
+class ThemeState {
+  final ThemeMode themeMode;
 
-  ThemeMode get themeMode => _themeMode;
+  const ThemeState({this.themeMode = ThemeMode.system});
 
-  // Helper to check if we are currently in dark mode
   bool get isDarkMode {
-    if (_themeMode == ThemeMode.system) {
-      // Check system brightness if set to system
+    if (themeMode == ThemeMode.system) {
       return WidgetsBinding.instance.platformDispatcher.platformBrightness ==
           Brightness.dark;
     }
-    return _themeMode == ThemeMode.dark;
+    return themeMode == ThemeMode.dark;
   }
 
-  void toggleTheme(bool isOn) {
-    _themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
-    notifyListeners();
+  ThemeState copyWith({ThemeMode? themeMode}) {
+    return ThemeState(themeMode: themeMode ?? this.themeMode);
   }
 }
+
+class ThemeNotifier extends Notifier<ThemeState> {
+  @override
+  ThemeState build() => const ThemeState();
+
+  void toggleTheme(bool isOn) {
+    state = state.copyWith(themeMode: isOn ? ThemeMode.dark : ThemeMode.light);
+  }
+}
+
+final themeProvider = NotifierProvider<ThemeNotifier, ThemeState>(
+  ThemeNotifier.new,
+);

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/animations/slide_direction.dart';
-import 'package:ketch4n/features/projects/project_entity.dart';
+import 'package:ketch4n/features/projects/domain/entities/project_entity.dart';
 
 class PhoneMockup extends StatefulWidget {
   const PhoneMockup({super.key, required this.projectDetails});

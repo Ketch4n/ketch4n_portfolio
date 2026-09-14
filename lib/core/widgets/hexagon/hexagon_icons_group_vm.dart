@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ketch4n/core/constants/hexagon_icons_group_constants.dart';
 import 'package:ketch4n/core/widgets/skill_icon/skill_icon_entity.dart';
 
-class HexaIconsVM extends ChangeNotifier {
-  final Map<String, List<SkillIconEntity>> categories = {
+final hexaIconsProvider = Provider<Map<String, List<SkillIconEntity>>>((ref) {
+  return {
     HexagonIconsGroupContants.stateManagementConst:
         HexagonIconsGroupContants.stateManagement,
     HexagonIconsGroupContants.frameworksConst:
@@ -14,9 +14,4 @@ class HexaIconsVM extends ChangeNotifier {
     HexagonIconsGroupContants.mlConst: HexagonIconsGroupContants.ml,
     HexagonIconsGroupContants.uiuxConst: HexagonIconsGroupContants.uiux,
   };
-
-  // Helper method for the UI
-  // List<TechIconEntity> getStackByCategory(String title) {
-  //   return categories[title] ?? [];
-  // }
-}
+});

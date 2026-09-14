@@ -7,7 +7,7 @@ class PortfolioConfig {
   static const String heroButton = "Hire Me";
   static const String detailsPaneTitle = "Tech-Stack Toolkit";
   static const String description =
-      '''A Passionate Software Develeoper, specializes in Flutter Framework since 2022 with hands-on experience in deploying scalable applications.''';
+      '''Software Engineer with Mid to Senior years of experience, specializing in Flutter for cross-platform such Mobile, Web and Windows Desktop applications. Developing Application Systems for Students Thesis and Business Owner and Proven track record in Enterprise system modernization for known large-scale company nationwide.''';
   static const String introduction =
       '''Mobile Developer with 5+ years of software engineering experience and 4+ years specializing in Flutter for cross
 platform mobile applications with modern architecture such as MVVM and Clean Architecture. Experienced in 
@@ -19,7 +19,7 @@ REST API integration, Firebase services, real-time data systems, CI/CD pipelines
     "Software $dev",
   ];
   static const String resumeLink =
-      "https://raw.githubusercontent.com/Ketch4n/ketch4n_portfolio/dev/assets/docs/christian_mangao_resume.pdf";
+      "https://raw.githubusercontent.com/Ketch4n/ketch4n_portfolio/dev/assets/docs/christian_mangao_updated_resume.pdf";
   static const String linkedInUrl =
       "https://www.linkedin.com/in/christian-mangao-3ba341290/";
   static const String githubUrl = "https://github.com/Ketch4n";

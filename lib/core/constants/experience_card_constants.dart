@@ -8,6 +8,35 @@ class ExperienceCardConstants {
 
   static const cards = <GlassCardEntity>[
     GlassCardEntity(
+      title: "Flutter Developer",
+      leading: "assets/company_logo/rt.png",
+      subtitle: "Rising Tide Digital Inc.",
+      trailing: "2026-Present",
+      techSkillTag: [
+        "Flutter",
+        "Spring Boot",
+        "Apache Camel",
+        "Couchbase",
+        "Git",
+        "JWT Auth",
+        "Indexing",
+        "SOAP API",
+        "Agile",
+        "Scrum",
+      ],
+      highlights: [
+        "Architecting and developing Flutter for Windows desktop applications to modernize and migrate legacy C# .NET core systems across 3,500+ branches nationwide.",
+        "Engineering backend microservices and API integrations using Apache Camel Spring Boot connected with Couchbase Server database.",
+        "Implementing API optimization techniques including server-side caching and indexing to significantly reduce query response times for enterprise-scale operations.",
+      ],
+      projects: [
+        SkillIconEntity(
+          title: 'NCVI (Flutter | Spring Boot)',
+          icon: "assets/company_logo/ncvi.png",
+        ),
+      ],
+    ),
+    GlassCardEntity(
       title: "Software Developer - TS2",
       leading: "assets/company_logo/ais.jpg",
       subtitle: "Alliance Software Inc.",
@@ -24,9 +53,9 @@ class ExperienceCardConstants {
         "Scrum",
       ],
       highlights: [
-        "Implemented Angular TS front-end modules for enterprise booking platforms (CebuPac Airlines)",
-        "Developed Android applications using Kotlin and Android Studio and uploads in Play Store (StampMe)",
-        "Mentored junior developers in Flutter and mobile development best practices (Unilab).",
+        "Implemented front-end modules in Angular TypeScript for enterprise aviation booking platforms. (CebuPac Airlines)",
+        "Engineered native Android applications using Kotlin and Android Studio and published releases on the Google Play Store. (StampMe)",
+        "Conducted thorough code reviews, enforced software engineering coding standards, and mentored junior developers in Flutter best practices. (Unilab).",
       ],
       projects: [
         SkillIconEntity(

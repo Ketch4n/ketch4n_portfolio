@@ -7,30 +7,6 @@ class ProjectConstants {
   ProjectConstants._();
 
   static final projects = <ProjectEntity>[
-    ProjectEntity(
-      appName: "Expensar",
-      longName: "Subscription and Finance Tracker with AI",
-      iconPath: "assets/icon_logo/flutter.png",
-      description:
-          "Expensar simplifies financial tracking by focusing on subscription management. "
-          "It uses AI to identify recurring costs and provides a dashboard for smart financial decision-making. ",
-
-      // type: 0,
-      useCase: [
-        UseCaseEntity(
-          problem:
-              "Forgotten subscriptions leading to money loss."
-              "Automated tracking and AI-driven alerts.",
-          solution:
-              "An app that identifies and tracks subscriptions, providing insights"
-              "and alerts to help users manage their finances effectively.",
-        ),
-      ],
-      mockup: const ['assets/icon_logo/flutter.png'],
-      githubLink: "https://github.com/Ketch4n/Expensar",
-      tag: ["Personal", "In Development", "Flutter"],
-    ),
-
     // FACE RECOGNITION - NMSCST
     ProjectEntity(
       appName: "Attendance NMSCST",
@@ -183,6 +159,61 @@ class ProjectConstants {
       ),
     ),
 
+    // OClock DTR
+    ProjectEntity(
+      appName: "OClock : DTR",
+      longName: "Cross-plaform DTR logging",
+      iconPath: "assets/project_icon/oclock_logo.jpg",
+      description:
+          "Mobile, Web and Desktop Flutter Application"
+          "That can logged DTR record, generate docx report"
+          "can detect PH calendar even holidays and has notification",
+
+      // type: 0,
+      useCase: [
+        UseCaseEntity(
+          problem:
+              "As external dev we dont have access to the HRIS system of the company",
+          solution:
+              "A cross platform application that can logged DTR record, generate docx report, "
+              "can detect PH calendar even holidays and has notification",
+        ),
+      ],
+      mockup: const [
+        'assets/project_ss/oclock_dtr/a.jpg',
+        'assets/project_ss/oclock_dtr/b.jpg',
+        'assets/project_ss/oclock_dtr/c.jpg',
+        'assets/project_ss/oclock_dtr/d.jpg',
+        'assets/project_ss/oclock_dtr/e.jpg',
+        'assets/project_ss/oclock_dtr/f.jpg',
+      ],
+      githubLink: "https://github.com/Ketch4n/fusion_dl",
+      tag: ["Personal", "Release", "Flutter"],
+    ),
+
+    // FUSION DL
+    ProjectEntity(
+      appName: "Fusion DL",
+      longName: "Desktop and Mobile Video downloader",
+      iconPath: "assets/project_icon/Fusion_logo.jpg",
+      description:
+          "This project is a desktop application that allows users to download video files from various online platforms. ",
+
+      // type: 0,
+      useCase: [
+        UseCaseEntity(
+          problem:
+              "Restricted or limited option to download video files from online platforms.",
+          solution:
+              "A desktop application that provides users with a convenient and "
+              "efficient way to download video files from various online platforms. Supported on Mobile and Desktop Platforms",
+        ),
+      ],
+      mockup: const ['assets/project_icon/Fusion_logo.jpg'],
+      githubLink: "https://github.com/Ketch4n/fusion_dl",
+      tag: ["Personal", "Alpha Version", "Flutter"],
+    ),
+
     // INVENTORY CS
     ProjectEntity(
       appName: "Oro-AgriVet",
@@ -220,32 +251,32 @@ class ProjectConstants {
     ),
 
     // Chopstick
-    ProjectEntity(
-      appName: "Chopstick Restobar",
-      longName: "Dine-in Menu App with Online Ordering and Tracking",
-      iconPath: "assets/company_logo/chopstick.jpg",
-      mockup: const ["assets/company_logo/chopstick.jpg"],
+    // ProjectEntity(
+    //   appName: "Chopstick Restobar",
+    //   longName: "Dine-in Menu App with Online Ordering and Tracking",
+    //   iconPath: "assets/company_logo/chopstick.jpg",
+    //   mockup: const ["assets/company_logo/chopstick.jpg"],
 
-      description:
-          "This project is a dine-in menu application designed for Chopstick Restobar, a local restaurant in Oroquieta. "
-          "The application aims to enhance the dining experience by providing an interactive menu, allowing customers to place orders online, and track their orders in real-time.",
-      useCase: [
-        UseCaseEntity(
-          problem:
-              "The restaurant wants to expand their business by accepting online orders."
-              "And also to automate the dine-in process using tablet as menu.",
-          solution:
-              "Develope and Deploy a Mobile and Web App for them to accept online orders"
-              "and also to automate the dine-in process using tablet as menu.",
-        ),
-      ],
-      tag: ["Thesis", "PHP", "Flutter"],
-      clientDetails: ClientDetailsEntity(
-        name: "Chopstick Restobar",
-        logoPath: "assets/company_logo/chopstick.jpg",
-        sector: "Local Business in Oroquieta",
-        type: "Business Thesis",
-      ),
-    ),
+    //   description:
+    //       "This project is a dine-in menu application designed for Chopstick Restobar, a local restaurant in Oroquieta. "
+    //       "The application aims to enhance the dining experience by providing an interactive menu, allowing customers to place orders online, and track their orders in real-time.",
+    //   useCase: [
+    //     UseCaseEntity(
+    //       problem:
+    //           "The restaurant wants to expand their business by accepting online orders."
+    //           "And also to automate the dine-in process using tablet as menu.",
+    //       solution:
+    //           "Develope and Deploy a Mobile and Web App for them to accept online orders"
+    //           "and also to automate the dine-in process using tablet as menu.",
+    //     ),
+    //   ],
+    //   tag: ["Thesis", "PHP", "Flutter"],
+    //   clientDetails: ClientDetailsEntity(
+    //     name: "Chopstick Restobar",
+    //     logoPath: "assets/company_logo/chopstick.jpg",
+    //     sector: "Local Business in Oroquieta",
+    //     type: "Business Thesis",
+    //   ),
+    // ),
   ];
 }

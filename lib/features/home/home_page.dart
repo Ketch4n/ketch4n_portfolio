@@ -42,6 +42,23 @@ class _HomeContent extends ConsumerStatefulWidget {
 class _HomeContentState extends ConsumerState<_HomeContent> {
   final ScrollController ctrl = ScrollController();
 
+  // Keys for each scrollable section, indexed to match the navigation rail:
+  // 0 = About, 1 = Skills, 2 = Projects, 3 = Work Exp.
+  final List<GlobalKey> _sectionKeys = List.generate(4, (_) => GlobalKey());
+
+  void _scrollToSection(int index) {
+    if (index < 0 || index >= _sectionKeys.length) return;
+    final context = _sectionKeys[index].currentContext;
+    if (context == null) return;
+
+    Scrollable.ensureVisible(
+      context,
+      duration: const Duration(milliseconds: 600),
+      curve: Curves.easeInOutCubic,
+      alignment: 0.0, // align the section to the top of the viewport
+    );
+  }
+
   @override
   void dispose() {
     ctrl.dispose();
@@ -61,7 +78,7 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
             ? AppBar(
                 backgroundColor: Colors.transparent,
                 elevation: 0,
-                title: NavigationRailWidget(),
+                title: NavigationRailWidget(onNavTap: _scrollToSection),
                 actions: [_buildThemeToggle(), const SizedBox(width: 10)],
               )
             : null,
@@ -86,7 +103,7 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
                             width: 40,
                           ),
                         ),
-                        const NavigationRailWidget(),
+                        NavigationRailWidget(onNavTap: _scrollToSection),
                         _buildThemeToggle(),
                       ],
                     ),
@@ -99,14 +116,26 @@ class _HomeContentState extends ConsumerState<_HomeContent> {
                     child: SingleChildScrollView(
                       controller: ctrl,
                       physics: const AlwaysScrollableScrollPhysics(),
-                      child: const Column(
+                      child: Column(
                         children: [
-                          AboutPage(),
-                          SkillSetPage(),
-                          ProjectsPage(),
-                          SizedBox(height: 80),
-                          WorkExperiencePage(),
-                          SizedBox(height: 100),
+                          KeyedSubtree(
+                            key: _sectionKeys[0],
+                            child: const AboutPage(),
+                          ),
+                          KeyedSubtree(
+                            key: _sectionKeys[1],
+                            child: const SkillSetPage(),
+                          ),
+                          KeyedSubtree(
+                            key: _sectionKeys[2],
+                            child: const ProjectsPage(),
+                          ),
+                          const SizedBox(height: 80),
+                          KeyedSubtree(
+                            key: _sectionKeys[3],
+                            child: const WorkExperiencePage(),
+                          ),
+                          const SizedBox(height: 100),
                         ],
                       ),
                     ),

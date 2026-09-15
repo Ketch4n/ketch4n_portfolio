@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ButtonItemEntity {
@@ -16,7 +17,12 @@ class ButtonItemEntity {
 // Data Entity for action buttons in the header
 class ActionButtonItemEntity {
   final String label;
-  final VoidCallback? onPressed;
+
+  /// Callback invoked when the button is pressed.
+  ///
+  /// May return a [Future]. When it does, [ButtonHeaderWidget] shows a loading
+  /// indicator inside the button until the future completes.
+  final FutureOr<void> Function()? onPressed;
 
   const ActionButtonItemEntity({required this.label, required this.onPressed});
 }

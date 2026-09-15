@@ -4,12 +4,14 @@ import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism.dart';
 import 'package:ketch4n/core/widgets/glassmorphism/glassmorphism_entity.dart';
 
 class NavigationRailWidget extends StatelessWidget {
-  const NavigationRailWidget({super.key});
+  /// Called when a nav item is tapped, with the index of the target section.
+  /// 0 = About, 1 = Skills, 2 = Projects, 3 = Work Exp.
+  final ValueChanged<int>? onNavTap;
+
+  const NavigationRailWidget({super.key, this.onNavTap});
 
   @override
   Widget build(BuildContext context) {
-    // final bool isDesktop = Responsive.isDesktop(context);
-
     return GlassmorphismWidget(
       entity: GlassmorphismEntity(
         width: 390,
@@ -27,22 +29,27 @@ class NavigationRailWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _buildNavItem(context, FontAwesomeIcons.solidAddressCard, "About"),
+          _buildNavItem(context, FontAwesomeIcons.solidAddressCard, "About", 0),
 
-          _buildNavItem(context, FontAwesomeIcons.layerGroup, "Skills"),
+          _buildNavItem(context, FontAwesomeIcons.layerGroup, "Skills", 1),
 
-          _buildNavItem(context, FontAwesomeIcons.code, "Projects"),
+          _buildNavItem(context, FontAwesomeIcons.code, "Projects", 2),
 
-          _buildNavItem(context, FontAwesomeIcons.briefcase, "Work Exp"),
+          _buildNavItem(context, FontAwesomeIcons.briefcase, "Work Exp", 3),
         ],
       ),
     );
   }
 
-  Widget _buildNavItem(BuildContext context, FaIconData icon, String message) {
+  Widget _buildNavItem(
+    BuildContext context,
+    FaIconData icon,
+    String message,
+    int index,
+  ) {
     // This is the core clickable content
     Widget navContent = InkWell(
-      onTap: () {},
+      onTap: () => onNavTap?.call(index),
       borderRadius: BorderRadius.circular(8),
       child: Padding(
         padding: const EdgeInsets.all(8.0),

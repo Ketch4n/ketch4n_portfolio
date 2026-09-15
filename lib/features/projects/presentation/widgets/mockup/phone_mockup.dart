@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ketch4n/core/animations/slide_direction.dart';
+import 'package:ketch4n/core/widgets/skeleton/skeleton_image.dart';
 import 'package:ketch4n/features/projects/domain/entities/project_entity.dart';
 
 class PhoneMockup extends StatefulWidget {
@@ -17,6 +18,8 @@ class _PhoneMockupState extends State<PhoneMockup> {
   late final ValueNotifier<int> _currentPage; // State Management
   Timer? _slideTimer;
 
+  bool _didPrecache = false;
+
   @override
   void initState() {
     super.initState();
@@ -24,6 +27,18 @@ class _PhoneMockupState extends State<PhoneMockup> {
     _currentPage = ValueNotifier<int>(0);
 
     _startAutoSlide();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Warm the image cache once so paging between mockups is instant.
+    if (!_didPrecache) {
+      _didPrecache = true;
+      for (final path in widget.projectDetails.mockup) {
+        precacheImage(AssetImage(path), context);
+      }
+    }
   }
 
   void _startAutoSlide() {
@@ -89,10 +104,10 @@ class _PhoneMockupState extends State<PhoneMockup> {
           itemCount: widget.projectDetails.mockup.length,
           onPageChanged: (i) => _currentPage.value = i,
           itemBuilder: (context, index) {
-            return Image.asset(
-              widget.projectDetails.mockup[index],
+            return SkeletonImage(
+              assetPath: widget.projectDetails.mockup[index],
               fit: BoxFit.cover,
-              errorBuilder: (_, _, _) => _buildErrorWidget(),
+              errorWidget: _buildErrorWidget(),
             );
           },
         ),

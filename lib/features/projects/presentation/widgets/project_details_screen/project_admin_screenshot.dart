@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ketch4n/core/widgets/skeleton/skeleton_image.dart';
 import 'package:ketch4n/core/widgets/text_tag/text_tag.dart';
 import 'package:ketch4n/features/projects/domain/entities/project_entity.dart';
 
@@ -14,6 +15,20 @@ class ProjectAdminScreenshotCard extends StatefulWidget {
 
 class _ProjectAdminScreenshotCardState
     extends State<ProjectAdminScreenshotCard> {
+  bool _didPrecache = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Warm the image cache once so scrolling the admin screenshots is instant.
+    if (!_didPrecache) {
+      _didPrecache = true;
+      for (final path in widget.projectDetails.adminScreenshot!.imagePath) {
+        precacheImage(AssetImage(path), context);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -66,18 +81,15 @@ class _ProjectAdminScreenshotCardState
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: ClipRRect(
-                        // Added for cleaner rounded corners
+                      child: SkeletonImage(
+                        assetPath: widget
+                            .projectDetails
+                            .adminScreenshot!
+                            .imagePath[index],
+                        height: 200,
+                        width: 450,
+                        fit: BoxFit.cover,
                         borderRadius: BorderRadius.circular(8),
-                        child: Image.asset(
-                          widget
-                              .projectDetails
-                              .adminScreenshot!
-                              .imagePath[index],
-                          height: 200,
-                          width: 450,
-                          fit: BoxFit.cover,
-                        ),
                       ),
                     );
                   },

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:ketch4n/core/widgets/skeleton/skeleton_image.dart';
 import 'package:ketch4n/features/projects/domain/entities/project_entity.dart';
 
 class LaptopMockup extends StatefulWidget {
@@ -16,6 +17,7 @@ class _LaptopMockupState extends State<LaptopMockup> {
   late final PageController _pageController;
   int _currentPage = 0;
   Timer? _slideTimer;
+  bool _didPrecache = false;
 
   @override
   void initState() {
@@ -32,6 +34,18 @@ class _LaptopMockupState extends State<LaptopMockup> {
       );
       setState(() => _currentPage = next);
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Warm the image cache once so paging between mockups is instant.
+    if (!_didPrecache) {
+      _didPrecache = true;
+      for (final path in widget.projectDetails.mockup) {
+        precacheImage(AssetImage(path), context);
+      }
+    }
   }
 
   @override
@@ -93,19 +107,9 @@ class _LaptopMockupState extends State<LaptopMockup> {
                           onPageChanged: (i) =>
                               setState(() => _currentPage = i),
                           itemBuilder: (context, index) {
-                            return Image.asset(
-                              widget.projectDetails.mockup[index],
+                            return SkeletonImage(
+                              assetPath: widget.projectDetails.mockup[index],
                               fit: BoxFit.cover,
-                              errorBuilder: (_, _, _) => Container(
-                                color: const Color(0xFF111111),
-                                child: const Center(
-                                  child: Icon(
-                                    Icons.image_not_supported,
-                                    color: Colors.white10,
-                                    size: 40,
-                                  ),
-                                ),
-                              ),
                             );
                           },
                         ),
